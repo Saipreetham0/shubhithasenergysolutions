@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "85046497910",
+    "project_id": "shubhitha-s-energy-solutions",
+    "storage_bucket": "shubhitha-s-energy-solutions.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85046497910:android:4ac408a53cce201113c557",
+        "android_client_info": {
+          "package_name": "com.ksp.shubhithasenergysolutions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85046497910-8s66r6fivq92hmhpdt1bttb259ou7462.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ksp.shubhithasenergysolutions",
+            "certificate_hash": "0d39c18c4144fb2e2e04a2aec2828314645fac4f"
+          }
+        },
+        {
+          "client_id": "85046497910-5h131toa11ujklngf6j7hue42oc3pcfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYPT2zgOWEF-FwAWBRSlciPD7DXY7NRzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85046497910-5h131toa11ujklngf6j7hue42oc3pcfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -41,15 +42,29 @@ class AuthController extends GetxController {
     });
   }
 
-  void registerUser(email, password) async {
+  void registerUser(email, password, name, phone) async {
     try {
       isLoging = true;
       update();
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
+
+      await FirebaseFirestore.instance.collection('users').add({
+        'name': name,
+        'email': email,
+        'phone': phone,
+      });
+
       getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
     } on FirebaseAuthException catch (e) {
       //define error
+
+      if (e.code == 'weak-password') {
+        getErrorSnackBar('The password provided is too weak.', "");
+      } else if (e.code == 'email-already-in-use') {
+        getErrorSnackBar('The account already exists for that email.', "");
+      }
+
       getErrorSnackBar("Account Creating Failed", e);
     }
   }

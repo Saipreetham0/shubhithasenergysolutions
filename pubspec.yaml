@@ -39,7 +39,9 @@ dependencies:
   firebase_auth: ^4.0.1
   flutter_launcher_icons: ^0.10.0
   google_sign_in: ^5.4.2
-  external_app_launcher: ^3.1.0
+  # external_app_launcher: ^3.1.0
+  cloud_firestore: ^4.0.1
+  
   
  
 

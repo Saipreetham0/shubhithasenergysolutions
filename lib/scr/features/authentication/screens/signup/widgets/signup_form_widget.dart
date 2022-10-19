@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/input_validators.dart';
 
 class SignUpFormWidget extends StatefulWidget {
   const SignUpFormWidget({
@@ -55,10 +58,25 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  AuthController.instance.registerUser(
-                    emailController.text.trim(),
-                    passwordController.text.trim(),
-                  );
+                  if (InputValidator.validateField(
+                      "Name", nameController.text)) {
+                    if (InputValidator.validateField(
+                        "Email", emailController.text)) {
+                      if (InputValidator.validateField(
+                          "Phone", phoneController.text)) {
+                        if (InputValidator.validateField(
+                            "Password", passwordController.text)) {
+                          String name = nameController.text.trim();
+                          String email = emailController.text.trim();
+                          String phone = phoneController.text.trim();
+                          String password = passwordController.text.trim();
+                          AuthController.instance.registerUser(email, password, name, phone);
+
+                          //addUserDetails(name, email, phone);
+                        }
+                      }
+                    }
+                  }
                 },
                 child: Text(tSignup.toUpperCase()),
               ),
@@ -67,5 +85,13 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
         ),
       ),
     );
+  }
+
+  Future addUserDetails(String name, String email, String phone) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'email': email,
+      'phone': phone,
+    });
   }
 }

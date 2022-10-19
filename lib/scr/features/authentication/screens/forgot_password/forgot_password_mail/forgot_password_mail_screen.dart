@@ -4,11 +4,19 @@ import 'package:shubhithasenergysolutions/scr/common_widgets/forms/form_header_w
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/forgot_password/forgot_password_otp/otp_screen.dart';
 
-class ForgetPasswordMailScreen extends StatelessWidget {
+class ForgetPasswordMailScreen extends StatefulWidget {
   const ForgetPasswordMailScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ForgetPasswordMailScreen> createState() =>
+      _ForgetPasswordMailScreenState();
+}
+
+class _ForgetPasswordMailScreenState extends State<ForgetPasswordMailScreen> {
+  final emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,6 +40,7 @@ class ForgetPasswordMailScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: emailController,
                         decoration: const InputDecoration(
                             label: Text(tEmail),
                             hintText: tEmail,
@@ -42,7 +51,9 @@ class ForgetPasswordMailScreen extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                               onPressed: () {
-                                Get.to(() => const OTPScreen());
+                                // Get.to(() => const OTPScreen());
+                                AuthController.instance.forgorPassword(
+                                    emailController.text.trim());
                               },
                               child: const Text(tNext))),
                     ],

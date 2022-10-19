@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 
 class SignUpFormWidget extends StatefulWidget {
   const SignUpFormWidget({
@@ -54,7 +55,10 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // _signUp();
+                  AuthController.instance.registerUser(
+                    emailController.text.trim(),
+                    passwordController.text.trim(),
+                  );
                 },
                 child: Text(tSignup.toUpperCase()),
               ),
@@ -64,6 +68,4 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
       ),
     );
   }
-
-  void _signUp() async {}
 }

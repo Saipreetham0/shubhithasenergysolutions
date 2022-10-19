@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/screens/forgot_password/forgot_password_mail/forgot_password_open_mail.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/signup/signup_screen.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/dashboard.dart';
@@ -96,6 +97,7 @@ class AuthController extends GetxController {
     try {
       await auth.sendPasswordResetEmail(email: email);
       getSuccessSnackBar("Reset mail sent successfully. Check mail!");
+      Get.to(() => const openMailScreen());
     } on FirebaseAuthException catch (e) {
       getErrorSnackBar("Error", e);
     }

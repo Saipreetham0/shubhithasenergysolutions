@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
 
 class SignUpFooterWidget extends StatelessWidget {
@@ -17,7 +18,9 @@ class SignUpFooterWidget extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              AuthController.instance.googleLogin();
+            },
             icon: const Image(
               image: AssetImage(tGoogleLogoImage),
               width: 20.0,

@@ -65,6 +65,13 @@ const String tOtpTitle = "CODE";
 const String tOtpSubTitle = "Verification";
 const String tOtpMessage = "Enter the 6 digit OTP sent to you at ";
 
+// -- Open Mail App Text
+
+const String tOpenMailApp = "Check your Mail";
+const String tOpenMailAppSubTitle = "Please check your Mail and follow the instructions to reset your password.";
+const String tOpenMailAppButton = "Open Email App";
+
+
 // -- Dashboard Screen Text
 
 const String tDashboardTitle = "Shubhitha S Energy Solutions";

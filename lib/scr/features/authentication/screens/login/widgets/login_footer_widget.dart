@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/signup/signup_screen.dart';
 
 class LoginFooterWidget extends StatelessWidget {
@@ -21,7 +22,9 @@ class LoginFooterWidget extends StatelessWidget {
           width: double.infinity,
           child: OutlinedButton.icon(
             icon: const Image(image: AssetImage(tGoogleLogoImage), width: 20.0),
-            onPressed: () {},
+            onPressed: () {
+              AuthController.instance.googleLogin();
+            },
             label: const Text(tSignInWithGoogle),
           ),
         ),

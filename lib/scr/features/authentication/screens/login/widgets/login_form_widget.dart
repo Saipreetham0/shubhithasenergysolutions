@@ -76,9 +76,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _signIn() async {
-    String email = _emailController.text.trim();
-    String password = _passwordController.text.trim();
-    // _auth.signInWithEmailAndPassword(email: email, password: password);
-    // AuthController().instance.registerUser(email, password);
+    AuthController.instance
+        .login(_emailController.text.trim(), _passwordController.text.trim());
   }
 }

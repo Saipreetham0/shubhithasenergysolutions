@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/screens/Data_Form/Data_form_page.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/Data_Form/Data_form_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -59,6 +60,11 @@ class HomePage extends StatelessWidget {
                 },
                 child: Text("Generate Quote Instantly"),
               ),
+              ElevatedButton(
+                  onPressed: () {
+                    AuthController.instance.signOut();
+                  },
+                  child: Text("Sign Out")),
             ],
           ),
         )),

@@ -2,10 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 
-class SignUpFormWidget extends StatelessWidget {
+class SignUpFormWidget extends StatefulWidget {
   const SignUpFormWidget({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<SignUpFormWidget> createState() => _SignUpFormWidgetState();
+}
+
+class _SignUpFormWidgetState extends State<SignUpFormWidget> {
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,22 +26,26 @@ class SignUpFormWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: nameController,
               decoration: const InputDecoration(
                   label: Text(tFullName),
                   prefixIcon: Icon(Icons.person_outline_rounded)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: emailController,
               decoration: const InputDecoration(
                   label: Text(tEmail), prefixIcon: Icon(Icons.email_outlined)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: phoneController,
               decoration: const InputDecoration(
                   label: Text(tPhoneNo), prefixIcon: Icon(Icons.numbers)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: passwordController,
               decoration: const InputDecoration(
                   label: Text(tPassword), prefixIcon: Icon(Icons.fingerprint)),
             ),
@@ -39,7 +53,9 @@ class SignUpFormWidget extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // _signUp();
+                },
                 child: Text(tSignup.toUpperCase()),
               ),
             )
@@ -48,4 +64,6 @@ class SignUpFormWidget extends StatelessWidget {
       ),
     );
   }
+
+  void _signUp() async {}
 }

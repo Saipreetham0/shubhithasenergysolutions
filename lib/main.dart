@@ -11,7 +11,7 @@ import 'package:shubhithasenergysolutions/scr/utils/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // Get.put(AuthController());
+  Get.put(AuthController());
   runApp(const MyApp());
 }
 
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.leftToRight,
       transitionDuration: const Duration(milliseconds: 500),
       home: LoginScreen(),
+      
     );
   }
 }

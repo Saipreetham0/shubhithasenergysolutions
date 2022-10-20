@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
@@ -70,7 +68,8 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                           String email = emailController.text.trim();
                           String phone = phoneController.text.trim();
                           String password = passwordController.text.trim();
-                          AuthController.instance.registerUser(email, password, name, phone);
+                          AuthController.instance
+                              .registerUser(email, password, name, phone);
 
                           //addUserDetails(name, email, phone);
                         }
@@ -85,13 +84,5 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
         ),
       ),
     );
-  }
-
-  Future addUserDetails(String name, String email, String phone) async {
-    await FirebaseFirestore.instance.collection('users').add({
-      'name': name,
-      'email': email,
-      'phone': phone,
-    });
   }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>85046497910-610ua8fes0i7mf2q3f9h5gm359f6ru4f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.85046497910-610ua8fes0i7mf2q3f9h5gm359f6ru4f</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>85046497910-8s66r6fivq92hmhpdt1bttb259ou7462.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDBNVSV1INha662rHgeA_v7FUEwNYaENvU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>85046497910</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ksp.shubhithasenergysolutions.shubhithasenergysolutions</string>
+	<key>PROJECT_ID</key>
+	<string>shubhitha-s-energy-solutions</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shubhitha-s-energy-solutions.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:85046497910:ios:a49c19a310d3894813c557</string>
+</dict>
+</plist>

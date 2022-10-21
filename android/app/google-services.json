@@ -37,6 +37,13 @@
             {
               "client_id": "85046497910-5h131toa11ujklngf6j7hue42oc3pcfb.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "85046497910-610ua8fes0i7mf2q3f9h5gm359f6ru4f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ksp.shubhithasenergysolutions.shubhithasenergysolutions"
+              }
             }
           ]
         }

@@ -35,12 +35,14 @@ dependencies:
   google_fonts: ^3.0.1
   get: ^4.6.5
   flutter_otp_text_field: ^1.1.1
-  firebase_core: ^2.0.0
+  firebase_core: ^2.1.0
   firebase_auth: ^4.0.1
   flutter_launcher_icons: ^0.10.0
   google_sign_in: ^5.4.2
   # external_app_launcher: ^3.1.0
   cloud_firestore: ^4.0.1
+  google_nav_bar: ^5.0.6
+  # custom_navigation_bar: ^0.8.2
   
   
  

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
@@ -5,6 +6,7 @@ import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/Data_Form/Data_form_page.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/bottom_navi_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,8 +28,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
+    int _currentIndex = 0;
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: bottom_nav_bar(),
         appBar: AppBar(
           iconTheme: Theme.of(context).iconTheme,
           leading: Icon(
@@ -56,7 +60,6 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        
         body: SingleChildScrollView(
             child: Container(
           padding: const EdgeInsets.all(20),

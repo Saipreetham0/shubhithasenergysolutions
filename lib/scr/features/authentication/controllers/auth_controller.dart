@@ -46,26 +46,29 @@ class AuthController extends GetxController {
     try {
       isLoging = true;
       update();
-      await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-
-      await FirebaseFirestore.instance.collection('users').add({
-        'name': name,
-        'email': email,
-        'phone': phone,
-      });
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(value.user!.uid)
+                  .set({
+                'name': name,
+                'email': email,
+                'phone': phone,
+              }));
 
       getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
     } on FirebaseAuthException catch (e) {
       //define error
-
       if (e.code == 'weak-password') {
-        getErrorSnackBar('The password provided is too weak.', "");
+        // print("Password Provided is too Weak");
+        getErrorSnackBar("Password Provided is too Weak", "");
       } else if (e.code == 'email-already-in-use') {
-        getErrorSnackBar('The account already exists for that email.', "");
+        // print("Account Already exists");
+        getErrorSnackBar("Account Already exists", "");
       }
 
-      getErrorSnackBar("Account Creating Failed", e);
+      // getErrorSnackBar("Account Creating Failed", e);
     }
   }
 

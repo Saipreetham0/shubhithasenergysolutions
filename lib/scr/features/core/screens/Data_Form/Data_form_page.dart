@@ -14,8 +14,11 @@ class QuoteForm extends StatelessWidget {
               vertical: tFormHeight - 10, horizontal: 15),
           child: Form(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(
+                  height: tFormHeight - 10,
+                ),
                 TextFormField(
                   decoration: const InputDecoration(
                       label: Text(tFullName),
@@ -42,9 +45,7 @@ class QuoteForm extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      
-                    },
+                    onPressed: () {},
                     child: Text(tSignup.toUpperCase()),
                   ),
                 )

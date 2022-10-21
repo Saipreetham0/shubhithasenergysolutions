@@ -18,6 +18,39 @@ class InputValidator {
     return false;
   }
 
+  static bool validateEmailAddress(String title, String value) {
+    if (value.trim().isNotEmpty && value.contains("@")) {
+      return true;
+    }
+
+    Get.snackbar(
+      "Error",
+      "$title is not valid",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.orange,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    );
+    return false;
+  }
+
+  static bool validatePhoneNumber(String title, String value) {
+    if (value.trim().length == 10) {
+      return true;
+    }
+    Get.snackbar(
+      "Error",
+      "$title is not valid",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.orange,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    );
+    return false;
+  }
+
   static bool validatePassword(String value1, String value2) {
     if (value1.trim() == value2.trim()) {
       return true;

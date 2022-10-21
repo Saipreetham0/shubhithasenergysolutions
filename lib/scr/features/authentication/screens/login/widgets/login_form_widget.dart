@@ -18,7 +18,18 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    _emailController.dispose();
+    _passwordController.dispose();
+    // categoryController.dispose();
+    super.dispose();
+  }
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  bool passwordObscureText = true;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -39,14 +50,23 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
               controller: _passwordController,
-              decoration: const InputDecoration(
+              obscureText: passwordObscureText,
+              decoration: InputDecoration(
                 prefixIcon: Icon(Icons.fingerprint),
                 labelText: tPassword,
                 hintText: tPassword,
                 // border: OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.remove_red_eye_sharp),
+                  onPressed: () {
+                    setState(() {
+                      passwordObscureText = !passwordObscureText;
+                    });
+                  },
+                  icon: Icon(
+                    passwordObscureText
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                  ),
                 ),
               ),
             ),

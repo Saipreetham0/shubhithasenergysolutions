@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
@@ -17,16 +18,31 @@ class _profileEditState extends State<profileEdit> {
   String urlImage = "";
   final user = AuthController.instance.user;
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+
+  bool _isVisible = true;
+  bool _enabled = true;
+
+  void showSaveButton() {
+    setState(() {
+      _isVisible = !_isVisible;
+      _enabled = !_enabled;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (user != null) {
-      print(user!.photoURL);
       if (user!.photoURL == null) {
         urlImage = tUserImage;
       } else {
         urlImage = user!.photoURL!;
       }
     }
+
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -45,26 +61,32 @@ class _profileEditState extends State<profileEdit> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              IconButton(
+              Center(
+                  child: TextButton.icon(
+                onPressed: () {
+                  showSaveButton();
+                },
                 icon: Icon(
-                  Icons.edit,
+                  LineIcons.edit,
                   color: Theme.of(context).iconTheme.color,
                 ),
-                onPressed: () {
-                  Get.back();
-                },
-              ),
+                label:
+                    Text("Edit", style: Theme.of(context).textTheme.bodyText1),
+              )),
             ],
           ),
+
+          const SizedBox(width: 10),
+          //
         ],
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(left: 16, top: 25, right: 16),
           child: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
+            // onTap: () {
+            //   FocusScope.of(context).unfocus();
+            // },
             child: Column(
               children: [
                 Row(
@@ -103,32 +125,36 @@ class _profileEditState extends State<profileEdit> {
                                   urlImage,
                                 ))),
                       ),
-                      Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 4,
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
+                      Visibility(
+                        visible: _isVisible,
+                        child: Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 4,
+                                  color:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                ),
+                                color: Theme.of(context).backgroundColor,
                               ),
-                              color: Theme.of(context).backgroundColor,
-                            ),
-                            child: Icon(
-                              Icons.edit,
-                              color: Theme.of(context).iconTheme.color,
-                            ),
-                          )),
+                              child: Icon(
+                                Icons.edit,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            )),
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
-                  // controller: _emailController,
+                  controller: _emailController,
+                  enabled: _enabled,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.email_outlined),
                     labelText: tEmail,
@@ -137,7 +163,8 @@ class _profileEditState extends State<profileEdit> {
                 ),
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
-                  // controller: _emailController,
+                  controller: _nameController,
+                  enabled: _enabled,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person_outline_outlined),
                     labelText: tFullName,
@@ -146,7 +173,8 @@ class _profileEditState extends State<profileEdit> {
                 ),
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
-                  // controller: _emailController,
+                  controller: _phoneController,
+                  enabled: _enabled,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.phone),
                     labelText: tPhoneNo,
@@ -155,7 +183,8 @@ class _profileEditState extends State<profileEdit> {
                 ),
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
-                  // controller: _emailController,
+                  enabled: _enabled,
+                  controller: _addressController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.location_on_outlined),
                     labelText: tAddress,
@@ -163,25 +192,32 @@ class _profileEditState extends State<profileEdit> {
                   ),
                 ),
                 SizedBox(height: tDefaultSize - 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                        child: OutlinedButton(
-                            onPressed: () {}, child: Text("Cancel"))),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                        child: ElevatedButton(
-                            onPressed: () {}, child: Text("Save"))),
-                  ],
+                Visibility(
+                  visible: _isVisible,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {
+                                showSaveButton();
+                              },
+                              child: Text("Cancel"))),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                showSaveButton();
+                              },
+                              child: Text("Save"))),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-
-          // child: Column()
         ),
       ),
     ));

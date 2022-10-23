@@ -45,6 +45,7 @@ dependencies:
   # custom_navigation_bar: ^0.8.2
   line_icons: ^2.0.1
   flutter_screenutil: ^5.5.4
+  url_launcher: ^6.1.6
   
   
  

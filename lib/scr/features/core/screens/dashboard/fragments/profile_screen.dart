@@ -9,6 +9,7 @@ import 'package:shubhithasenergysolutions/scr/features/authentication/controller
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/profile_list_item.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/profile_edit/profile_edit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -22,21 +23,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final user = AuthController.instance.user;
 
-
-
   String urlImage = "";
 
   @override
   Widget build(BuildContext context) {
     if (user != null) {
-      print(user!.photoURL);
       if (user!.photoURL == null) {
-        urlImage =
-            tUserImage;
+        urlImage = tUserImage;
       } else {
         urlImage = user!.photoURL!;
       }
     }
+
     return Scaffold(
       body: Container(
           padding: const EdgeInsets.symmetric(
@@ -93,7 +91,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              user?.displayName ?? 'Edit Your Profile',
+              // user?.displayName ?? 'Edit Your Profile',
+              "${user?.displayName}",
               style: Theme.of(context).textTheme.headline3,
             ),
             const SizedBox(height: 10),
@@ -143,6 +142,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
               text: "Logout",
               hasNavigation: false,
             ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(
+                  'https://saipreetham.me',
+                );
+                if (await launchUrl(url)) {
+                  canLaunchUrl(url);
+                } else {
+                  // ignore: avoid_print
+                  print("Can't launch $url");
+                }
+              },
+              child: Text(
+                developerName,
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            )
           ])),
     );
   }

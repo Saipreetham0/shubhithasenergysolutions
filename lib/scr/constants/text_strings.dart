@@ -79,3 +79,4 @@ const String tDashboardTitle = "Shubhitha S Energy Solutions";
 
 // -- Profile Screen Text
 const String tProfileTitle = "Profile";
+const String developerName = "Designed By Saipreetham";

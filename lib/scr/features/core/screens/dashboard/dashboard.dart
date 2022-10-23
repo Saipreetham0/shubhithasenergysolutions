@@ -31,8 +31,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -45,9 +43,6 @@ class _HomePageState extends State<HomePage> {
       chatScreen(),
       ProfileScreen()
     ];
-
-
-    
 
     return SafeArea(
       child: Scaffold(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/Data_Form/Data_form_page.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
 
 class home_fragment extends StatefulWidget {
   const home_fragment({
@@ -34,7 +36,7 @@ class _home_fragmentState extends State<home_fragment> {
               ),
               IconButton(
                 onPressed: () {
-                  // AuthController.instance.signOut();
+                  Get.to(notificationsScreen());
                 },
                 icon: const Icon(Icons.notifications),
               )

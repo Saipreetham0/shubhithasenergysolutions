@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -91,8 +92,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              // user?.displayName ?? 'Edit Your Profile',
-              "${user?.displayName}",
+              user?.displayName ?? 'Edit Your Profile',
+              // ,
+
               style: Theme.of(context).textTheme.headline3,
             ),
             const SizedBox(height: 10),

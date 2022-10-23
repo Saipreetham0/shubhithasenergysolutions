@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
@@ -14,23 +15,41 @@ class profileEdit extends StatefulWidget {
 }
 
 class _profileEditState extends State<profileEdit> {
-  bool showPassword = false;
+  //save button functions
+  bool _isVisible = false;
+  bool _enabled = false;
+
   String urlImage = "";
+
   final user = AuthController.instance.user;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
 
-  bool _isVisible = true;
-  bool _enabled = true;
+  Stream collectionStream =
+      FirebaseFirestore.instance.collection('users').snapshots();
 
   void showSaveButton() {
     setState(() {
       _isVisible = !_isVisible;
       _enabled = !_enabled;
     });
+  }
+
+  _updateProfile() {
+    firestore.collection("users").doc(user!.uid).update({
+      "name": _nameController.text,
+      "email": _emailController.text,
+      "phone": _phoneController.text,
+      "address": _addressController.text,
+    }).then(
+      (value) => user
+          ?.updateDisplayName(_nameController.text)
+          .then((value) => print("Updated")),
+    );
   }
 
   @override
@@ -41,7 +60,35 @@ class _profileEditState extends State<profileEdit> {
       } else {
         urlImage = user!.photoURL!;
       }
+
+      if (user!.phoneNumber == null) {
+        _phoneController.text = "";
+      } else {
+        _phoneController.text = user!.phoneNumber!;
+      }
+      if (user!.displayName == null) {
+        _nameController.text = "";
+      } else {
+        _nameController.text = user!.displayName!;
+      }
+
+      _emailController.text = user!.email!;
     }
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        _nameController.text = documentSnapshot.get("name");
+        _emailController.text = documentSnapshot.get("email");
+        _phoneController.text = documentSnapshot.get("phone");
+        _addressController.text = documentSnapshot.get("address");
+      } else {
+        print('Document does not exist on the database');
+      }
+    });
 
     return SafeArea(
         child: Scaffold(
@@ -97,9 +144,7 @@ class _profileEditState extends State<profileEdit> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 15,
-                ),
+                SizedBox(height: 15),
                 Center(
                   child: Stack(
                     children: [
@@ -154,6 +199,7 @@ class _profileEditState extends State<profileEdit> {
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
                   enabled: _enabled,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.email_outlined),
@@ -164,6 +210,7 @@ class _profileEditState extends State<profileEdit> {
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   controller: _nameController,
+                  keyboardType: TextInputType.name,
                   enabled: _enabled,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person_outline_outlined),
@@ -174,6 +221,7 @@ class _profileEditState extends State<profileEdit> {
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   controller: _phoneController,
+                  keyboardType: TextInputType.phone,
                   enabled: _enabled,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.phone),
@@ -184,6 +232,7 @@ class _profileEditState extends State<profileEdit> {
                 SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   enabled: _enabled,
+                  keyboardType: TextInputType.streetAddress,
                   controller: _addressController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.location_on_outlined),
@@ -210,6 +259,7 @@ class _profileEditState extends State<profileEdit> {
                           child: ElevatedButton(
                               onPressed: () {
                                 showSaveButton();
+                                _updateProfile();
                               },
                               child: Text("Save"))),
                     ],

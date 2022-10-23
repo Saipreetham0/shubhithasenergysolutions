@@ -55,6 +55,7 @@ class AuthController extends GetxController {
                 'name': name,
                 'email': email,
                 'phone': phone,
+                'address': "",
               }));
 
       await user?.updateDisplayName(name);
@@ -104,7 +105,16 @@ class AuthController extends GetxController {
           accessToken: googleAuth?.accessToken,
           idToken: googleAuth?.idToken,
         );
-        await auth.signInWithCredential(crendentials);
+        await auth.signInWithCredential(crendentials).then((value) =>
+            FirebaseFirestore.instance
+                .collection('users')
+                .doc(value.user!.uid)
+                .set({
+              'name': value.user!.displayName,
+              'email': value.user!.email,
+              'phone': "",
+              'address': "",
+            }));
         getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
       }
     } on FirebaseAuthException catch (e) {

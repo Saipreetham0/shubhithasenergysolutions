@@ -246,6 +246,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      sha256: "5e8f5197b4d0ec4b70d1c7afe055b18bba6ac27c00b309a98c25c11ba64eedf1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.5.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter

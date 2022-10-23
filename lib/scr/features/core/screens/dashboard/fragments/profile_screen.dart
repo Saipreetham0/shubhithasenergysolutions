@@ -1,14 +1,42 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/profile_list_item.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/profile_edit/profile_edit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  // final user = FirebaseAuth.instance.currentUser;
+
+  final user = AuthController.instance.user;
+
+
+
+  String urlImage = "";
+
+  @override
   Widget build(BuildContext context) {
+    if (user != null) {
+      print(user!.photoURL);
+      if (user!.photoURL == null) {
+        urlImage =
+            tUserImage;
+      } else {
+        urlImage = user!.photoURL!;
+      }
+    }
     return Scaffold(
       body: Container(
           padding: const EdgeInsets.symmetric(
@@ -28,10 +56,36 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Stack(
-                  children: [
+                  children: <Widget>[
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage(tProfileImage),
+                      backgroundImage: NetworkImage(urlImage),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            width: 4,
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                          ),
+                          color: Theme.of(context).backgroundColor,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => const profileEdit());
+                          },
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -39,39 +93,55 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              "tProfileName",
-              style: Theme.of(context).textTheme.headline4,
-              textAlign: TextAlign.start,
+              user?.displayName ?? 'Edit Your Profile',
+              style: Theme.of(context).textTheme.headline3,
             ),
             const SizedBox(height: 10),
             Text(
-              "tProfileEmail",
+              "${user!.email}",
               style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 20),
             profile_list_widget(
+              onTap: () {
+                Get.to(profileEdit());
+              },
+              icon: LineIcons.edit,
+              text: "Edit Profile",
+            ),
+            const SizedBox(height: 20),
+            profile_list_widget(
               onTap: () {},
-              icon: Icons.notifications,
+              icon: LineIcons.bell,
               text: "Notifications",
             ),
             const SizedBox(height: 20),
             profile_list_widget(
               onTap: () {},
-              icon: Icons.notifications,
-              text: "Notifications",
+              icon: LineIcons.lock,
+              text: "Privacy Policy",
             ),
             const SizedBox(height: 20),
             profile_list_widget(
               onTap: () {},
-              icon: Icons.notifications,
-              text: "Notifications",
+              icon: LineIcons.questionCircle,
+              text: "Help Support",
             ),
             const SizedBox(height: 20),
             profile_list_widget(
               onTap: () {},
-              icon: Icons.notifications,
-              text: "Notifications",
+              icon: LineIcons.userPlus,
+              text: "Invite Friends",
+            ),
+            const SizedBox(height: 20),
+            profile_list_widget(
+              onTap: () {
+                AuthController.instance.signOut();
+              },
+              icon: Icons.logout,
+              text: "Logout",
+              hasNavigation: false,
             ),
           ])),
     );

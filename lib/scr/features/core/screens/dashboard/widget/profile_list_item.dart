@@ -18,7 +18,7 @@ class profile_list_widget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [],
       ),
@@ -29,14 +29,21 @@ class profile_list_widget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(width: 5),
-            Icon(icon, color: Theme.of(context).iconTheme.color),
-            const SizedBox(width: 10),
+            Icon(
+              icon,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            const SizedBox(width: 20),
             Text(
               text,
-              style: Theme.of(context).textTheme.headline4,
-              textAlign: TextAlign.start,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
+            Spacer(),
+            if (hasNavigation)
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Theme.of(context).iconTheme.color,
+              ),
           ],
         ),
       ),

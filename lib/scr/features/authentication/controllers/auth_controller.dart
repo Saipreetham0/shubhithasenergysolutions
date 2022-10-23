@@ -57,6 +57,9 @@ class AuthController extends GetxController {
                 'phone': phone,
               }));
 
+      await user?.updateDisplayName(name);
+      await user?.updatePhotoURL("https://example.com/jane-q-user/profile.jpg");
+
       getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
     } on FirebaseAuthException catch (e) {
       //define error

@@ -56,11 +56,6 @@ class _home_fragmentState extends State<home_fragment> {
             },
             child: Text("Generate Quote Instantly"),
           ),
-          ElevatedButton(
-              onPressed: () {
-                AuthController.instance.signOut();
-              },
-              child: Text("Sign Out")),
         ],
       ),
     ));

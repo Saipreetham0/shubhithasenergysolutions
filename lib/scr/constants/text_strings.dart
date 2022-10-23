@@ -6,6 +6,7 @@ const String tLogin = "Login";
 const String tEmail = "E-Mail";
 const String tSignup = "Signup";
 const String tPhoneNo = "Phone No";
+const String tAddress = "Address";
 const String tPassword = "Password";
 const String tFullName = "Full Name";
 const String tForgetPassword = "Forget Password";
@@ -68,15 +69,13 @@ const String tOtpMessage = "Enter the 6 digit OTP sent to you at ";
 // -- Open Mail App Text
 
 const String tOpenMailApp = "Check your Mail";
-const String tOpenMailAppSubTitle = "Please check your Mail and follow the instructions to reset your password.";
+const String tOpenMailAppSubTitle =
+    "Please check your Mail and follow the instructions to reset your password.";
 const String tOpenMailAppButton = "Open Email App";
-
 
 // -- Dashboard Screen Text
 
 const String tDashboardTitle = "Shubhitha S Energy Solutions";
-
-
 
 // -- Profile Screen Text
 const String tProfileTitle = "Profile";

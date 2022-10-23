@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -30,6 +31,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -42,6 +45,9 @@ class _HomePageState extends State<HomePage> {
       chatScreen(),
       ProfileScreen()
     ];
+
+
+    
 
     return SafeArea(
       child: Scaffold(
@@ -84,36 +90,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        // appBar: AppBar(
-        //   iconTheme: Theme.of(context).iconTheme,
-        //   leading: Icon(
-        //     Icons.menu,
-        //     //dark mode
-
-        //     color: Theme.of(context).iconTheme.color,
-        //     //color: isDark ? tWhiteColor : tDarkColor,
-        //   ),
-        //   title: Text(tDashboardTitle,
-        //       style: Theme.of(context).textTheme.bodyText1),
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,
-        //   actions: [
-        //     Container(
-        //       margin: const EdgeInsets.only(right: 20, top: 7),
-        //       decoration: BoxDecoration(
-        //         borderRadius: BorderRadius.circular(10),
-
-        //         color: Theme.of(context).cardColor,
-        //         // color: isDark ? tSecondaryColor : tCardBgColor,
-        //       ),
-        //       child: IconButton(
-        //         onPressed: () {},
-        //         icon: const Icon(Icons.notifications),
-        //         color: Theme.of(context).iconTheme.color,
-        //       ),
-        //     )
-        //   ],
-        // ),
         body: _pages[_selectedIndex],
       ),
     );

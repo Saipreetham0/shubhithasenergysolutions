@@ -20,7 +20,7 @@ class profile_list_widget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [],
+        // boxShadow: [],
       ),
       child: GestureDetector(
         onTap: () {

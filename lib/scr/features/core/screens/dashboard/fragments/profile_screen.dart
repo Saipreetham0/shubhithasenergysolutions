@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
+import 'package:shubhithasenergysolutions/scr/constants/links.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/profile_list_item.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/help_support/help_support.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/profile_edit/profile_edit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -113,19 +116,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 20),
             profile_list_widget(
-              onTap: () {},
+              onTap: () {
+                Get.to(notificationsScreen());
+              },
               icon: LineIcons.bell,
               text: "Notifications",
             ),
             const SizedBox(height: 20),
             profile_list_widget(
-              onTap: () {},
+              onTap: () async {
+                final url = Uri.parse(
+                  kprivacyPolicy,
+                );
+                if (await launchUrl(url)) {
+                  canLaunchUrl(url);
+                } else {
+                  // ignore: avoid_print
+                  print("Can't launch $url");
+                }
+              },
               icon: LineIcons.lock,
               text: "Privacy Policy",
             ),
             const SizedBox(height: 20),
             profile_list_widget(
-              onTap: () {},
+              onTap: () {
+                Get.to(helpSupport());
+              },
               icon: LineIcons.questionCircle,
               text: "Help Support",
             ),
@@ -148,7 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             GestureDetector(
               onTap: () async {
                 final url = Uri.parse(
-                  'https://saipreetham.me',
+                  kspDeveloperSite,
                 );
                 if (await launchUrl(url)) {
                   canLaunchUrl(url);

@@ -7,7 +7,7 @@ import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
-import 'package:shubhithasenergysolutions/scr/features/core/screens/Data_Form/Data_form_page.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/Data_form_page.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/fragments/chat_screen.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/fragments/home_fragment.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/fragments/pdf_files_fragment.dart';

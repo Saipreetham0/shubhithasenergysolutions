@@ -107,7 +107,8 @@ class _pdfGeneratorState extends State<pdfGenerator> {
     double eval = exp.evaluate(EvaluationType.REAL, cm);
     systemPrice = eval.toDouble().toInt();
 
-    if (kW >= 3.0) {
+    // if (kW == 1 || kW == 2 || kW == 3) {
+    if (kW <= 3) {
       Parser p1 = Parser();
       Expression exp1 = p1.parse('48000 * $kW* 0.4');
       ContextModel cm1 = ContextModel();

@@ -13,7 +13,7 @@ class QuoteForm extends StatefulWidget {
 }
 
 class _QuoteFormState extends State<QuoteForm> {
-   var _kW = TextEditingController();
+  var _kW = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,11 @@ class _QuoteFormState extends State<QuoteForm> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_kW.text.isNotEmpty) {
-                        // Get.to(pdfGenerator(), arguments: _kW.text);
+                      if (_kW != null) {
+                        var n = double.parse('${_kW.text}');
+                        Get.to(pdfGenerator(), arguments: n);
+                        // double result = double.parse('$_kW');
+                        print(n);
                       } else {
                         Get.snackbar("Error", "Please enter kW");
                       }

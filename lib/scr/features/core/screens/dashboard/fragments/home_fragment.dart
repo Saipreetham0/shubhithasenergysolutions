@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
-import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/Data_form_page.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/QuotePage.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
 
 class home_fragment extends StatefulWidget {
@@ -50,15 +50,15 @@ class _home_fragmentState extends State<home_fragment> {
             child: Image.asset(tAppLogo),
           ),
           Text("Get a free Quote",
-              style: Theme.of(context).textTheme.headline1),
+              style: Theme.of(context).textTheme.headline3),
+          const SizedBox(height: 10),
           SizedBox(
-            width: widget.media.size.width,
-          ),
-          ElevatedButton(
-            onPressed: () {
-             
-            },
-            child: Text("Generate Quote Instantly"),
+            width: double.infinity,
+            child: ElevatedButton(
+                onPressed: () {
+                  Get.to(QuoteForm());
+                },
+                child: Text("Generate Quote Instantly")),
           ),
         ],
       ),

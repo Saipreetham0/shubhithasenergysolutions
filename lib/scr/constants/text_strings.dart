@@ -80,3 +80,44 @@ const String tDashboardTitle = "Shubhitha S Energy Solutions";
 // -- Profile Screen Text
 const String tProfileTitle = "Profile";
 const String developerName = "Designed By Saipreetham";
+
+//headings for the pdf
+
+const String tProjectSummaryTitle = "Project Summary";
+const String tBillDetails = "Bill Details";
+const String tEnergyGenerated = "Energy Generation";
+const String tReturnOnInvestment = "Return on Investment (ROI)";
+
+// -- Project Summary Screen Text
+
+const String tSystemSize = "System Size(kW)";
+const String tSolarModuleRating = "Solar Module Rating (Wp)";
+const String tNumberOfModules = "Number of Modules";
+const String tNumberOfInverters = "Inverter (kVA)";
+const String tNumberOfBatteries = "Battery";
+
+// -- Billing Screen Text
+const String tSystemPrice = "System Price (INR)";
+const String tSubsidy = "Subsidy (INR)";
+const String tPostSubsidyRate = "Post Subsidy Rate (INR)";
+const String tGst = "GST (@13.8%)";
+const String tNetMeterFee = "Net Meter Fee (Incl. of GST)";
+const String tSubsidyApplicationFee = "Subsidy Application Fee (Incl. of GST)";
+const String tCostToCustomer = "Cost to Customer (Incl. of GST)";
+
+// -- Energy Generation Report Text
+const String tEnergyGeneratedPerMonth = "Energy Generated per month (kWh)";
+const String tEnergyGeneratedPerYear = "Energy Generated per year (kWh)";
+const String tEnergyGeneratedForLifetime =
+    "Energy Generated for Lifetime (~25 years) (kWh)";
+
+// -- Bill Saved Report Text
+const String tMonthlyElectricityBillSaving =
+    "Monthly Electricity Bill Saving (INR)";
+const String tYearlyElectricityBillSaving =
+    "Yearly Electricity Bill Saving (INR)";
+
+// -- return on investment report text
+
+const String tPaybackPeriod = "Payback Period (in years)";
+const String tEnergyProduction = " Energy Production & Cost Savings";

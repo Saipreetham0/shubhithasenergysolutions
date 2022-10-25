@@ -29,6 +29,9 @@ class _profileEditState extends State<profileEdit> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
 
+  bool _isEmailVerified = false;
+  bool _isPhoneVerified = false;
+
   Stream collectionStream =
       FirebaseFirestore.instance.collection('users').snapshots();
 
@@ -71,6 +74,8 @@ class _profileEditState extends State<profileEdit> {
       } else {
         _nameController.text = user!.displayName!;
       }
+      _isEmailVerified = user!.emailVerified;
+      print(_isEmailVerified);
 
       _emailController.text = user!.email!;
     }
@@ -201,10 +206,27 @@ class _profileEditState extends State<profileEdit> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   enabled: _enabled,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email_outlined),
                     labelText: tEmail,
                     hintText: tEmail,
+                    // suffixIcon: IconButton(
+                    //   onPressed: () {
+                    //     if (_isEmailVerified == false) {
+                    //       user!.sendEmailVerification();
+                    //       Get.snackbar(
+                    //         "Email Verification",
+                    //         "Email verification link has been sent to your email",
+                    //       );
+                    //     }
+                    //   },
+                    //   icon: Icon(
+                    //     _isEmailVerified
+                    //         ? Icons.verified
+                    //         : Icons.error_outline,
+                    //     color: _isEmailVerified ? Colors.blue : Colors.red,
+                    //   ),
+                    // )
                   ),
                 ),
                 SizedBox(height: tDefaultSize - 15),

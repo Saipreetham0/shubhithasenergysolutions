@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
@@ -12,7 +13,7 @@ class QuoteForm extends StatefulWidget {
 }
 
 class _QuoteFormState extends State<QuoteForm> {
-  final _kW = TextEditingController();
+   var _kW = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,9 @@ class _QuoteFormState extends State<QuoteForm> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   controller: _kW,
                   keyboardType: TextInputType.number,
@@ -42,7 +46,12 @@ class _QuoteFormState extends State<QuoteForm> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.to(pdfGenerator(), arguments: _kW.text);
+                      if (_kW.text.isNotEmpty) {
+                        // Get.to(pdfGenerator(), arguments: _kW.text);
+                      } else {
+                        Get.snackbar("Error", "Please enter kW");
+                      }
+                      // Get.to(pdfGenerator(), arguments: _kW.text);
                     },
                     child: Text("Generate Quote"),
                   ),

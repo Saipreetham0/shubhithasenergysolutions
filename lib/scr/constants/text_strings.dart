@@ -86,6 +86,7 @@ const String developerName = "Designed By Saipreetham";
 const String tProjectSummaryTitle = "Project Summary";
 const String tBillDetails = "Bill Details";
 const String tEnergyGenerated = "Energy Generation";
+const String tEnergySaving = "Energy Savings";
 const String tReturnOnInvestment = "Return on Investment (ROI)";
 
 // -- Project Summary Screen Text
@@ -121,3 +122,9 @@ const String tYearlyElectricityBillSaving =
 
 const String tPaybackPeriod = "Payback Period (in years)";
 const String tEnergyProduction = " Energy Production & Cost Savings";
+
+// -- Energy Production & Cost Saving Report Text
+
+const String tAnnualEnergyProduction = "Annual Energy Production (kWh)";
+
+const String tAnnualCostSavings = "Annual Savings (INR)";

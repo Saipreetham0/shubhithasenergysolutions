@@ -40,7 +40,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   var yearlyElectricityBillSaving = 0;
 
   // payback period
-  var paybackPeriod = 10;
+  var paybackPeriod;
 //
   var aEP1 = 0;
   var aEP2 = 0;
@@ -195,7 +195,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
         '($costToCustomer + $subsidyPrice)/$yearlyElectricityBillSaving');
     ContextModel cm = ContextModel();
     double eval = exp.evaluate(EvaluationType.REAL, cm);
-    paybackPeriod = eval.toDouble().toInt();
+    paybackPeriod = eval.toDouble().toPrecision(2);
   }
 
   void _annualEnergyProduction() {

@@ -43,6 +43,11 @@ class KTextTheme {
       fontWeight: FontWeight.normal,
       color: tDarkColor,
     ),
+    subtitle1: GoogleFonts.poppins(
+      fontSize: 14.0,
+      fontWeight: FontWeight.normal,
+      color: tDarkColor,
+    ),
   );
 
   // dark color theme
@@ -79,6 +84,11 @@ class KTextTheme {
       color: tWhiteColor,
     ),
     bodyText2: GoogleFonts.poppins(
+      fontSize: 14.0,
+      fontWeight: FontWeight.normal,
+      color: tWhiteColor,
+    ),
+    subtitle1: GoogleFonts.poppins(
       fontSize: 14.0,
       fontWeight: FontWeight.normal,
       color: tWhiteColor,

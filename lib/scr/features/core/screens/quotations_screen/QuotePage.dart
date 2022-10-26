@@ -14,6 +14,8 @@ class QuoteForm extends StatefulWidget {
 
 class _QuoteFormState extends State<QuoteForm> {
   var _kW = TextEditingController();
+  var _phoneNumber = TextEditingController();
+  var _address = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class _QuoteFormState extends State<QuoteForm> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 1,
-          title: Text(""),
+          title: Text("Quotation"),
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(
@@ -31,6 +33,23 @@ class _QuoteFormState extends State<QuoteForm> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                TextFormField(
+                  controller: _phoneNumber,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                      label: Text("Phone Number"),
+                      prefixIcon: Icon(Icons.phone)),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _address,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                      label: Text("Address"),
+                      prefixIcon: Icon(Icons.location_on)),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -49,14 +68,12 @@ class _QuoteFormState extends State<QuoteForm> {
                       if (_kW != null) {
                         var n = double.parse('${_kW.text}');
                         Get.to(pdfGenerator(), arguments: n);
-                        // double result = double.parse('$_kW');
-                        print(n);
                       } else {
                         Get.snackbar("Error", "Please enter kW");
                       }
                       // Get.to(pdfGenerator(), arguments: _kW.text);
                     },
-                    child: Text("Generate Quote"),
+                    child: Text("Generate Quotation"),
                   ),
                 )
               ],

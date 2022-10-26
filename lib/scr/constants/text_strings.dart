@@ -128,3 +128,14 @@ const String tEnergyProduction = " Energy Production & Cost Savings";
 const String tAnnualEnergyProduction = "Annual Energy Production (kWh)";
 
 const String tAnnualCostSavings = "Annual Savings (INR)";
+
+
+//-- Home Screen Text Strings
+
+const String tStep1 = "Based on your kW, we can generate an instant quote for you";
+const String tStep2 = "You will be assisted by a Sales Expert when finalizing your order";
+const String tStep3 = "We will deliver your order to your doorstep";
+const String tStep4 = "We will install your system and get it up and running";
+const String tStep5 = "You will start saving money on your electricity bill";
+
+

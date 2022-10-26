@@ -16,19 +16,19 @@ class stepsCard_widget extends StatelessWidget {
       borderOnForeground: true,
       color: Theme.of(context).cardColor,
       child: Container(
-        width: 160,
+        width: 150,
         height: 220,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(image, width: 100, height: 100),
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
             ),

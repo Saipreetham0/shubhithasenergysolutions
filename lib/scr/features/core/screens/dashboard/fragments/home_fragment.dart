@@ -25,87 +25,95 @@ class home_fragment extends StatefulWidget {
 class _home_fragmentState extends State<home_fragment> {
   @override
   Widget build(BuildContext context) {
-    final List _listBanners = [
-      tStep1,
-      tStep2,
-      tStep3,
-      tStep4,
-      tStep5,
-    ];
-    return SingleChildScrollView(
-        child: Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: tDefaultSize - 10, vertical: tDefaultSize - 15),
-      child: Column(children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Home',
-              style: Theme.of(context).textTheme.headline1,
+    return Container(
+      child: Column(
+        children: [
+          SingleChildScrollView(
+              child: Container(
+            padding: const EdgeInsets.symmetric(
+                horizontal: tDefaultSize - 10, vertical: tDefaultSize - 15),
+            child: Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Home',
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Get.to(notificationsScreen());
+                    },
+                    icon: const Icon(Icons.notifications),
+                  )
+                ],
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                // decoration: BoxDecoration(color: Colors.pink[100]),
+                height: widget.media.size.height * 0.2,
+                width: widget.media.size.width * 0.9,
+                child: Image.asset(tAppLogo),
+              ),
+              const SizedBox(height: 20),
+              Text("Get a free Quote",
+                  style: Theme.of(context).textTheme.headline3),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Get.to(QuoteForm());
+                    },
+                    child: Text("Generate Quote Instantly")),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Text(
+                    "Steps to get a Quote",
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+            ]),
+          )),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                const SizedBox(width: 20),
+                stepsCard_widget(
+                  image: tStep1Image,
+                  text: tStep1,
+                ),
+                const SizedBox(width: 10),
+                stepsCard_widget(
+                  image: tStep2Image,
+                  text: tStep2,
+                ),
+                const SizedBox(width: 10),
+                stepsCard_widget(
+                  image: tStep3Image,
+                  text: tStep3,
+                ),
+                const SizedBox(width: 10),
+                stepsCard_widget(
+                  image: tStep4Image,
+                  text: tStep4,
+                ),
+                const SizedBox(width: 10),
+                stepsCard_widget(
+                  image: tStep5Image,
+                  text: tStep5,
+                ),
+                const SizedBox(width: 20),
+              ],
             ),
-            IconButton(
-              onPressed: () {
-                Get.to(notificationsScreen());
-              },
-              icon: const Icon(Icons.notifications),
-            )
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          //decoration: BoxDecoration(color: Colors.pink[100]),
-          height: 200,
-          width: widget.media.size.width,
-          child: Image.asset(tAppLogo),
-        ),
-        Text("Get a free Quote", style: Theme.of(context).textTheme.headline3),
-        const SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-              onPressed: () {
-                Get.to(QuoteForm());
-              },
-              child: Text("Generate Quote Instantly")),
-        ),
-        const SizedBox(height: 20),
-        Row(
-          children: [
-            Text(
-              "Steps to get a Quote",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              stepsCard_widget(
-                image: tStep1Image,
-                text: tStep1,
-              ),
-              const SizedBox(width: 10),
-              stepsCard_widget(
-                image: tStep2Image,
-                text: tStep2,
-              ),
-              const SizedBox(width: 10),
-              stepsCard_widget(
-                image: tStep3Image,
-                text: tStep3,
-              ),
-              const SizedBox(width: 10),
-              stepsCard_widget(
-                image: tStep4Image,
-                text: tStep4,
-              ),
-            ],
           ),
-        ),
-      ]),
-    ));
+        ],
+      ),
+    );
   }
 }

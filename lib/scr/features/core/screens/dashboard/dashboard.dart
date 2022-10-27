@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 GButton(
                   //icon: Icons.inventory_outlined,
                   icon: LineIcons.fileInvoice,
-                  text: 'Quotations',
+                  text: 'My Proposals',
                 ),
                 GButton(
                   icon: LineIcons.comment,

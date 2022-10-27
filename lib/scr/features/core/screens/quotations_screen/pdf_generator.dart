@@ -21,7 +21,6 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   var noOfModulesC;
 
   // Bill
-
   var systemPrice = 0;
   var subsidyPrice = 0;
   var postSubsidyPrice = 0;
@@ -307,259 +306,266 @@ class _pdfGeneratorState extends State<pdfGenerator> {
 
     var inverter = kW;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Quote for ${Get.arguments} kW"),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Theme.of(context).iconTheme.color,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          // title: Text("Quote for ${Get.arguments} kW",
+          //     style: Theme.of(context).textTheme.bodyMedium),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          elevation: 1,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            onPressed: () {
+              Get.back(result: "0");
+            },
           ),
-          onPressed: () {
-            Get.back(result: "0");
-          },
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Quote for ${Get.arguments} kW",
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                "Project Summary",
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              const SizedBox(height: 10),
-              Table(
-                columnWidths: {0: FractionColumnWidth(.4)},
-                textDirection: TextDirection.ltr,
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                // defaultColumnWidth: FixedColumnWidth(120.0),
-                border: TableBorder.all(
-                    color: Theme.of(context).iconTheme.color!,
-                    style: BorderStyle.solid,
-                    width: 1),
-                children: [
-                  TableRow(children: [
-                    custom_text_table_widget(text: tSystemSize),
-                    custom_text_table_widget(text: '${Get.arguments}'),
-                    custom_text_table_widget(text: ''),
-                    custom_text_table_widget(text: ''),
-                  ]),
-                  TableRow(children: [
-                    custom_text_table_widget(text: tSolarModuleRating),
-                    custom_text_table_widget(text: '$a'),
-                    custom_text_table_widget(text: '$b'),
-                    custom_text_table_widget(text: '$c'),
-                  ]),
-
-                  //
-                  TableRow(children: [
-                    custom_text_table_widget(text: tNumberOfModules),
-                    custom_text_table_widget(text: '$noOfModulesA'),
-                    custom_text_table_widget(text: '$noOfModulesB'),
-                    custom_text_table_widget(text: '$noOfModulesC'),
-                  ]),
-                  TableRow(children: [
-                    custom_text_table_widget(text: tNumberOfInverters),
-                    custom_text_table_widget(text: '$inverter'),
-                    custom_text_table_widget(text: ''),
-                    custom_text_table_widget(text: ''),
-                  ]),
-                  TableRow(children: [
-                    custom_text_table_widget(text: tNumberOfBatteries),
-                    custom_text_table_widget(text: 'NA'),
-                    custom_text_table_widget(text: ''),
-                    custom_text_table_widget(text: ''),
-                  ]),
-                ],
-              ),
-
-              const SizedBox(height: 10),
-              Text(
-                "Bill Details",
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              const SizedBox(height: 10),
-
-              //bill table
-
-              Table(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Quote for ${Get.arguments} kW",
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Project Summary",
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                const SizedBox(height: 10),
+                Table(
+                  columnWidths: {0: FractionColumnWidth(.4)},
                   textDirection: TextDirection.ltr,
                   defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  // defaultColumnWidth: FixedColumnWidth(120.0),
                   border: TableBorder.all(
                       color: Theme.of(context).iconTheme.color!,
                       style: BorderStyle.solid,
                       width: 1),
                   children: [
                     TableRow(children: [
-                      custom_text_table_widget(text: tSystemPrice),
-                      custom_text_table_widget(text: 'Rs. $systemPrice'),
+                      custom_text_table_widget(text: tSystemSize),
+                      custom_text_table_widget(text: '${Get.arguments}'),
+                      custom_text_table_widget(text: ''),
+                      custom_text_table_widget(text: ''),
                     ]),
                     TableRow(children: [
-                      custom_text_table_widget(text: tSubsidy),
-                      custom_text_table_widget(text: 'Rs. $subsidyPrice'),
+                      custom_text_table_widget(text: tSolarModuleRating),
+                      custom_text_table_widget(text: '$a'),
+                      custom_text_table_widget(text: '$b'),
+                      custom_text_table_widget(text: '$c'),
                     ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: tPostSubsidyRate),
-                      custom_text_table_widget(text: 'Rs. $postSubsidyPrice'),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: tGst),
-                      custom_text_table_widget(text: 'Rs. $Gst'),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: tNetMeterFee),
-                      custom_text_table_widget(text: 'Rs. $NetMeterFee'),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: tSubsidyApplicationFee),
-                      custom_text_table_widget(
-                          text: 'Rs. $SubsidyApplicationFee'),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: tCostToCustomer),
-                      custom_text_table_widget(text: 'Rs. $costToCustomer'),
-                    ]),
-                  ]),
-              const SizedBox(height: 10),
-              Text(tEnergyGenerated,
-                  style: Theme.of(context).textTheme.headline4),
-              const SizedBox(height: 10),
-              Table(
-                  textDirection: TextDirection.ltr,
-                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  border: TableBorder.all(
-                    color: Theme.of(context).iconTheme.color!,
-                    style: BorderStyle.solid,
-                    width: 1,
-                  ),
-                  children: [
-                    TableRow(children: [
-                      custom_text_table_widget(text: tEnergyGeneratedPerMonth),
-                      custom_text_table_widget(text: energyGeneratedpermonth),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: tEnergyGeneratedPerYear),
-                      custom_text_table_widget(text: energyGeneratedperyear),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(
-                          text: tEnergyGeneratedForLifetime),
-                      custom_text_table_widget(
-                          text: energyGeneratedforlifetime),
-                    ]),
-                  ]),
 
-              const SizedBox(height: 10),
-
-              Text(tEnergySaving, style: Theme.of(context).textTheme.headline4),
-
-              const SizedBox(height: 10),
-              Table(
-                  textDirection: TextDirection.ltr,
-                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  border: TableBorder.all(
-                    color: Theme.of(context).iconTheme.color!,
-                    style: BorderStyle.solid,
-                    width: 1,
-                  ),
-                  children: [
+                    //
                     TableRow(children: [
-                      custom_text_table_widget(
-                          text: tMonthlyElectricityBillSaving),
-                      custom_text_table_widget(
-                          text: 'Rs. $monthlyElectricityBillSaving'),
+                      custom_text_table_widget(text: tNumberOfModules),
+                      custom_text_table_widget(text: '$noOfModulesA'),
+                      custom_text_table_widget(text: '$noOfModulesB'),
+                      custom_text_table_widget(text: '$noOfModulesC'),
                     ]),
                     TableRow(children: [
-                      custom_text_table_widget(
-                          text: tYearlyElectricityBillSaving),
-                      custom_text_table_widget(
-                          text: 'Rs. $yearlyElectricityBillSaving'),
+                      custom_text_table_widget(text: tNumberOfInverters),
+                      custom_text_table_widget(text: '$inverter'),
+                      custom_text_table_widget(text: ''),
+                      custom_text_table_widget(text: ''),
                     ]),
-                  ]),
+                    TableRow(children: [
+                      custom_text_table_widget(text: tNumberOfBatteries),
+                      custom_text_table_widget(text: 'NA'),
+                      custom_text_table_widget(text: ''),
+                      custom_text_table_widget(text: ''),
+                    ]),
+                  ],
+                ),
 
-              const SizedBox(height: 10),
-              Text(tReturnOnInvestment,
-                  style: Theme.of(context).textTheme.headline4),
-              const SizedBox(height: 10),
+                const SizedBox(height: 10),
+                Text(
+                  "Bill Details",
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                const SizedBox(height: 10),
 
-              Table(
-                  textDirection: TextDirection.ltr,
-                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  border: TableBorder.all(
+                //bill table
+
+                Table(
+                    textDirection: TextDirection.ltr,
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    border: TableBorder.all(
+                        color: Theme.of(context).iconTheme.color!,
+                        style: BorderStyle.solid,
+                        width: 1),
+                    children: [
+                      TableRow(children: [
+                        custom_text_table_widget(text: tSystemPrice),
+                        custom_text_table_widget(text: 'Rs. $systemPrice'),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: tSubsidy),
+                        custom_text_table_widget(text: 'Rs. $subsidyPrice'),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: tPostSubsidyRate),
+                        custom_text_table_widget(text: 'Rs. $postSubsidyPrice'),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: tGst),
+                        custom_text_table_widget(text: 'Rs. $Gst'),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: tNetMeterFee),
+                        custom_text_table_widget(text: 'Rs. $NetMeterFee'),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: tSubsidyApplicationFee),
+                        custom_text_table_widget(
+                            text: 'Rs. $SubsidyApplicationFee'),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: tCostToCustomer),
+                        custom_text_table_widget(text: 'Rs. $costToCustomer'),
+                      ]),
+                    ]),
+                const SizedBox(height: 10),
+                Text(tEnergyGenerated,
+                    style: Theme.of(context).textTheme.headline4),
+                const SizedBox(height: 10),
+                Table(
+                    textDirection: TextDirection.ltr,
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    border: TableBorder.all(
                       color: Theme.of(context).iconTheme.color!,
                       style: BorderStyle.solid,
-                      width: 1),
-                  children: [
-                    TableRow(children: [
-                      custom_text_table_widget(text: tPaybackPeriod),
-                      custom_text_table_widget(text: paybackPeriod),
+                      width: 1,
+                    ),
+                    children: [
+                      TableRow(children: [
+                        custom_text_table_widget(
+                            text: tEnergyGeneratedPerMonth),
+                        custom_text_table_widget(text: energyGeneratedpermonth),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: tEnergyGeneratedPerYear),
+                        custom_text_table_widget(text: energyGeneratedperyear),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(
+                            text: tEnergyGeneratedForLifetime),
+                        custom_text_table_widget(
+                            text: energyGeneratedforlifetime),
+                      ]),
                     ]),
-                  ]),
-              const SizedBox(height: 10),
-              Text(tEnergyProduction,
-                  style: Theme.of(context).textTheme.headline4),
-              const SizedBox(height: 10),
-              Table(
-                  textDirection: TextDirection.ltr,
-                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  border: TableBorder.all(
+
+                const SizedBox(height: 10),
+
+                Text(tEnergySaving,
+                    style: Theme.of(context).textTheme.headline4),
+
+                const SizedBox(height: 10),
+                Table(
+                    textDirection: TextDirection.ltr,
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    border: TableBorder.all(
                       color: Theme.of(context).iconTheme.color!,
                       style: BorderStyle.solid,
-                      width: 1),
-                  children: [
-                    // table column headings
+                      width: 1,
+                    ),
+                    children: [
+                      TableRow(children: [
+                        custom_text_table_widget(
+                            text: tMonthlyElectricityBillSaving),
+                        custom_text_table_widget(
+                            text: 'Rs. $monthlyElectricityBillSaving'),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(
+                            text: tYearlyElectricityBillSaving),
+                        custom_text_table_widget(
+                            text: 'Rs. $yearlyElectricityBillSaving'),
+                      ]),
+                    ]),
 
-                    TableRow(children: [
-                      custom_text_table_widget(text: ""),
-                      custom_text_table_widget(text: tAnnualEnergyProduction),
-                      custom_text_table_widget(text: tAnnualCostSavings),
+                const SizedBox(height: 10),
+                Text(tReturnOnInvestment,
+                    style: Theme.of(context).textTheme.headline4),
+                const SizedBox(height: 10),
+
+                Table(
+                    textDirection: TextDirection.ltr,
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    border: TableBorder.all(
+                        color: Theme.of(context).iconTheme.color!,
+                        style: BorderStyle.solid,
+                        width: 1),
+                    children: [
+                      TableRow(children: [
+                        custom_text_table_widget(text: tPaybackPeriod),
+                        custom_text_table_widget(text: paybackPeriod),
+                      ]),
                     ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: "Year 1"),
-                      custom_text_table_widget(text: "$aEP1"),
-                      custom_text_table_widget(text: "$aS1"),
+                const SizedBox(height: 10),
+                Text(tEnergyProduction,
+                    style: Theme.of(context).textTheme.headline4),
+                const SizedBox(height: 10),
+                Table(
+                    textDirection: TextDirection.ltr,
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    border: TableBorder.all(
+                        color: Theme.of(context).iconTheme.color!,
+                        style: BorderStyle.solid,
+                        width: 1),
+                    children: [
+                      // table column headings
+
+                      TableRow(children: [
+                        custom_text_table_widget(text: ""),
+                        custom_text_table_widget(text: tAnnualEnergyProduction),
+                        custom_text_table_widget(text: tAnnualCostSavings),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: "Year 1"),
+                        custom_text_table_widget(text: "$aEP1"),
+                        custom_text_table_widget(text: "$aS1"),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: "Year 2"),
+                        custom_text_table_widget(text: "$aEP2"),
+                        custom_text_table_widget(text: "$aS2"),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: "Year 3"),
+                        custom_text_table_widget(text: "$aEP3"),
+                        custom_text_table_widget(text: "$aS3"),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: "Year 4"),
+                        custom_text_table_widget(text: "$aEP4"),
+                        custom_text_table_widget(text: "$aS4"),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: "Year 5"),
+                        custom_text_table_widget(text: "$aEP5"),
+                        custom_text_table_widget(text: "$aS5"),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: "Year 6-10"),
+                        custom_text_table_widget(text: "$aEP6"),
+                        custom_text_table_widget(text: "$aS6"),
+                      ]),
+                      TableRow(children: [
+                        custom_text_table_widget(text: "Year 11-25"),
+                        custom_text_table_widget(text: "$aEP7"),
+                        custom_text_table_widget(text: "$aS7"),
+                      ]),
                     ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: "Year 2"),
-                      custom_text_table_widget(text: "$aEP2"),
-                      custom_text_table_widget(text: "$aS2"),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: "Year 3"),
-                      custom_text_table_widget(text: "$aEP3"),
-                      custom_text_table_widget(text: "$aS3"),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: "Year 4"),
-                      custom_text_table_widget(text: "$aEP4"),
-                      custom_text_table_widget(text: "$aS4"),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: "Year 5"),
-                      custom_text_table_widget(text: "$aEP5"),
-                      custom_text_table_widget(text: "$aS5"),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: "Year 6-10"),
-                      custom_text_table_widget(text: "$aEP6"),
-                      custom_text_table_widget(text: "$aS6"),
-                    ]),
-                    TableRow(children: [
-                      custom_text_table_widget(text: "Year 11-25"),
-                      custom_text_table_widget(text: "$aEP7"),
-                      custom_text_table_widget(text: "$aS7"),
-                    ]),
-                  ]),
-              const SizedBox(height: 10),
-            ],
+                const SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
       ),

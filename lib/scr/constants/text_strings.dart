@@ -131,6 +131,8 @@ const String tAnnualCostSavings = "Annual Savings (INR)";
 
 //-- Home Screen Text Strings
 
+const String tHomeSubTitle = "Steps to get a Quote & Install Solar";
+
 const String tStep1 =
     "Based on your kW, we can generate an instant quote for you";
 const String tStep2 =

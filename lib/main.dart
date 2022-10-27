@@ -14,7 +14,7 @@ void main() async {
   await Firebase.initializeApp();
   Get.put(AuthController());
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  //   statusBarColor: Colors.transparent,
+  //   statusBarColor: Colors.black,
   //   statusBarIconBrightness: Brightness.dark,
   // ));
   runApp(const MyApp());
@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       defaultTransition: Transition.leftToRight,
       transitionDuration: const Duration(milliseconds: 500),
-      
       home: HomePage(),
     );
   }

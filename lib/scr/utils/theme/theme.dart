@@ -9,43 +9,45 @@ import 'package:shubhithasenergysolutions/scr/utils/theme/widget_theme/text_them
 
 class KspAppTheme {
   static ThemeData lightTheme = ThemeData(
-      brightness: Brightness.light,
-      textTheme: KTextTheme.lightTextTheme,
-      primaryColor: tPrimaryColor,
-      primaryColorLight: tPrimaryColorLight,
-      accentColor: tAccentColor,
-      // scaffoldBackgroundColor: tDarkColor,
-      outlinedButtonTheme: KOutlinedButtonTheme.lightOutlinedButtonTheme,
-      elevatedButtonTheme: KelevatedButtonTheme.lightElevatedButtonTheme,
-      inputDecorationTheme: KTextFormFieldTheme.lightInputDecorationTheme,
-      appBarTheme: AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.black),
-        color: Colors.deepPurpleAccent,
-        foregroundColor: Colors.black,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.green,
-          statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.light,
-        ),
-      ));
+    brightness: Brightness.light,
+    textTheme: KTextTheme.lightTextTheme,
+    primaryColor: tPrimaryColor,
+    primaryColorLight: tPrimaryColorLight,
+    accentColor: tAccentColor,
+    // scaffoldBackgroundColor: tDarkColor,
+    outlinedButtonTheme: KOutlinedButtonTheme.lightOutlinedButtonTheme,
+    elevatedButtonTheme: KelevatedButtonTheme.lightElevatedButtonTheme,
+    inputDecorationTheme: KTextFormFieldTheme.lightInputDecorationTheme,
+    // appBarTheme: AppBarTheme(
+    //   iconTheme: IconThemeData(color: Colors.black),
+    //   color: tWhiteColor,
+    //   foregroundColor: tWhiteColor,
+    //   systemOverlayStyle: SystemUiOverlayStyle(
+    //     statusBarColor: tDarkColor,
+    //     statusBarIconBrightness: Brightness.dark,
+    //     statusBarBrightness: Brightness.light,
+    //   ),
+    // )
+  );
 
   static ThemeData darkTheme = ThemeData(
-      brightness: Brightness.dark,
-      textTheme: KTextTheme.darkTextTheme,
-      primaryColor: tDarkColor,
-      accentColor: tAccentColor,
-      outlinedButtonTheme: KOutlinedButtonTheme.darkOutlinedButtonTheme,
-      elevatedButtonTheme: KelevatedButtonTheme.darkElevatedButtonTheme,
-      inputDecorationTheme: KTextFormFieldTheme.darkInputDecorationTheme,
-      // ignore: prefer_const_constructors
-      appBarTheme: AppBarTheme(
-        iconTheme: const IconThemeData(color: Colors.black),
-        color: Colors.deepPurpleAccent,
-        foregroundColor: Colors.black,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.green,
-          statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.light,
-        ),
-      ));
+    brightness: Brightness.dark,
+    textTheme: KTextTheme.darkTextTheme,
+    primaryColor: tDarkColor,
+    accentColor: tAccentColor,
+    outlinedButtonTheme: KOutlinedButtonTheme.darkOutlinedButtonTheme,
+    elevatedButtonTheme: KelevatedButtonTheme.darkElevatedButtonTheme,
+    inputDecorationTheme: KTextFormFieldTheme.darkInputDecorationTheme,
+    // ignore: prefer_const_constructors
+    // appBarTheme: AppBarTheme(
+    //   iconTheme: const IconThemeData(color: Colors.black),
+    //   color: tDarkColor,
+    //   foregroundColor: Colors.black,
+    //   systemOverlayStyle: SystemUiOverlayStyle(
+    //     statusBarColor: Colors.transparent,
+    //     statusBarIconBrightness: Brightness.dark,
+    //     statusBarBrightness: Brightness.light,
+    //   ),
+    // )
+  );
 }

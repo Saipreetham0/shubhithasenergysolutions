@@ -71,7 +71,7 @@ class _home_fragmentState extends State<home_fragment> {
               Row(
                 children: [
                   Text(
-                    "Steps to get a Quote",
+                    tHomeSubTitle,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                 ],

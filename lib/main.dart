@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
       theme: KspAppTheme.lightTheme,
       darkTheme: KspAppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      defaultTransition: Transition.leftToRight,
-      transitionDuration: const Duration(milliseconds: 500),
-      home: HomePage(),
+      // defaultTransition: Transition.leftToRight,
+      // transitionDuration: const Duration(milliseconds: 500),
+      home: SplashScreen(),
     );
   }
 }

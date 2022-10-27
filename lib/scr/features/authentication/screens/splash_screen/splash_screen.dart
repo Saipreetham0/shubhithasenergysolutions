@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    startAnimation();
+    // startAnimation();
   }
 
   @override
@@ -38,11 +38,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-Future startAnimation() async {
-  // await Future.delayed(const Duration(milliseconds: 500));
-  // setState(() {
-  //   animate = true;
-  // });
-  await Future.delayed(const Duration(milliseconds: 500));
-  Get.to(const HomePage());
-}
+// Future startAnimation() async {
+//   // await Future.delayed(const Duration(milliseconds: 500));
+//   // setState(() {
+//   //   animate = true;
+//   // });
+//   await Future.delayed(const Duration(milliseconds: 500));
+//   Get.to(const HomePage());
+// }

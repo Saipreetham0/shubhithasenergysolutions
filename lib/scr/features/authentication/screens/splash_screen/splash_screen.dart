@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
-import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
-import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/dashboard.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,16 +19,72 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
-          body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-              child: Image(
-            image: AssetImage(tAppSplashScreenLogo),
-          )),
-        ],
+          body: Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: size.height * 0.15,
+              // width: size.height * 0.2,
+            ),
+            Container(
+              // color: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image(
+                    alignment: Alignment.center,
+                    image: AssetImage(
+                        "assets/images/splash-screen/APP_LOGO_ROW.png"),
+                    height: size.height * 0.2,
+                    width: size.width * 0.22,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.02,
+                  ),
+                  Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("SHUBHITHA S",
+                          style: Theme.of(context).textTheme.headline1),
+                      Text("ENERGY SOLUTIONS",
+                          style: Theme.of(context).textTheme.headline2),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
+            Container(
+              // padding: EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.1,
+                    // width: size.height * 0.2,
+                  ),
+                  Image(
+                    image: AssetImage(
+                        "assets/images/splash-screen/splash_screen_one.png"),
+                    height: 250,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       )),
     );
   }

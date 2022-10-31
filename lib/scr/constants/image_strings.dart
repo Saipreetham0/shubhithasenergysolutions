@@ -8,6 +8,9 @@ const String tSplashTopIcon =
     "assets/images/splash-screen/solar-splash-screen-image.png";
 const String tSplashImage =
     "assets/images/splash-screen/solar-splash-screen-image.png";
+
+const String tSplashScreenImage =
+    "assets/images/splash-screen/Splash_screen.png";    
 // -- OnBoarding Screen Images
 const String tonBoardingImage1 = "assets/Images/on_boarding_1.png";
 const String tOnBoardingImage2 = "assets/Images/on_boarding_1.png";

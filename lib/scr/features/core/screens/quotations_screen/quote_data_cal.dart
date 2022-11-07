@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:math_expressions/math_expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdf_format.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/widgets/custom_text_table_widget.dart';
 
 import 'package:shubhithasenergysolutions/scr/features/pdf_new/pdfGenrator.dart';
@@ -329,12 +330,11 @@ class _pdfGeneratorState extends State<pdfGenerator> {
                 color: Theme.of(context).iconTheme.color,
               ),
               onPressed: () {
-              
+                Get.to(() => pdfGenerate());
               },
             ),
             SizedBox(
               width: 10,
-              
             )
           ],
         ),

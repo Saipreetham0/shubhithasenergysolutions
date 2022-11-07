@@ -89,7 +89,8 @@ class _home_fragmentState extends State<home_fragment> {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(QuoteForm());
+                      // Get.to(QuoteForm());
+                      Get.to(() => QuoteForm());
                     },
                     child: Text("Generate Quote Instantly")),
               ),

@@ -22,7 +22,9 @@ class KelevatedButtonTheme {
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
         elevation: 0,
-        shape: RoundedRectangleBorder(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
         foregroundColor: tSecondaryColor,
         backgroundColor: tWhiteColor,
         side: BorderSide(color: tSecondaryColor),

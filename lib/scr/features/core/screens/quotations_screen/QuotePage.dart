@@ -56,7 +56,8 @@ class _QuoteFormState extends State<QuoteForm> {
 
     var n = double.parse(_kW.text);
     print(n);
-    Get.to(pdfGenerator(), arguments: n);
+    // Get.to(pdfGenerator(), arguments: n);
+    Get.to(() => pdfGenerator(), arguments: n);
 
     FocusScopeNode currentFocus = FocusScope.of(context);
   }

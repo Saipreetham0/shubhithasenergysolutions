@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
-import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf_generator.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/quote_data_cal.dart';
 
 class QuoteForm extends StatefulWidget {
   const QuoteForm({super.key});
@@ -34,30 +34,30 @@ class _QuoteFormState extends State<QuoteForm> {
 
   Future<void> addUser(String kW, String phoneNumber, String address) async {
     int uniqueId = DateTime.now().microsecondsSinceEpoch;
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(AuthController.instance.user!.uid)
-        .collection("Quotations")
-        .add({
-      'phone Number': _phoneNumber.text,
-      'address': _address.text,
-      'kW': _kW.text, //
-      'Timestamp': DateTime.now(),
-    }).then((value) => FirebaseFirestore.instance
-            .collection('quotations')
-            .add({
-              'phone Number': _phoneNumber.text,
-              'address': _address.text,
-              'kW': _kW.text, //
-              'Timestamp': DateTime.now(),
-            })
-            .then((value) => print("Data Added"))
-            .catchError((error) => print("Failed to add user: $error")));
-    // .catchError((error) => print("Failed to add user: $error"));
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(AuthController.instance.user!.uid)
+    //     .collection("Quotations")
+    //     .add({
+    //   'phone Number': _phoneNumber.text,
+    //   'address': _address.text,
+    //   'kW': _kW.text, //
+    //   'Timestamp': DateTime.now(),
+    // }).then((value) => FirebaseFirestore.instance
+    //         .collection('quotations')
+    //         .add({
+    //           'phone Number': _phoneNumber.text,
+    //           'address': _address.text,
+    //           'kW': _kW.text, //
+    //           'Timestamp': DateTime.now(),
+    //         })
+    //         .then((value) => print("Data Added"))
+    //         .catchError((error) => print("Failed to add user: $error")));
 
     var n = double.parse(_kW.text);
     print(n);
     Get.to(pdfGenerator(), arguments: n);
+
     FocusScopeNode currentFocus = FocusScope.of(context);
   }
 
@@ -99,10 +99,10 @@ class _QuoteFormState extends State<QuoteForm> {
                 TextFormField(
                   controller: _phoneNumber,
                   validator: (value) {
-                    if (value == null || value.length < 10) {
-                      return 'Please enter your phone number';
-                    }
-                    return null;
+                    // if (value == null || value.length < 10) {
+                    //   return 'Please enter your phone number';
+                    // }
+                    // return null;
                   },
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(

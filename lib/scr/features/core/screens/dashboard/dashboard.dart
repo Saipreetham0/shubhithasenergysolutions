@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                   _selectedIndex = index;
                 });
               },
-              backgroundColor: Theme.of(context).primaryColor,
+              // backgroundColor: Theme.of(context).primaryColor,
               color: Theme.of(context).textTheme.bodyText1!.color,
               activeColor: Colors.white,
               tabBackgroundColor: Colors.grey.shade800,

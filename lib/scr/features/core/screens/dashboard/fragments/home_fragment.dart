@@ -25,6 +25,7 @@ class home_fragment extends StatefulWidget {
 class _home_fragmentState extends State<home_fragment> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       child: Column(
         children: [
@@ -49,11 +50,36 @@ class _home_fragmentState extends State<home_fragment> {
                 ],
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 2),
                 // decoration: BoxDecoration(color: Colors.pink[100]),
-                height: widget.media.size.height * 0.2,
-                width: widget.media.size.width * 0.9,
-                child: Image.asset(tAppLogo),
+                // height: widget.media.size.height * 0.2,
+                // width: widget.media.size.width * 0.9,
+                // child: Image.asset(tAppLogo),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image(
+                      alignment: Alignment.center,
+                      image: AssetImage(tAppHeaderLogo),
+                      height: size.height * 0.2,
+                      width: size.width * 0.18,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("SHUBHITHA S",
+                            style: Theme.of(context).textTheme.headline1),
+                        Text("ENERGY SOLUTIONS",
+                            style: Theme.of(context).textTheme.headline2),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 20),
               Text("Get a free Quote",

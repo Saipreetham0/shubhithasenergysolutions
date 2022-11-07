@@ -12,7 +12,7 @@ import 'package:shubhithasenergysolutions/scr/utils/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // Get.put(AuthController());
+  Get.put(AuthController());
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
   //   statusBarColor: Colors.black,
   //   statusBarIconBrightness: Brightness.dark,

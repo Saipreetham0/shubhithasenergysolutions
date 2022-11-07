@@ -9,8 +9,14 @@ const String tSplashTopIcon =
 const String tSplashImage =
     "assets/images/splash-screen/solar-splash-screen-image.png";
 
-const String tSplashScreenImage =
-    "assets/images/splash-screen/Splash_screen.png";    
+//app splash screen logo
+
+const String tSplashScreenImage = "assets/images/splash-screen/5415791-ai.png";
+
+// --   app header logo
+
+const String tAppHeaderLogo = "assets/images/splash-screen/APP_LOGO_ROW.png";
+
 // -- OnBoarding Screen Images
 const String tonBoardingImage1 = "assets/Images/on_boarding_1.png";
 const String tOnBoardingImage2 = "assets/Images/on_boarding_1.png";

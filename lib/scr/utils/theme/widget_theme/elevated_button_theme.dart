@@ -9,7 +9,9 @@ class KelevatedButtonTheme {
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
         elevation: 0,
-        shape: RoundedRectangleBorder(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
         foregroundColor: tWhiteColor,
         backgroundColor: tSecondaryColor,
         side: BorderSide(color: tSecondaryColor),

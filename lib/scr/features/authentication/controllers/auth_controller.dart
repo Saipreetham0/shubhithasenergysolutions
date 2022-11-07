@@ -30,7 +30,7 @@ class AuthController extends GetxController {
 
   loginRedirect(User? user) {
     // Timer(Duration(seconds: isLoging ? 10 : 0), () {
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 3), () {
       if (user == null) {
         isLoging = false;
         update();

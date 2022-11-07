@@ -322,6 +322,21 @@ class _pdfGeneratorState extends State<pdfGenerator> {
               Get.back(result: "0");
             },
           ),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.picture_as_pdf_sharp,
+                color: Theme.of(context).iconTheme.color,
+              ),
+              onPressed: () {
+              
+              },
+            ),
+            SizedBox(
+              width: 10,
+              
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Container(

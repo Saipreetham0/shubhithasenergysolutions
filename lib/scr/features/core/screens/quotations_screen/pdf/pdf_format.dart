@@ -1,12 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdfquoteapi.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdfQuoteAPI.dart';
 
 class pdfGenerate extends StatefulWidget {
   @override
@@ -20,14 +15,27 @@ class _pdfGenerateState extends State<pdfGenerate> {
     var kW = Get.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quotation PDF'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 1,
+        title:
+            Text('Quotation PDF', style: Theme.of(context).textTheme.headline6),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Theme.of(context).iconTheme.color,
+          ),
+          onPressed: () {
+            Get.back(result: "0");
+          },
+        ),
       ),
       body: PdfPreview(
         maxPageWidth: size.width * 1.3,
+
         // pageFormats: ,
         canChangePageFormat: false,
         canChangeOrientation: false,
-        allowSharing: true,
+        allowSharing: false,
         allowPrinting: false,
         canDebug: false,
 

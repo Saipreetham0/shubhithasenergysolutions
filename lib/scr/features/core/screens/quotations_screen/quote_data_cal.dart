@@ -63,7 +63,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
     _solarModuleRating();
     _billDetails();
     _energyGenerated();
@@ -73,7 +73,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   }
 
   void _solarModuleRating() {
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
     int a = 335;
     int b = 535;
     int c = 540;
@@ -98,7 +98,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   }
 
   void _billDetails() {
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
 
     //system price calculation
     Parser p = Parser();
@@ -147,7 +147,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   }
 
   void _energyGenerated() {
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
     //energy generated per month calculation
     Parser p = Parser();
     Expression exp = p.parse('$kW * 4 * 30 ');
@@ -171,7 +171,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   }
 
   void _energySavings() {
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
     //monthly electricity bill saving calculation
     Parser p = Parser();
     Expression exp = p.parse('$kW * 4 * 30 * 8.5');
@@ -188,7 +188,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   }
 
   void _returnOnInvestment() {
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
     //payback period calculation
     Parser p = Parser();
     Expression exp = p.parse(
@@ -199,7 +199,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   }
 
   void _annualEnergyProduction() {
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
     //annual energy production calculation
     Parser p = Parser();
     Expression exp = p.parse('$kW * 4 * 365');
@@ -296,7 +296,11 @@ class _pdfGeneratorState extends State<pdfGenerator> {
 
   @override
   Widget build(BuildContext context) {
-    var kW = Get.arguments;
+    var kW = Get.arguments[0];
+
+    var name = Get.arguments[1];
+    var phone = Get.arguments[2];
+    var address = Get.arguments[3];
 
     //solar module data
     int a = 335;
@@ -330,7 +334,59 @@ class _pdfGeneratorState extends State<pdfGenerator> {
                 color: Theme.of(context).iconTheme.color,
               ),
               onPressed: () {
-                Get.to(() => pdfGenerate());
+                Get.to(() => pdfGenerate(), arguments: [
+                  kW,
+
+                  //solar module data
+                  a,
+                  b,
+                  c,
+                  // solar module data
+                  noOfModulesA,
+                  noOfModulesB,
+                  noOfModulesC,
+                  // bill data
+
+                  systemPrice,
+                  subsidyPrice,
+                  postSubsidyPrice,
+                  Gst,
+                  NetMeterFee,
+                  SubsidyApplicationFee,
+                  costToCustomer,
+                  //Energy Generation
+                  energyGeneratedpermonth,
+                  energyGeneratedperyear,
+                  energyGeneratedforlifetime,
+                  //Energy savings
+                  monthlyElectricityBillSaving,
+                  yearlyElectricityBillSaving,
+                  //return on investment
+
+                  paybackPeriod,
+                  //ENERGY PRODUCTION & COST SAVINGS
+
+                  aEP1,
+                  aEP2,
+                  aEP3,
+                  aEP4,
+                  aEP5,
+                  aEP6,
+                  aEP7,
+                  // annual energy production cost savings
+                  aS1,
+                  aS2,
+                  aS3,
+                  aS4,
+                  aS5,
+                  aS6,
+                  aS7,
+                  // user data
+
+                  name,
+                  phone,
+                  address,
+                ]);
               },
             ),
             SizedBox(
@@ -345,7 +401,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Quote for ${Get.arguments} kW",
+                  "Quote for ${Get.arguments[0]} kW",
                   style: Theme.of(context).textTheme.headline2,
                 ),
                 const SizedBox(height: 10),
@@ -366,7 +422,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
                   children: [
                     TableRow(children: [
                       custom_text_table_widget(text: tSystemSize),
-                      custom_text_table_widget(text: '${Get.arguments}'),
+                      custom_text_table_widget(text: '${Get.arguments[0]}'),
                       custom_text_table_widget(text: ''),
                       custom_text_table_widget(text: ''),
                     ]),

@@ -39,12 +39,12 @@ class _twakChatScreen extends State<twakChatScreen> {
             email: email,
           ),
           onLoad: () {
-            print(
-              'Hello Tawk! $name $email',
-            );
+            // print(
+            //   'Hello Tawk! $name $email',
+            // );
           },
           onLinkTap: (String url) {
-            print(url);
+            // print(url);
           },
           placeholder: const Center(
             child: Text('Loading...'),

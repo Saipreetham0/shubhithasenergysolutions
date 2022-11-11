@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:shubhithasenergysolutions/scr/constants/company_pdf_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 
 String? _logo;
@@ -51,16 +52,35 @@ Widget _buildHeader(Context context, MemoryImage companyLogo) {
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Image(companyLogo, width: 60, height: 45),
           SizedBox(width: 0.1 * PdfPageFormat.cm),
-          Text("Shubhitha's Energy Solutions Pvt Ltd",
+          Text("Shubhitha's",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+          Text(" Energy ",
+              style: TextStyle(
+                  color: PdfColors.yellow700,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold)),
+          Text("Solutions Pvt Ltd",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           SizedBox(width: 1 * PdfPageFormat.cm),
         ]),
         Text("Brings Sun Energy at your service",
             style: TextStyle(
-                fontSize: 12,
+                fontSize: 15,
                 color: PdfColors.yellow700,
                 fontWeight: FontWeight.bold)),
-        SizedBox(height: 0.3 * PdfPageFormat.cm, child: Divider()),
+        SizedBox(height: 0.2 * PdfPageFormat.cm),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text("CIN: $kCIN",
+              style: TextStyle(
+                fontSize: 10,
+              )),
+          SizedBox(width: 1 * PdfPageFormat.cm),
+          Text("GSTIN: $kGSTIN",
+              style: TextStyle(
+                fontSize: 10,
+              )),
+        ]),
+        SizedBox(height: 0.4 * PdfPageFormat.cm, child: Divider()),
       ],
     ),
   );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/widgets/company_logo_widget.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/chat/twakchatScreen.dart';
@@ -21,6 +22,10 @@ class chatScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // company_logo_widget(size: size),
+                Image.asset(
+                  tChatBotImage,
+                  height: size.height * 0.3,
+                ),
                 SizedBox(
                   height: size.height * 0.05,
                 ),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 
@@ -84,9 +85,11 @@ class _pdfFileState extends State<pdfFile> {
                                             .headline6,
                                       ),
                                     ])),
-                                    leading: CircleAvatar(
-                                        child:
-                                            Icon(Icons.picture_as_pdf_sharp)),
+                                    // leading: Image.asset(tFactoryListImage,
+                                    //     height: 40),
+
+                                    leading:
+                                        Image.asset(tHomeListImage, height: 40),
                                     subtitle: Text(
                                       "${docs['timestamp']}",
                                       style:

@@ -42,3 +42,14 @@ const String tStep2Image = "assets/images/quote_steps/img1.png";
 const String tStep3Image = "assets/images/quote_steps/img1.png";
 const String tStep4Image = "assets/images/quote_steps/img1.png";
 const String tStep5Image = "assets/images/quote_steps/img1.png";
+
+// -- Pdf list Images
+
+const String tHomeListImage = "assets/images/pdfListView/house.png";
+const String tFactoryListImage = "assets/images/pdfListView/factory.png";
+
+// -- chat screen images
+
+const String tChatBotImage = "assets/images/chatScreen/chatbot.png";
+const String tCustomerServiceImage =
+    "assets/images/chatScreen/customerservice.png";

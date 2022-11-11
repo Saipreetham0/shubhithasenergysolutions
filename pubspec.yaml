@@ -91,6 +91,8 @@ flutter:
    - assets/images/splash-screen/
    - assets/logo/
    - assets/images/pdf/
+   - assets/images/pdfListView/
+   - assets/images/chatscreen/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

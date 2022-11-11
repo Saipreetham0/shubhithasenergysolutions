@@ -66,16 +66,26 @@ class _home_fragmentState extends State<home_fragment> {
                       width: size.width * 0.18,
                     ),
                     SizedBox(
-                      width: size.width * 0.01,
+                      width: size.width * 0.001,
                     ),
                     Column(
                       // mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("SHUBHITHA S",
-                            style: Theme.of(context).textTheme.headline1),
-                        Text("ENERGY SOLUTIONS",
                             style: Theme.of(context).textTheme.headline2),
+                        Row(
+                          children: [
+                            Text("ENERGY",
+                                style: TextStyle(
+                                    color: Colors.yellow[800],
+                                    fontSize: 24,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w700)),
+                            Text(" SOLUTIONS",
+                                style: Theme.of(context).textTheme.headline3),
+                          ],
+                        ),
                       ],
                     ),
                   ],
@@ -83,7 +93,7 @@ class _home_fragmentState extends State<home_fragment> {
               ),
               const SizedBox(height: 20),
               Text("Get a free Quote",
-                  style: Theme.of(context).textTheme.headline3),
+                  style: Theme.of(context).textTheme.headline2),
               const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,

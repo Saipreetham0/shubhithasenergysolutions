@@ -12,23 +12,24 @@ class stepsCard_widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Card(
       borderOnForeground: true,
       color: Theme.of(context).cardColor,
       child: Container(
-        width: 150,
-        height: 220,
+        width: size.width * 0.4,
+        height: size.height * 0.26,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(image, width: 100, height: 100),
-            const SizedBox(height: 10),
+            SizedBox(height: size.height * 0.001),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 3),
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.subtitle1,
                 textAlign: TextAlign.center,
               ),
             ),

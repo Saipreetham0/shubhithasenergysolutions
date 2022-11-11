@@ -20,7 +20,7 @@ class KTextTheme {
     ),
     headline3: GoogleFonts.poppins(
       fontSize: 24.0,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700,
       color: tDarkColor,
     ),
     headline4: GoogleFonts.poppins(
@@ -65,7 +65,7 @@ class KTextTheme {
     ),
     headline3: GoogleFonts.poppins(
       fontSize: 24.0,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700,
       color: tWhiteColor,
     ),
     headline4: GoogleFonts.poppins(

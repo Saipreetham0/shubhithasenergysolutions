@@ -46,15 +46,21 @@ Widget _buildHeader(Context context, MemoryImage companyLogo) {
   return Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(children: [
+        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Image(companyLogo, width: 60, height: 45),
           SizedBox(width: 0.1 * PdfPageFormat.cm),
-          Text("Shubhitha's\nEnergy Solutions",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+          Text("Shubhitha's Energy Solutions Pvt Ltd",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           SizedBox(width: 1 * PdfPageFormat.cm),
         ]),
+        Text("Brings Sun Energy at your service",
+            style: TextStyle(
+                fontSize: 12,
+                color: PdfColors.yellow700,
+                fontWeight: FontWeight.bold)),
+        SizedBox(height: 0.3 * PdfPageFormat.cm, child: Divider()),
       ],
     ),
   );
@@ -67,7 +73,7 @@ Widget _buildFooter(Context context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(children: [
-          Text("Shubhitha's Energy Solutions",
+          Text("Shubhitha's Energy Solutions Pvt Ltd.",
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
           SizedBox(width: 1 * PdfPageFormat.cm),
         ]),

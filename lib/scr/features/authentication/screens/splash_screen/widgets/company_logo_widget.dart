@@ -31,8 +31,18 @@ class company_logo_widget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("SHUBHITHA S", style: Theme.of(context).textTheme.headline1),
-              Text("ENERGY SOLUTIONS",
-                  style: Theme.of(context).textTheme.headline2),
+              Row(
+                children: [
+                  Text("ENERGY",
+                      style: TextStyle(
+                          color: Colors.yellow[800],
+                          fontSize: 24,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w700)),
+                  Text(" SOLUTIONS",
+                      style: Theme.of(context).textTheme.headline2),
+                ],
+              ),
             ],
           ),
         ],

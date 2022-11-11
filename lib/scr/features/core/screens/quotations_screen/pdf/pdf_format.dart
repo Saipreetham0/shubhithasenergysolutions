@@ -35,8 +35,8 @@ class _pdfGenerateState extends State<pdfGenerate> {
         // pageFormats: ,
         canChangePageFormat: false,
         canChangeOrientation: false,
-        allowSharing: false,
-        allowPrinting: false,
+        allowSharing: true,
+        allowPrinting: true,
         canDebug: false,
 
         // build: (format) => buildPdf(format),

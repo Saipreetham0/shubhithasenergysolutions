@@ -22,8 +22,15 @@ class chatScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // company_logo_widget(size: size),
+                Image(
+                  alignment: Alignment.center,
+                  image:
+                      const AssetImage('assets/images/pdfListView/factory.png'),
+                  height: size.height * 0.2,
+                  width: size.width * 0.22,
+                ),
                 Image.asset(
-                  tChatBotImage,
+                  'assets/images/customerservice.png',
                   height: size.height * 0.3,
                 ),
                 SizedBox(

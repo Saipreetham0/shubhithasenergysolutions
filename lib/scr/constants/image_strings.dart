@@ -52,4 +52,4 @@ const String tFactoryListImage = "assets/images/pdfListView/factory.png";
 
 const String tChatBotImage = "assets/images/chatScreen/chatbot.png";
 const String tCustomerServiceImage =
-    "assets/images/chatScreen/customerservice.png";
+    "assets/images/chatscreen/customerservice.png";

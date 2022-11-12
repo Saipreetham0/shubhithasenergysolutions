@@ -95,7 +95,8 @@ class helpSupport extends StatelessWidget {
                 text: 'chat with us',
                 onTap: () async {
                   final url = Uri.parse(kchatWithUs);
-                  if (await launchUrl(url)) {
+                  if (await launchUrl(url,
+                      mode: LaunchMode.externalApplication)) {
                     canLaunchUrl(url);
                   } else {
                     // ignore: avoid_print

@@ -37,7 +37,7 @@ const String tWelcomeScreenSubTitle = 'Welcome Screen';
 
 // -- Login Screen Text
 const String tLoginTitle = "Welcome Back,";
-const String tLoginSubTitle = "Make it work, make it right, make it fast.";
+const String tLoginSubTitle = "Login to continue";
 const String tRememberMe = "Remember Me?";
 const String tDontHaveAnAccount = "Don't have an Account? ";
 
@@ -141,3 +141,8 @@ const String tStep3 = "Our team will deliver your order to your doorstep";
 const String tStep4 = "Our team will install and configure your system";
 const String tStep5 =
     "As a result, you will be able to save a lot of money on electricity";
+
+
+// -- chat Screen Text Strings
+
+const String tChatSubtitle = "We are available 24/7 to assist you with any questions you may have about solar power ";

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
+import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/widgets/company_logo_widget.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/chat/twakchatScreen.dart';
 
@@ -22,26 +23,24 @@ class chatScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // company_logo_widget(size: size),
-                Image(
-                  alignment: Alignment.center,
-                  image:
-                      const AssetImage('assets/images/pdfListView/factory.png'),
-                  height: size.height * 0.2,
-                  width: size.width * 0.22,
-                ),
+                // Image(
+                //   alignment: Alignment.center,
+                //   image:
+                //       const AssetImage('assets/images/chatscreen/chatbot.png'),
+                //   height: size.height * 0.4,
+                // ),
                 Image.asset(
-                  'assets/images/customerservice.png',
-                  height: size.height * 0.3,
+                  tCustomerServiceImage,
+                  height: size.height * 0.5,
                 ),
                 SizedBox(
-                  height: size.height * 0.05,
+                  height: size.height * 0.04,
                 ),
-                Text(
-                    "We are available 24/7 to assist you with any questions you may have about solar power ",
+                Text(tChatSubtitle,
                     style: Theme.of(context).textTheme.bodyLarge),
 
                 SizedBox(
-                  height: size.height * 0.07,
+                  height: size.height * 0.05,
                 ),
                 // Center(child: Text('Chat Screen comming soon.....')),
                 SizedBox(

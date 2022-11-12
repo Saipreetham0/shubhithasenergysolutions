@@ -167,8 +167,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 final url = Uri.parse(
                   kspDeveloperSite,
                 );
-                if (await launchUrl(url)) {
-                  canLaunchUrl(url);
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
                 } else {
                   // ignore: avoid_print
                   print("Can't launch $url");

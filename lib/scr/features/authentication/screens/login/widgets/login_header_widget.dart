@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/widgets/company_logo_widget.dart';
 
 class LoginHeaderWidget extends StatelessWidget {
   const LoginHeaderWidget({Key? key}) : super(key: key);
@@ -32,8 +33,18 @@ class LoginHeaderWidget extends StatelessWidget {
               children: [
                 Text("SHUBHITHA S",
                     style: Theme.of(context).textTheme.headline1),
-                Text("ENERGY SOLUTIONS",
-                    style: Theme.of(context).textTheme.headline2),
+                Row(
+                  children: [
+                    Text("ENERGY",
+                        style: TextStyle(
+                            color: Colors.yellow[800],
+                            fontSize: 24,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700)),
+                    Text(" SOLUTIONS",
+                        style: Theme.of(context).textTheme.headline2),
+                  ],
+                ),
               ],
             ),
           ],

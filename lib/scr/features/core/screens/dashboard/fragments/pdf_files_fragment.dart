@@ -55,7 +55,6 @@ class _pdfFileState extends State<pdfFile> {
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 var docs = snapshot.data!.docs[index];
-                                // print('test ${docs}');
 
                                 return Card(
                                   shape: RoundedRectangleBorder(
@@ -63,6 +62,7 @@ class _pdfFileState extends State<pdfFile> {
                                   ),
                                   elevation: 2,
                                   child: ListTile(
+                                    onTap: () {},
                                     title: RichText(
                                         text: TextSpan(children: [
                                       TextSpan(
@@ -73,13 +73,32 @@ class _pdfFileState extends State<pdfFile> {
                                             fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
-                                        text: " KWh | ${docs} | ",
+                                          text: " KWh",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6),
+                                      const TextSpan(
+                                        text: " | ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: "${docs['solartype']}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline6,
                                       ),
+                                      const TextSpan(
+                                        text: " | ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
                                       TextSpan(
-                                        text: "${docs}",
+                                        text: "${docs['solartype']}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline6,

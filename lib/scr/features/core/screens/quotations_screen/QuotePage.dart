@@ -7,6 +7,8 @@ import 'package:shubhithasenergysolutions/scr/features/authentication/controller
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/quote_data_cal.dart';
 import 'package:intl/intl.dart';
 
+enum SolarTypeEnum { Domestic, Commercial }
+
 class QuoteForm extends StatefulWidget {
   const QuoteForm({super.key});
 
@@ -20,6 +22,12 @@ class _QuoteFormState extends State<QuoteForm> {
   final _nameController = TextEditingController();
   final _phoneNumber = TextEditingController();
   final _address = TextEditingController();
+
+  SolarTypeEnum? _SolarTypeEnum;
+
+  var solarTypeRadioSelect;
+
+  var visibleError = false;
 
   //  final studentViewModel = Get.put(quoteUploadModel());
 
@@ -35,8 +43,8 @@ class _QuoteFormState extends State<QuoteForm> {
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 // DateFormat.yMMMEd().format(DateTime.now())
-  Future<void> addUser(
-      String kW, String name, String phoneNumber, String address) async {
+  Future<void> addUser(String kW, String name, String phoneNumber,
+      String address, String solorType) async {
     int uniqueId = DateTime.now().microsecondsSinceEpoch;
     FirebaseFirestore.instance
         .collection('users')
@@ -47,6 +55,8 @@ class _QuoteFormState extends State<QuoteForm> {
       'address': _address.text,
       'kW': _kW.text, //
       'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
+      'solartype': solorType,
+      'totalCost': "",
     }).then((value) => FirebaseFirestore.instance
             .collection('quotations')
             .add({
@@ -54,6 +64,8 @@ class _QuoteFormState extends State<QuoteForm> {
               'address': _address.text,
               'kW': _kW.text, //
               'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
+              'solartype': solorType,
+              'totalCost': "",
             })
             .then((value) => print("Data Added"))
             .catchError((error) => print("Failed to add user: $error")));
@@ -68,6 +80,7 @@ class _QuoteFormState extends State<QuoteForm> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -89,97 +102,183 @@ class _QuoteFormState extends State<QuoteForm> {
                 vertical: tFormHeight - 10, horizontal: 15),
             child: Form(
               key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Text("Quotation",
-                          style: Theme.of(context).textTheme.headline2),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: _nameController,
-                    validator: (value) {
-                      //  if (value == null || value.isEmpty) {
-                      //   return 'Please enter your name';
-                      // }
-                      // return null;
-                    },
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                        label: Text("Name"), prefixIcon: Icon(Icons.person)),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: _phoneNumber,
-                    validator: (value) {
-                      // if (value == null || value.length < 10) {
-                      //   return 'Please enter your phone number';
-                      // }
-                      // return null;
-                    },
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                        label: Text("Phone Number"),
-                        prefixIcon: Icon(Icons.phone)),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: _address,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your address';
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                        label: Text("Address"),
-                        prefixIcon: Icon(Icons.location_on)),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: _kW,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter kW';
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                        label: Text("Enter kW"),
-                        prefixIcon: Icon(Icons.energy_savings_leaf)),
-                  ),
-                  const SizedBox(height: tFormHeight - 10),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          addUser(
-                            _kW.text,
-                            _nameController.text.trim(),
-                            _phoneNumber.text.trim(),
-                            _address.text.trim(),
-                          );
-                        }
-                      },
-                      child: Text("Generate Quotation"),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Quotation",
+                            style: Theme.of(context).textTheme.headline2),
+                      ],
                     ),
-                  )
-                ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _nameController,
+                      validator: (value) {
+                        //  if (value == null || value.isEmpty) {
+                        //   return 'Please enter your name';
+                        // }
+                        // return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(
+                          label: Text("Name"), prefixIcon: Icon(Icons.person)),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _phoneNumber,
+                      validator: (value) {
+                        // if (value == null || value.length < 10) {
+                        //   return 'Please enter your phone number';
+                        // }
+                        // return null;
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                          label: Text("Phone Number"),
+                          prefixIcon: Icon(Icons.phone)),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _address,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your address';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(
+                          label: Text("Address"),
+                          prefixIcon: Icon(Icons.location_on)),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: size.width * 0.45,
+                          child: RadioListTile<SolarTypeEnum>(
+                              contentPadding: const EdgeInsets.all(0.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                // side: BorderSide(color: Colors.grey)
+                              ),
+                              value: SolarTypeEnum.Domestic,
+                              groupValue: _SolarTypeEnum,
+                              tileColor: Theme.of(context).primaryColorLight,
+                              title: Text(SolarTypeEnum.Domestic.name),
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _SolarTypeEnum = newValue;
+                                  visibleError = false;
+
+                                  solarTypeRadioSelect = "Domestic";
+                                  print(solarTypeRadioSelect);
+                                });
+                              }),
+                        ),
+                        SizedBox(
+                          width: size.width * 0.46,
+                          child: RadioListTile<SolarTypeEnum>(
+                              contentPadding: const EdgeInsets.all(0.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                // side: BorderSide(color: Colors.grey)
+                              ),
+                              value: SolarTypeEnum.Commercial,
+                              groupValue: _SolarTypeEnum,
+                              tileColor: Theme.of(context).primaryColorLight,
+                              title: Text(SolarTypeEnum.Commercial.name),
+                              onChanged: (val) {
+                                setState(() {
+                                  _SolarTypeEnum = val;
+
+                                  solarTypeRadioSelect = "Commercial";
+                                  print(solarTypeRadioSelect);
+                                  visibleError = false;
+                                });
+                              }),
+                        )
+                      ],
+                    ),
+                    Visibility(
+                      visible: visibleError,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Please select your solar type",
+                            style: TextStyle(
+                              color: Colors.red[500],
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _kW,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter kW';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                          label: Text("Enter kW"),
+                          prefixIcon: Icon(Icons.energy_savings_leaf)),
+                    ),
+                    const SizedBox(height: tFormHeight - 10),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (solarTypeRadioSelect == null) {
+                            setState(() {
+                              visibleError = true;
+                            });
+                          } else {
+                            setState(() {
+                              visibleError = false;
+                            });
+                          }
+
+                          if (_formKey.currentState!.validate() &&
+                              solarTypeRadioSelect != null) {
+                            addUser(
+                              _kW.text,
+                              _nameController.text.trim(),
+                              _phoneNumber.text.trim(),
+                              _address.text.trim(),
+                              solarTypeRadioSelect,
+                            );
+                          }
+                        },
+                        child: Text("Generate Quotation"),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

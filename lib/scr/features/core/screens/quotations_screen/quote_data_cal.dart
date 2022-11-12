@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:math_expressions/math_expressions.dart';
 import 'package:pdf/pdf.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdf_format.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/widgets/custom_text_table_widget.dart';
 
@@ -57,6 +59,17 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   var aS5 = 0;
   var aS6 = 0;
   var aS7 = 0;
+
+  Future<void> addPrice(String price) async {
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(AuthController.instance.user!.uid)
+    //     .collection("Quotations")
+    //     .doc('')
+    //     .update({'totalCost': price})
+    //     .then((value) => print("User Updated"))
+    //     .catchError((error) => print("Failed to update user: $error"));
+  }
 
   //intializing the variables and screen
   @override
@@ -144,6 +157,7 @@ class _pdfGeneratorState extends State<pdfGenerator> {
     //cost to customer calculation
     costToCustomer =
         postSubsidyPrice + Gst + NetMeterFee + SubsidyApplicationFee;
+    addPrice(costToCustomer.toString());
   }
 
   void _energyGenerated() {

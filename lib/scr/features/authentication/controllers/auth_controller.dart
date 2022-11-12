@@ -19,6 +19,7 @@ class AuthController extends GetxController {
   bool isLoging = false;
   User? get user => _user.value;
   final FirebaseAuth auth = FirebaseAuth.instance;
+  var verificationId = ''.obs;
 
   @override
   void onReady() {
@@ -41,6 +42,33 @@ class AuthController extends GetxController {
         Get.offAll(() => const HomePage());
       }
     });
+  }
+
+  Future<void> phoneAuth(String phoneNumber) async {
+    await auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (credential) async {
+        await auth.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          print('The provided phone number is not valid.');
+        }
+      },
+      codeSent: (String verificationId, resendToken) {
+        this.verificationId.value = verificationId;
+      },
+      codeAutoRetrievalTimeout: (verificationId) {
+        this.verificationId.value = verificationId;
+      },
+    );
+  }
+
+  Future<void> verifyOTP(String otp) async {
+    await auth.signInWithCredential(PhoneAuthProvider.credential(
+        verificationId: verificationId.value, smsCode: otp));
+
+    // return credential.user != null ? true : false;
   }
 
   void registerUser(email, password, name, phone) async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shubhithasenergysolutions/scr/constants/links.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/profile_list_item.dart';
@@ -57,7 +58,7 @@ class helpSupport extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               profile_list_widget(
                 icon: LineIcons.phone,
                 text: 'call us',

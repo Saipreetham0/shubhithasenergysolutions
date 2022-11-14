@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tawk/flutter_tawk.dart';
+import 'package:shubhithasenergysolutions/scr/constants/config.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 
 class twakChatScreen extends StatefulWidget {
@@ -18,12 +19,10 @@ class _twakChatScreen extends State<twakChatScreen> {
   @override
   Widget build(BuildContext context) {
     if (user != null) {
-      if (user!.photoURL == null) {
-        name = user!.displayName;
-        email = user!.email;
-        uid = user!.uid;
-        phoneNumber = user!.phoneNumber;
-      }
+      name = user!.displayName;
+      email = user!.email;
+      phoneNumber = user!.phoneNumber;
+      uid = user!.uid;
     }
     return Scaffold(
       appBar: AppBar(
@@ -32,19 +31,18 @@ class _twakChatScreen extends State<twakChatScreen> {
         elevation: 0,
       ),
       body: Tawk(
-          directChatLink:
-              'https://tawk.to/chat/636b7fadb0d6371309ce1d95/1ghdulg5u',
+          directChatLink: twakLink,
           visitor: TawkVisitor(
             name: name,
             email: email,
           ),
           onLoad: () {
-            // print(
-            //   'Hello Tawk! $name $email',
-            // );
+            print(
+              'Hello Tawk! $name $email',
+            );
           },
           onLinkTap: (String url) {
-            // print(url);
+            print(url);
           },
           placeholder: const Center(
             child: Text('Loading...'),

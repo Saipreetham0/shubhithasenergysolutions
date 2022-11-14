@@ -51,21 +51,23 @@ class _QuoteFormState extends State<QuoteForm> {
         .doc(AuthController.instance.user!.uid)
         .collection("Quotations")
         .add({
-      'phone Number': _phoneNumber.text,
+      'name': _nameController.text,
+      'phoneNumber': _phoneNumber.text,
       'address': _address.text,
       'kW': _kW.text, //
       'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
       'solartype': solorType,
-      'totalCost': "",
+      // 'totalCost': "",
     }).then((value) => FirebaseFirestore.instance
             .collection('quotations')
             .add({
-              'phone Number': _phoneNumber.text,
+              'name': _nameController.text,
+              'phoneNumber': _phoneNumber.text,
               'address': _address.text,
               'kW': _kW.text, //
               'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
               'solartype': solorType,
-              'totalCost': "",
+              // 'totalCost': "",
             })
             .then((value) => print("Data Added"))
             .catchError((error) => print("Failed to add user: $error")));

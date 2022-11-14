@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/quote_data_cal.dart';
 
 class pdfFile extends StatefulWidget {
   const pdfFile({super.key});
@@ -62,7 +64,15 @@ class _pdfFileState extends State<pdfFile> {
                                   ),
                                   elevation: 2,
                                   child: ListTile(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.to(() =>const pdfGenerator(), arguments: [
+                                        // docs['kW'].toString(),
+                                        double.parse('${docs['kW']}'),
+                                        docs['name'],
+                                        docs['phoneNumber'],
+                                        docs['address']
+                                      ]);
+                                    },
                                     title: RichText(
                                         text: TextSpan(children: [
                                       TextSpan(
@@ -77,12 +87,11 @@ class _pdfFileState extends State<pdfFile> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline6),
-                                      const TextSpan(
+                                      TextSpan(
                                         text: " | ",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
                                       ),
                                       TextSpan(
                                         text: "${docs['solartype']}",
@@ -90,25 +99,22 @@ class _pdfFileState extends State<pdfFile> {
                                             .textTheme
                                             .headline6,
                                       ),
-                                      const TextSpan(
-                                        text: " | ",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: "${docs['solartype']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline6,
-                                      ),
+                                      // TextSpan(
+                                      //   text: " | ",
+                                      //   style: Theme.of(context)
+                                      //       .textTheme
+                                      //       .bodyText1,
+                                      // ),
+                                      // TextSpan(
+                                      //   text: "${docs['solartype']}",
+                                      //   style: Theme.of(context)
+                                      //       .textTheme
+                                      //       .headline6,
+                                      // ),
                                     ])),
-                                    // leading: Image.asset(tFactoryListImage,
-                                    //     height: 40),
-
-                                    leading:
-                                        Image.asset(tHomeListImage, height: 40),
+                                    leading: Image.asset(
+                                        'assets/images/pdfListView/${docs['solartype']}.png',
+                                        height: 40),
                                     subtitle: Text(
                                       "${docs['timestamp']}",
                                       style:

@@ -142,7 +142,17 @@ const String tStep4 = "Our team will install and configure your system";
 const String tStep5 =
     "As a result, you will be able to save a lot of money on electricity";
 
-
 // -- chat Screen Text Strings
 
-const String tChatSubtitle = "We are available 24/7 to assist you with any questions you may have about solar power ";
+const String tChatSubtitle =
+    "We are available 24/7 to assist you with any questions you may have about solar power ";
+
+// -- Employee Screen Text Strings
+
+const String tEmployeeFormFieldClient = "Client name";
+const String tEmployeeFormFieldClientEmail = "Email";
+const String tEmployeeFormFieldClientPhone = "Phone";
+const String tEmployeeFormFieldClientAddress = "Address";
+const String tEmployeeFormFieldClientNameOfBuilding = "Name of Site/Building";
+const String tEmployeeFormFieldClientLiveLocation = "Live Location";
+const String tEmployeeFormFieldLatitudeAndLongitude = "Latitude and Longitude";

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/links.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/profile_list_item.dart';
@@ -10,20 +11,21 @@ import 'package:url_launcher/url_launcher.dart';
 class helpSupport extends StatelessWidget {
   const helpSupport({super.key});
 
-  Future<void> _launchUrl(String url) async {
-    final Uri _url = Uri(
-      scheme: "https",
-      host: 'play.google.com',
-      path: 'store/apps/details',
-      queryParameters: {"id": 'com.whatsapp'},
-    );
-    if (!await launchUrl(_url)) {
-      throw 'Could not launch $_url';
-    }
-  }
+  // Future<void> _launchUrl(String url) async {
+  //   final Uri _url = Uri(
+  //     scheme: "https",
+  //     host: 'play.google.com',
+  //     path: 'store/apps/details',
+  //     queryParameters: {"id": 'com.whatsapp'},
+  //   );
+  //   if (!await launchUrl(_url)) {
+  //     throw 'Could not launch $_url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -45,6 +47,9 @@ class helpSupport extends StatelessWidget {
         ),
         //
         body: Container(
+          color: isDark
+              ? Theme.of(context).scaffoldBackgroundColor
+              : tBackgroundColor,
           padding: const EdgeInsets.symmetric(
               horizontal: tDefaultSize - 10, vertical: tDefaultSize - 15),
           child: Column(
@@ -61,7 +66,7 @@ class helpSupport extends StatelessWidget {
               const SizedBox(height: 20),
               profile_list_widget(
                 icon: LineIcons.phone,
-                text: 'call us',
+                text: 'Call us',
                 onTap: () async {
                   final url = Uri.parse(
                     kcallUs,
@@ -93,7 +98,7 @@ class helpSupport extends StatelessWidget {
               const SizedBox(height: 20),
               profile_list_widget(
                 icon: LineIcons.whatSApp,
-                text: 'chat with us',
+                text: 'Chat with us',
                 onTap: () async {
                   final url = Uri.parse(kchatWithUs);
                   if (await launchUrl(url,

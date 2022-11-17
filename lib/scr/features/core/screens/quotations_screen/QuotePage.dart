@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/quote_data_cal.dart';
@@ -75,13 +76,15 @@ class _QuoteFormState extends State<QuoteForm> {
     var n = double.parse(_kW.text);
 
     // Get.to(pdfGenerator(), arguments: n);
-    Get.to(() => pdfGenerator(), arguments: [n, name, phoneNumber, address]);
+    Get.to(() => const pdfGenerator(),
+        arguments: [n, name, phoneNumber, address]);
 
     FocusScopeNode currentFocus = FocusScope.of(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -179,7 +182,9 @@ class _QuoteFormState extends State<QuoteForm> {
                               ),
                               value: SolarTypeEnum.Domestic,
                               groupValue: _SolarTypeEnum,
-                              tileColor: Theme.of(context).primaryColorLight,
+                              tileColor: isDark
+                                  ? tSecondaryColor150
+                                  : Theme.of(context).primaryColorLight,
                               title: Text(SolarTypeEnum.Domestic.name),
                               onChanged: (newValue) {
                                 setState(() {
@@ -201,7 +206,9 @@ class _QuoteFormState extends State<QuoteForm> {
                               ),
                               value: SolarTypeEnum.Commercial,
                               groupValue: _SolarTypeEnum,
-                              tileColor: Theme.of(context).primaryColorLight,
+                              tileColor: isDark
+                                  ? tSecondaryColor150
+                                  : Theme.of(context).primaryColorLight,
                               title: Text(SolarTypeEnum.Commercial.name),
                               onChanged: (val) {
                                 setState(() {

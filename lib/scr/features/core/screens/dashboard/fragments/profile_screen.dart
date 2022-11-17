@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/links.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
@@ -12,7 +13,6 @@ import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/wi
 import 'package:shubhithasenergysolutions/scr/features/core/screens/help_support/help_support.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/profile_edit/profile_edit.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -26,12 +26,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // final user = FirebaseAuth.instance.currentUser;
 
   final user = AuthController.instance.user;
+  final db = FirebaseFirestore.instance;
 
   String urlImage = "";
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     if (user != null) {
+      urlImage = tUserImage;
       if (user!.photoURL == null) {
         urlImage = tUserImage;
       } else {
@@ -41,6 +44,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       body: Container(
+          color: isDark
+              ? Theme.of(context).scaffoldBackgroundColor
+              : tBackgroundColor,
           padding: const EdgeInsets.symmetric(
               horizontal: tDefaultSize - 10, vertical: tDefaultSize - 15),
           child: Column(children: [
@@ -74,8 +80,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           border: Border.all(
                             width: 4,
                             color: Theme.of(context).scaffoldBackgroundColor,
+                            // color: isDark ? Colors.white : Colors.black,
                           ),
-                          color: Theme.of(context).backgroundColor,
+                          // color: isDark
+                          //     ? Colors.white
+                          //     : Theme.of(context).scaffoldBackgroundColor,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                         ),
                         child: GestureDetector(
                           onTap: () {
@@ -83,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           },
                           child: Icon(
                             Icons.edit,
-                            color: Colors.white,
+                            color: isDark ? tPrimaryColor : Colors.black,
                             size: 16,
                           ),
                         ),
@@ -109,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 20),
             profile_list_widget(
               onTap: () {
-                Get.to(profileEdit());
+                Get.to(() => const profileEdit());
               },
               icon: LineIcons.edit,
               text: "Edit Profile",
@@ -117,7 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 20),
             profile_list_widget(
               onTap: () {
-                Get.to(notificationsScreen());
+                Get.to(() => const notificationsScreen());
               },
               icon: LineIcons.bell,
               text: "Notifications",
@@ -141,14 +151,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 20),
             profile_list_widget(
               onTap: () {
-                Get.to(helpSupport());
+                Get.to(() => const helpSupport());
               },
               icon: LineIcons.questionCircle,
               text: "Help Support",
             ),
             const SizedBox(height: 20),
             profile_list_widget(
-              onTap: () {},
+              onTap: () {
+                // Share.share('check out my website https://example.com');
+                shareButton();
+              },
               icon: LineIcons.userPlus,
               text: "Invite Friends",
             ),
@@ -167,7 +180,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 final url = Uri.parse(
                   kspDeveloperSite,
                 );
-                if (await canLaunchUrl(url)) {
+                if (await canLaunchUrl(
+                  url,
+                )) {
                   await launchUrl(url);
                 } else {
                   // ignore: avoid_print
@@ -181,5 +196,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             )
           ])),
     );
+  }
+
+  shareButton() {
+    db.collection('admin').doc('share').get().then((DocumentSnapshot doc) {
+      final data = doc.data() as Map<String, dynamic>;
+      print(data['image']);
+      Share.share(data['message']);
+    });
   }
 }

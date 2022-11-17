@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
@@ -42,7 +43,7 @@ class _profileEditState extends State<profileEdit> {
     });
   }
 
-  _updateProfile() {
+  _updateProfile() async {
     firestore.collection("users").doc(user!.uid).update({
       "name": _nameController.text,
       "email": _emailController.text,
@@ -53,33 +54,17 @@ class _profileEditState extends State<profileEdit> {
           ?.updateDisplayName(_nameController.text)
           .then((value) => print("Updated")),
     );
+    await user?.updateDisplayName(_nameController.text);
   }
 
   @override
-  Widget build(BuildContext context) {
-    if (user != null) {
-      if (user!.photoURL == null) {
-        urlImage = tUserImage;
-      } else {
-        urlImage = user!.photoURL!;
-      }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
 
-      if (user!.phoneNumber == null) {
-        _phoneController.text = "";
-      } else {
-        _phoneController.text = user!.phoneNumber!;
-      }
-      if (user!.displayName == null) {
-        _nameController.text = "";
-      } else {
-        _nameController.text = user!.displayName!;
-      }
-      _isEmailVerified = user!.emailVerified;
-      print(_isEmailVerified);
-
-      _emailController.text = user!.email!;
-    }
-
+  getData() {
     FirebaseFirestore.instance
         .collection('users')
         .doc(user!.uid)
@@ -94,6 +79,34 @@ class _profileEditState extends State<profileEdit> {
         print('Document does not exist on the database');
       }
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    if (user != null) {
+      if (user!.photoURL == null) {
+        urlImage = tUserImage;
+      } else {
+        urlImage = user!.photoURL!;
+      }
+
+      // if (user!.phoneNumber == null) {
+      //   _phoneController.text = "";
+      // } else {
+      //   _phoneController.text = user!.phoneNumber!;
+      // }
+
+      // if (user!.displayName == null) {
+      //   _nameController.text = "";
+      // } else {
+      //   _nameController.text = user!.displayName!;
+      // }
+      _isEmailVerified = user!.emailVerified;
+      print(_isEmailVerified);
+
+      _emailController.text = user!.email!;
+    }
 
     return SafeArea(
         child: Scaffold(
@@ -117,6 +130,7 @@ class _profileEditState extends State<profileEdit> {
                   child: TextButton.icon(
                 onPressed: () {
                   showSaveButton();
+                  getData();
                 },
                 icon: Icon(
                   LineIcons.edit,
@@ -134,11 +148,11 @@ class _profileEditState extends State<profileEdit> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+          padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
           child: GestureDetector(
-            // onTap: () {
-            //   FocusScope.of(context).unfocus();
-            // },
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
             child: Column(
               children: [
                 Row(
@@ -149,7 +163,7 @@ class _profileEditState extends State<profileEdit> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Center(
                   child: Stack(
                     children: [
@@ -166,7 +180,7 @@ class _profileEditState extends State<profileEdit> {
                                   spreadRadius: 2,
                                   blurRadius: 10,
                                   color: Colors.black.withOpacity(0.1),
-                                  offset: Offset(0, 10))
+                                  offset: const Offset(0, 10))
                             ],
                             shape: BoxShape.circle,
                             image: DecorationImage(
@@ -201,35 +215,18 @@ class _profileEditState extends State<profileEdit> {
                     ],
                   ),
                 ),
-                SizedBox(height: tDefaultSize - 15),
+                const SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   enabled: _enabled,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.email_outlined),
                     labelText: tEmail,
                     hintText: tEmail,
-                    // suffixIcon: IconButton(
-                    //   onPressed: () {
-                    //     if (_isEmailVerified == false) {
-                    //       user!.sendEmailVerification();
-                    //       Get.snackbar(
-                    //         "Email Verification",
-                    //         "Email verification link has been sent to your email",
-                    //       );
-                    //     }
-                    //   },
-                    //   icon: Icon(
-                    //     _isEmailVerified
-                    //         ? Icons.verified
-                    //         : Icons.error_outline,
-                    //     color: _isEmailVerified ? Colors.blue : Colors.red,
-                    //   ),
-                    // )
                   ),
                 ),
-                SizedBox(height: tDefaultSize - 15),
+                const SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   controller: _nameController,
                   keyboardType: TextInputType.name,
@@ -240,7 +237,7 @@ class _profileEditState extends State<profileEdit> {
                     hintText: tFullName,
                   ),
                 ),
-                SizedBox(height: tDefaultSize - 15),
+                const SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
@@ -251,7 +248,7 @@ class _profileEditState extends State<profileEdit> {
                     hintText: tPhoneNo,
                   ),
                 ),
-                SizedBox(height: tDefaultSize - 15),
+                const SizedBox(height: tDefaultSize - 15),
                 TextFormField(
                   enabled: _enabled,
                   keyboardType: TextInputType.streetAddress,
@@ -262,7 +259,7 @@ class _profileEditState extends State<profileEdit> {
                     hintText: tAddress,
                   ),
                 ),
-                SizedBox(height: tDefaultSize - 15),
+                const SizedBox(height: tDefaultSize - 15),
                 Visibility(
                   visible: _isVisible,
                   child: Row(
@@ -273,8 +270,8 @@ class _profileEditState extends State<profileEdit> {
                               onPressed: () {
                                 showSaveButton();
                               },
-                              child: Text("Cancel"))),
-                      SizedBox(
+                              child: const Text("Cancel"))),
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -283,9 +280,14 @@ class _profileEditState extends State<profileEdit> {
                                 showSaveButton();
                                 _updateProfile();
                               },
-                              child: Text("Save"))),
+                              child: const Text("Save"))),
                     ],
                   ),
+                ),
+                SizedBox(height: size.height * 0.1),
+                Text(
+                  "Joined on ${DateFormat.yMMMEd().format(user!.metadata.creationTime!)}",
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ],
             ),

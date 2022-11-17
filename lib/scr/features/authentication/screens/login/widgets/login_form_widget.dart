@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
@@ -78,7 +79,9 @@ class _LoginFormState extends State<LoginForm> {
                 onPressed: () {
                   ForgetPasswordScreen.buildShowModalBottomSheet(context);
                 },
-                child: const Text(tForgetPassword),
+                child: const Text(
+                  tForgetPassword,
+                ),
               ),
             ),
             SizedBox(

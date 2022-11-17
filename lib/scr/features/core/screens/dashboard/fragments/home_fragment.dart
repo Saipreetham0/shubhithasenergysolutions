@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+// ignore: unused_import
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/stepsCard_widget.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/QuotePage.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
@@ -25,8 +25,11 @@ class home_fragment extends StatefulWidget {
 class _home_fragmentState extends State<home_fragment> {
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final size = MediaQuery.of(context).size;
     return Container(
+      color:
+          isDark ? Theme.of(context).scaffoldBackgroundColor : tBackgroundColor,
       child: Column(
         children: [
           SingleChildScrollView(
@@ -43,7 +46,7 @@ class _home_fragmentState extends State<home_fragment> {
                   ),
                   IconButton(
                     onPressed: () {
-                      Get.to(notificationsScreen());
+                      Get.to(() => const notificationsScreen());
                     },
                     icon: const Icon(Icons.notifications),
                   )
@@ -61,7 +64,7 @@ class _home_fragmentState extends State<home_fragment> {
                   children: [
                     Image(
                       alignment: Alignment.center,
-                      image: AssetImage(tAppHeaderLogo),
+                      image: const AssetImage(tAppHeaderLogo),
                       height: size.height * 0.2,
                       width: size.width * 0.18,
                     ),
@@ -100,9 +103,10 @@ class _home_fragmentState extends State<home_fragment> {
                 child: ElevatedButton(
                     onPressed: () {
                       // Get.to(QuoteForm());
-                      Get.to(() => QuoteForm());
+                      Get.to(() => const QuoteForm(),
+                          transition: Transition.downToUp);
                     },
-                    child: Text("Generate Quote Instantly")),
+                    child: const Text("Generate Quote Instantly")),
               ),
               const SizedBox(height: 20),
               Row(

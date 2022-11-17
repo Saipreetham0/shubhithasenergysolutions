@@ -9,7 +9,7 @@ import 'package:shubhithasenergysolutions/scr/features/authentication/controller
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdf_format.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/widgets/custom_text_table_widget.dart';
 
-import 'package:shubhithasenergysolutions/scr/features/pdf_new/pdfGenrator.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/pdf_new/pdfGenrator.dart';
 
 class pdfGenerator extends StatefulWidget {
   const pdfGenerator({super.key});

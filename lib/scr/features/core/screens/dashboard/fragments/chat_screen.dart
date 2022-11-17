@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
@@ -11,10 +12,14 @@ class chatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Container(
+          color: isDark
+              ? Theme.of(context).scaffoldBackgroundColor
+              : tBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: tDefaultSize - 10, vertical: tDefaultSize - 15),

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 // import 'package:fatura_app/models/invoice_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -7,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:printing/printing.dart';
 import 'package:shubhithasenergysolutions/scr/constants/company_pdf_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 
@@ -23,16 +25,20 @@ class PdfQuoteAPI {
     );
 
     final data = Get.arguments;
+    // final pageTheme = await _myPageTheme(format);
     // print(data);
 
     pdf.addPage(
       MultiPage(
+        pageFormat: PdfPageFormat.a4,
         // header: _buildHeader,
         header: (context) => _buildHeader(context, companyLogo),
         footer: _buildFooter,
         build: (context) => [
-          _introPage(context),
-          _projectSummary(context),
+          // _introPage(context),
+          _commercial(context, companyLogo)
+          // _projectSummary(context),
+          // _domestic(context)
           // Column(children: [Image(companyLogo)])
         ],
       ),
@@ -41,6 +47,15 @@ class PdfQuoteAPI {
     return await pdf.save();
     // return saveDocument(name: 'my_example.pdf', pdf: pdf);
   }
+}
+
+Widget _commercial(Context context, MemoryImage companyLogo) {
+  return Container(
+      // decoration: DecorationImage(image: companyLogo, fit: BoxFit.cover,)
+
+      child: Column(children: [
+    Text('Detailed Project Report (DPR)', style: TextStyle(fontSize: 10)),
+  ]));
 }
 
 Widget _buildHeader(Context context, MemoryImage companyLogo) {
@@ -109,6 +124,48 @@ Widget _buildFooter(Context context) {
       ],
     ),
   );
+}
+
+Widget _domestic(Context context) {
+  return Container(
+      child: Column(children: [
+    SizedBox(height: 1 * PdfPageFormat.cm),
+    Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("To", style: TextStyle(fontSize: 12)),
+                Text("Name", style: TextStyle(fontSize: 12)),
+                Text("To", style: TextStyle(fontSize: 12)),
+                Text("To", style: TextStyle(fontSize: 12)),
+              ]),
+          Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("To", style: TextStyle(fontSize: 12)),
+              ])
+        ]),
+    SizedBox(height: 1 * PdfPageFormat.cm),
+    Text(
+      'Sub: Grid Connected Solar PV Power Plant of 3 kWp Capacity with NetMetering System - Reg.',
+      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+    ),
+    SizedBox(height: 0.5 * PdfPageFormat.cm),
+    SizedBox(
+        width: double.infinity,
+        child: Text(
+          'Respected Sir,',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+        )),
+  ]));
 }
 
 Widget _introPage(Context context) {
@@ -386,3 +443,55 @@ Widget _projectSummary(Context context) {
 
 Padding custom_text_table_pdf(String text) =>
     Padding(padding: EdgeInsets.all(5), child: Text(text));
+
+Future<PageTheme> _myPageTheme(PdfPageFormat format) async {
+  // final bgShape = await rootBundle
+  //     .loadString('assets/images/splash-screen/APP_LOGO_ROW.png');
+  // final companyLogo = MemoryImage(
+  //   (await rootBundle.load('assets/images/splash-screen/APP_LOGO_ROW.png'))
+  //       .buffer
+  //       .asUint8List(),
+  // );
+
+  // final image = MemoryImage(
+  //   File('assets/images/splash-screen/APP_LOGO_ROW.png').readAsBytesSync(),
+  // );
+
+  format = format.applyMargin(
+      left: 2.0 * PdfPageFormat.cm,
+      top: 4.0 * PdfPageFormat.cm,
+      right: 2.0 * PdfPageFormat.cm,
+      bottom: 2.0 * PdfPageFormat.cm);
+  return PageTheme(
+    pageFormat: format,
+    // theme: ThemeData.withFont(
+    //   base: await PdfGoogleFonts.openSansRegular(),
+    //   bold: await PdfGoogleFonts.openSansBold(),
+    //   icons: await PdfGoogleFonts.materialIcons(),
+    // ),
+    buildBackground: (Context context) {
+      return FullPage(
+          ignoreMargins: true,
+          child:
+              // Stack(
+              //   children: [
+              //     Positioned(
+              //       // child: SvgImage(svg: bgShape),
+              //       child: Image(companyLogo),
+              //       left: 0,
+              //       top: 0,
+              //     ),
+              //     Positioned(
+              //       child: Transform.rotate(angle: pi, child: SvgImage(svg: bgShape)),
+              //       right: 0,
+              //       bottom: 0,
+              //     ),
+              //   ],
+              // ),
+
+              Column(children: [
+            // Image(image),
+          ]));
+    },
+  );
+}

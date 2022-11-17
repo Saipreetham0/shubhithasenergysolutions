@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
@@ -19,6 +20,7 @@ class _pdfFileState extends State<pdfFile> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final uid = user!.uid;
 
     CollectionReference ref = FirebaseFirestore.instance
@@ -29,6 +31,10 @@ class _pdfFileState extends State<pdfFile> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Container(
+        color: isDark
+            ? Theme.of(context).scaffoldBackgroundColor
+            : tBackgroundColor,
+        height: Size.infinite.height,
         padding: const EdgeInsets.symmetric(
             horizontal: tDefaultSize - 10, vertical: tDefaultSize - 10),
         child: SingleChildScrollView(
@@ -65,13 +71,14 @@ class _pdfFileState extends State<pdfFile> {
                                   elevation: 2,
                                   child: ListTile(
                                     onTap: () {
-                                      Get.to(() =>const pdfGenerator(), arguments: [
-                                        // docs['kW'].toString(),
-                                        double.parse('${docs['kW']}'),
-                                        docs['name'],
-                                        docs['phoneNumber'],
-                                        docs['address']
-                                      ]);
+                                      Get.to(() => const pdfGenerator(),
+                                          arguments: [
+                                            // docs['kW'].toString(),
+                                            double.parse('${docs['kW']}'),
+                                            docs['name'],
+                                            docs['phoneNumber'],
+                                            docs['address']
+                                          ]);
                                     },
                                     title: RichText(
                                         text: TextSpan(children: [

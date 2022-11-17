@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 
 class profile_list_widget extends StatelessWidget {
   final IconData icon;
@@ -15,6 +16,7 @@ class profile_list_widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
@@ -31,14 +33,14 @@ class profile_list_widget extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: Theme.of(context).iconTheme.color,
+              color: isDark ? tPrimaryColor : Theme.of(context).iconTheme.color,
             ),
             const SizedBox(width: 20),
             Text(
               text,
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            Spacer(),
+            const Spacer(),
             if (hasNavigation)
               Icon(
                 Icons.arrow_forward_ios,

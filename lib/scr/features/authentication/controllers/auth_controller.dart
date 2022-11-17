@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/forgot_password/forgot_password_mail/forgot_password_open_mail.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/screens/signup/signup_screen.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/dashboard.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
+import 'package:shubhithasenergysolutions/scr/features/employee/screens/employee_screen.dart';
 
 //
 
@@ -30,8 +31,10 @@ class AuthController extends GetxController {
   }
 
   loginRedirect(User? user) {
-    // Timer(Duration(seconds: isLoging ? 10 : 0), () {
-    Timer(Duration(seconds: 3), () {
+    // print(user);
+    Timer(Duration(seconds: isLoging ? 10 : 0), () {
+      // Timer(const Duration(seconds: 1), () {
+
       if (user == null) {
         isLoging = false;
         update();
@@ -39,7 +42,25 @@ class AuthController extends GetxController {
       } else {
         isLoging = true;
         update();
-        Get.offAll(() => const HomePage());
+        // Get.offAll(() => const HomePage());
+
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get()
+            .then((DocumentSnapshot doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          final role = data['role'];
+
+          if (role == 'employee') {
+            // Get.offAll(() => const HomePage());
+            Get.offAll(() => const employeeScreen(),
+                transition: Transition.fade);
+            // print('employee');
+          } else {
+            Get.offAll(() => const HomePage(), transition: Transition.fadeIn);
+          }
+        });
       }
     });
   }
@@ -52,7 +73,7 @@ class AuthController extends GetxController {
       },
       verificationFailed: (FirebaseAuthException e) {
         if (e.code == 'invalid-phone-number') {
-          print('The provided phone number is not valid.');
+          // print('The provided phone number is not valid.');
         }
       },
       codeSent: (String verificationId, resendToken) {
@@ -85,10 +106,11 @@ class AuthController extends GetxController {
                 'email': email,
                 'phone': phone,
                 'address': "",
+                'role': 'user',
               }));
 
       await user?.updateDisplayName(name);
-      await user?.updatePhotoURL("https://example.com/jane-q-user/profile.jpg");
+      // await user?.updatePhotoURL("https://example.com/jane-q-user/profile.jpg");
 
       getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
     } on FirebaseAuthException catch (e) {
@@ -110,6 +132,7 @@ class AuthController extends GetxController {
       isLoging = true;
       update();
       await auth.signInWithEmailAndPassword(email: email, password: password);
+
       getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
     } on FirebaseAuthException catch (e) {
       //define error
@@ -143,6 +166,7 @@ class AuthController extends GetxController {
               'email': value.user!.email,
               'phone': "",
               'address': "",
+              'role': 'user',
             }));
         getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
       }

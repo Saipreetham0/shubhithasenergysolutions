@@ -16,7 +16,7 @@ class LoginHeaderWidget extends StatelessWidget {
       children: [
         // Image(image: const AssetImage(tAppLogo), height: size.height * 0.2),
 
-        company_logo_widget(),
+        // company_logo_widget(),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,13 +38,14 @@ class LoginHeaderWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline1),
                 Row(
                   children: [
-                    Text("ENERGY",
-                        style: TextStyle(
-                            color: Colors.yellow[800],
-                            fontSize: 24,
-                            // fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700),
-                            ),
+                    Text(
+                      "ENERGY",
+                      style: TextStyle(
+                          color: Colors.yellow[800],
+                          fontSize: 24,
+                          // fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w700),
+                    ),
                     Text(" SOLUTIONS",
                         style: Theme.of(context).textTheme.headline2),
                   ],

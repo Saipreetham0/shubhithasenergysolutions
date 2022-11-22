@@ -63,8 +63,7 @@ class helpSupport extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              profile_list_widget(
+              profileListViewWidget(
                 icon: LineIcons.phone,
                 text: 'Call us',
                 onTap: () async {
@@ -79,8 +78,7 @@ class helpSupport extends StatelessWidget {
                   }
                 },
               ),
-              const SizedBox(height: 20),
-              profile_list_widget(
+              profileListViewWidget(
                 icon: LineIcons.envelope,
                 text: 'Email',
                 onTap: () async {
@@ -95,24 +93,19 @@ class helpSupport extends StatelessWidget {
                   }
                 },
               ),
-              const SizedBox(height: 20),
-              profile_list_widget(
-                icon: LineIcons.whatSApp,
-                text: 'Chat with us',
-                onTap: () async {
-                  final url = Uri.parse(kchatWithUs);
-                  if (await launchUrl(url,
-                      mode: LaunchMode.externalApplication)) {
-                    canLaunchUrl(url);
-                  } else {
-                    // ignore: avoid_print
-                    print("Can't launch $url");
-                  }
-                },
-                // onTap: () {
-                //   _launchUrl(kchatWithUs);
-                // },
-              ),
+              profileListViewWidget(
+                  icon: LineIcons.whatSApp,
+                  text: 'Chat with us',
+                  onTap: () async {
+                    final url = Uri.parse(kchatWithUs);
+                    if (await launchUrl(url,
+                        mode: LaunchMode.externalApplication)) {
+                      canLaunchUrl(url);
+                    } else {
+                      // ignore: avoid_print
+                      print("Can't launch $url");
+                    }
+                  }),
               const SizedBox(height: 20),
               Row(
                 children: [
@@ -124,14 +117,15 @@ class helpSupport extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              profile_list_widget(
+              profileListViewWidget(
                 icon: LineIcons.alternateExternalLink,
                 text: 'Website',
                 onTap: () async {
                   final url = Uri.parse(
                     kwebsite,
                   );
-                  if (await launchUrl(url)) {
+                  if (await launchUrl(url,
+                      mode: LaunchMode.externalApplication)) {
                     canLaunchUrl(url);
                   } else {
                     // ignore: avoid_print
@@ -139,15 +133,15 @@ class helpSupport extends StatelessWidget {
                   }
                 },
               ),
-              const SizedBox(height: 20),
-              profile_list_widget(
+              profileListViewWidget(
                 icon: LineIcons.link,
                 text: 'Terms & Conditions',
                 onTap: () async {
                   final url = Uri.parse(
                     ktermsAndConditions,
                   );
-                  if (await launchUrl(url)) {
+                  if (await launchUrl(url,
+                      mode: LaunchMode.externalApplication)) {
                     canLaunchUrl(url);
                   } else {
                     // ignore: avoid_print
@@ -155,15 +149,15 @@ class helpSupport extends StatelessWidget {
                   }
                 },
               ),
-              const SizedBox(height: 20),
-              profile_list_widget(
+              profileListViewWidget(
                 icon: LineIcons.info,
                 text: 'About Us',
                 onTap: () async {
                   final url = Uri.parse(
                     ktermsAndConditions,
                   );
-                  if (await launchUrl(url)) {
+                  if (await launchUrl(url,
+                      mode: LaunchMode.externalApplication)) {
                     canLaunchUrl(url);
                   } else {
                     // ignore: avoid_print
@@ -171,32 +165,30 @@ class helpSupport extends StatelessWidget {
                   }
                 },
               ),
-              // const SizedBox(height: 20),
-              // profile_list_widget(
-              //   icon: LineIcons.questionCircle,
-              //   text: 'FAQ',
-              //   onTap: () async {
-              //   final url = Uri.parse(
-              //     kfaq,
-              //   );
-              //   if (await launchUrl(url)) {
-              //     canLaunchUrl(url);
-              //   } else {
-              //     // ignore: avoid_print
-              //     print("Can't launch $url");
-              //   }
-              // },
-              // ),
-              const SizedBox(height: 20),
-              profile_list_widget(
+              profileListViewWidget(
+                icon: LineIcons.questionCircle,
+                text: 'FAQ',
+                onTap: () async {
+                  final url = Uri.parse(
+                    kfaq,
+                  );
+                  if (await launchUrl(url,
+                      mode: LaunchMode.externalApplication)) {
+                    canLaunchUrl(url);
+                  } else {
+                    // ignore: avoid_print
+                    print("Can't launch $url");
+                  }
+                },
+              ),
+              profileListViewWidget(
                 icon: LineIcons.editAlt,
                 text: 'Send Feedback',
                 onTap: () async {
                   final url = Uri.parse(kfeedback);
-                  if (await launchUrl(url)) {
-                    canLaunchUrl(
-                      url,
-                    );
+                  if (await launchUrl(url,
+                      mode: LaunchMode.externalApplication)) {
+                    canLaunchUrl(url);
                   } else {
                     // ignore: avoid_print
                     print("Can't launch $url");

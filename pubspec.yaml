@@ -58,7 +58,6 @@ dependencies:
   geocoding_platform_interface: ^2.0.1
   number_to_words: ^1.0.0
   cached_network_image: ^3.2.2
-  ffi: ^2.0.1
   # google_maps_flutter: ^2.2.1
   # firebase_remote_config: ^3.0.4
   

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:line_icons/line_icons.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
@@ -117,28 +118,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 20),
-            profile_list_widget(
+            profileListViewWidget(
+              icon: LineIcons.edit,
               onTap: () {
                 Get.to(() => const profileEdit());
               },
-              icon: LineIcons.edit,
-              text: "Edit Profile",
+              text: 'Edit Profile',
             ),
-            const SizedBox(height: 20),
-            profile_list_widget(
+            profileListViewWidget(
+              icon: LineIcons.bell,
               onTap: () {
                 Get.to(() => const notificationsScreen());
               },
-              icon: LineIcons.bell,
-              text: "Notifications",
+              text: 'Notifications',
             ),
-            const SizedBox(height: 20),
-            profile_list_widget(
+            profileListViewWidget(
               onTap: () async {
                 final url = Uri.parse(
                   kprivacyPolicy,
                 );
-                if (await launchUrl(url)) {
+                if (await launchUrl(url,
+                    mode: LaunchMode.externalApplication)) {
                   canLaunchUrl(url);
                 } else {
                   // ignore: avoid_print
@@ -148,16 +148,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               icon: LineIcons.lock,
               text: "Privacy Policy",
             ),
-            const SizedBox(height: 20),
-            profile_list_widget(
+            profileListViewWidget(
               onTap: () {
                 Get.to(() => const helpSupport());
               },
               icon: LineIcons.questionCircle,
               text: "Help Support",
             ),
-            const SizedBox(height: 20),
-            profile_list_widget(
+            profileListViewWidget(
               onTap: () {
                 // Share.share('check out my website https://example.com');
                 shareButton();
@@ -165,8 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               icon: LineIcons.userPlus,
               text: "Invite Friends",
             ),
-            const SizedBox(height: 20),
-            profile_list_widget(
+            profileListViewWidget(
               onTap: () {
                 AuthController.instance.signOut();
               },
@@ -180,10 +177,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 final url = Uri.parse(
                   kspDeveloperSite,
                 );
-                if (await canLaunchUrl(
-                  url,
-                )) {
-                  await launchUrl(url);
+                if (await launchUrl(url,
+                    mode: LaunchMode.externalApplication)) {
+                  canLaunchUrl(url);
                 } else {
                   // ignore: avoid_print
                   print("Can't launch $url");
@@ -206,3 +202,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 }
+
+// 

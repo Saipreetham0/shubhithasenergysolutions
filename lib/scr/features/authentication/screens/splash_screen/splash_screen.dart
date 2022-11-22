@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             company_logo_widget(),
             SizedBox(
-              height: size.height * 0.07,
+              height: size.height * 0.08,
             ),
 
             // padding: EdgeInsets.all(10),

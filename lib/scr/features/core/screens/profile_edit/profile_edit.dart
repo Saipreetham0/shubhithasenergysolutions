@@ -76,7 +76,7 @@ class _profileEditState extends State<profileEdit> {
         _phoneController.text = documentSnapshot.get("phone");
         _addressController.text = documentSnapshot.get("address");
       } else {
-        print('Document does not exist on the database');
+        // print('Document does not exist on the database');
       }
     });
   }
@@ -103,7 +103,7 @@ class _profileEditState extends State<profileEdit> {
       //   _nameController.text = user!.displayName!;
       // }
       _isEmailVerified = user!.emailVerified;
-      print(_isEmailVerified);
+      // print(_isEmailVerified);
 
       _emailController.text = user!.email!;
     }

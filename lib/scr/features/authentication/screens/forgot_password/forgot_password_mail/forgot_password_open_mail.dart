@@ -28,7 +28,7 @@ class _openMailScreenState extends State<openMailScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: tDefaultSize * 6),
-                Icon(
+                const Icon(
                   Icons.mail_outline_rounded,
                   size: 100.0,
                 ),

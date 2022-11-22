@@ -1,15 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:math' as math;
 import 'package:math_expressions/math_expressions.dart';
-import 'package:pdf/pdf.dart';
+import 'package:shubhithasenergysolutions/scr/constants/company_pdf_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdf_format.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/widgets/custom_text_table_widget.dart';
 
-import 'package:shubhithasenergysolutions/scr/features/core/screens/pdf_new/pdfGenrator.dart';
 
 class pdfGenerator extends StatefulWidget {
   const pdfGenerator({super.key});
@@ -60,6 +56,15 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   var aS6 = 0;
   var aS7 = 0;
 
+  // benfits of solar power
+
+  var aB1 = 0;
+  var aB2 = 0;
+  var aB3 = 0;
+  var aB4 = 0;
+  var aB5 = 0;
+  var aB6 = 0;
+
   Future<void> addPrice(String price) async {
     // FirebaseFirestore.instance
     //     .collection('users')
@@ -76,13 +81,53 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    var kW = Get.arguments[0];
+    // var kW = Get.arguments[0];
     _solarModuleRating();
     _billDetails();
     _energyGenerated();
     _energySavings();
     _returnOnInvestment();
     _annualEnergyProduction();
+    _benfitsOfSolar();
+  }
+
+  void _benfitsOfSolar() {
+    var kW = Get.arguments[0];
+    Parser p = Parser();
+    Expression exp = p.parse('$kW * $kAverageGeneratedUnits');
+    ContextModel cm = ContextModel();
+    double eval = exp.evaluate(EvaluationType.REAL, cm);
+    aB1 = eval.toInt();
+
+    Parser p1 = Parser();
+    Expression exp1 = p1.parse('$aB1 * $kPowerBillAverageUnitCost');
+    ContextModel cm1 = ContextModel();
+    double eval1 = exp1.evaluate(EvaluationType.REAL, cm1);
+    aB2 = eval1.toInt();
+
+    Parser p2 = Parser();
+    Expression exp2 = p2.parse('$aB2 * $kMonetaryBenefitsMonth');
+    ContextModel cm2 = ContextModel();
+    double eval2 = exp2.evaluate(EvaluationType.REAL, cm2);
+    aB3 = eval2.toInt();
+
+    Parser p3 = Parser();
+    Expression exp3 = p3.parse('$aB1 * 365');
+    ContextModel cm3 = ContextModel();
+    double eval3 = exp3.evaluate(EvaluationType.REAL, cm3);
+    aB4 = eval3.toInt();
+
+    Parser p4 = Parser();
+    Expression exp4 = p4.parse('$aB4 * $kPowerBillAverageUnitCost');
+    ContextModel cm4 = ContextModel();
+    double eval4 = exp4.evaluate(EvaluationType.REAL, cm4);
+    aB5 = eval4.toInt();
+
+    Parser p5 = Parser();
+    Expression exp5 = p5.parse('$costToCustomer / $aB5');
+    ContextModel cm5 = ContextModel();
+    double eval5 = exp5.evaluate(EvaluationType.REAL, cm5);
+    aB6 = eval5.toInt();
   }
 
   void _solarModuleRating() {
@@ -328,8 +373,6 @@ class _pdfGeneratorState extends State<pdfGenerator> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          // title: Text("Quote for ${Get.arguments} kW",
-          //     style: Theme.of(context).textTheme.bodyMedium),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 1,
           leading: IconButton(
@@ -400,10 +443,19 @@ class _pdfGeneratorState extends State<pdfGenerator> {
                   name,
                   phone,
                   address,
+
+                  // benfits  of solar
+
+                  aB1,
+                  aB2,
+                  aB3,
+                  aB4,
+                  aB5,
+                  aB6,
                 ]);
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             )
           ],

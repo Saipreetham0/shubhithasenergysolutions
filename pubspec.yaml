@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  flutter_native_splash: ^2.2.11
+  # flutter_native_splash: ^2.2.11
   pdf: ^3.8.4
   google_fonts: ^3.0.1
   get: ^4.6.5
@@ -39,16 +39,12 @@ dependencies:
   firebase_auth: ^4.0.1
   flutter_launcher_icons: ^0.11.0
   google_sign_in: ^5.4.2
-  # external_app_launcher: ^3.1.0
   cloud_firestore: ^4.0.1
   google_nav_bar: ^5.0.6
-  
   line_icons: ^2.0.1
-  flutter_screenutil: ^5.5.4
+  # flutter_screenutil: ^5.5.4
   url_launcher: ^6.1.6
-  # flutter_full_pdf_viewer: ^1.0.6
   path_provider: ^2.0.11
-  syncfusion_flutter_pdfviewer: ^20.3.50
   math_expressions: ^2.3.1
   printing: ^5.9.3
   flutter_tawk: ^0.1.0
@@ -58,8 +54,11 @@ dependencies:
   intl: ^0.17.0
   geolocator: ^9.0.2
   geocoding: ^2.0.5
-  location: ^4.4.0
+  
   geocoding_platform_interface: ^2.0.1
+  number_to_words: ^1.0.0
+  cached_network_image: ^3.2.2
+  ffi: ^2.0.1
   # google_maps_flutter: ^2.2.1
   # firebase_remote_config: ^3.0.4
   
@@ -102,7 +101,20 @@ flutter:
    - assets/images/pdf/
    - assets/images/pdfListView/
    - assets/images/chatscreen/
+   - assets/fonts/
+   - assets/fonts/BKMNOS.ttf
+   - assets/fonts/BOOKOS.TTF
+   - assets/fonts/BOOKOSB.TTF
   
+
+  fonts: 
+  - family: bookmanoldstyle
+    fonts:
+      - asset: assets/fonts/bookman_old_style.ttf
+      - asset: assets/fonts/BOOKOS.TTF
+      - asset: assets/fonts/BOOKOSB.TTF
+      # - asset: assets/fonts/BOOKOSI.TTF
+      # - asset: assets/fonts/BOOKOSI.TTF
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

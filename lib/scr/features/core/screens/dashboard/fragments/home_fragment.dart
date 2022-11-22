@@ -83,7 +83,7 @@ class _home_fragmentState extends State<home_fragment> {
                                 style: TextStyle(
                                     color: Colors.yellow[800],
                                     fontSize: 24,
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'bookmanoldstyle',
                                     fontWeight: FontWeight.w700)),
                             Text(" SOLUTIONS",
                                 style: Theme.of(context).textTheme.headline3),
@@ -106,7 +106,8 @@ class _home_fragmentState extends State<home_fragment> {
                       Get.to(() => const QuoteForm(),
                           transition: Transition.downToUp);
                     },
-                    child: const Text("Generate Quote Instantly")),
+                    child: const Text("Generate Quote Instantly",
+                        style: TextStyle(fontFamily: 'bookmanoldstyle'))),
               ),
               const SizedBox(height: 20),
               Row(

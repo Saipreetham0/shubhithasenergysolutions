@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/utils/theme/widget_theme/elevated_button_theme.dart';
 import 'package:shubhithasenergysolutions/scr/utils/theme/widget_theme/outlined_button_theme.dart';

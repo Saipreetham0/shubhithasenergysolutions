@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/quote_data_cal.dart';
-import 'package:intl/intl.dart';
 
 enum SolarTypeEnum { Domestic, Commercial }
 
@@ -47,31 +44,31 @@ class _QuoteFormState extends State<QuoteForm> {
   Future<void> addUser(String kW, String name, String phoneNumber,
       String address, String solorType) async {
     int uniqueId = DateTime.now().microsecondsSinceEpoch;
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(AuthController.instance.user!.uid)
-        .collection("Quotations")
-        .add({
-      'name': _nameController.text,
-      'phoneNumber': _phoneNumber.text,
-      'address': _address.text,
-      'kW': _kW.text, //
-      'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
-      'solartype': solorType,
-      // 'totalCost': "",
-    }).then((value) => FirebaseFirestore.instance
-            .collection('quotations')
-            .add({
-              'name': _nameController.text,
-              'phoneNumber': _phoneNumber.text,
-              'address': _address.text,
-              'kW': _kW.text, //
-              'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
-              'solartype': solorType,
-              // 'totalCost': "",
-            })
-            .then((value) => print("Data Added"))
-            .catchError((error) => print("Failed to add user: $error")));
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(AuthController.instance.user!.uid)
+    //     .collection("Quotations")
+    //     .add({
+    //   'name': _nameController.text,
+    //   'phoneNumber': _phoneNumber.text,
+    //   'address': _address.text,
+    //   'kW': _kW.text, //
+    //   'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
+    //   'solartype': solorType,
+    //   // 'totalCost': "",
+    // }).then((value) => FirebaseFirestore.instance
+    //         .collection('quotations')
+    //         .add({
+    //           'name': _nameController.text,
+    //           'phoneNumber': _phoneNumber.text,
+    //           'address': _address.text,
+    //           'kW': _kW.text, //
+    //           'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
+    //           'solartype': solorType,
+    //           // 'totalCost': "",
+    //         })
+    //         .then((value) => print("Data Added"))
+    //         .catchError((error) => print("Failed to add user: $error")));
 
     var n = double.parse(_kW.text);
 
@@ -124,10 +121,10 @@ class _QuoteFormState extends State<QuoteForm> {
                     TextFormField(
                       controller: _nameController,
                       validator: (value) {
-                        //  if (value == null || value.isEmpty) {
-                        //   return 'Please enter your name';
-                        // }
-                        // return null;
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your name';
+                        }
+                        return null;
                       },
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
@@ -139,10 +136,10 @@ class _QuoteFormState extends State<QuoteForm> {
                     TextFormField(
                       controller: _phoneNumber,
                       validator: (value) {
-                        // if (value == null || value.length < 10) {
-                        //   return 'Please enter your phone number';
-                        // }
-                        // return null;
+                        if (value == null || value.length < 10) {
+                          return 'Please enter your phone number';
+                        }
+                        return null;
                       },
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -192,7 +189,6 @@ class _QuoteFormState extends State<QuoteForm> {
                                   visibleError = false;
 
                                   solarTypeRadioSelect = "Domestic";
-                                  print(solarTypeRadioSelect);
                                 });
                               }),
                         ),
@@ -215,7 +211,7 @@ class _QuoteFormState extends State<QuoteForm> {
                                   _SolarTypeEnum = val;
 
                                   solarTypeRadioSelect = "Commercial";
-                                  print(solarTypeRadioSelect);
+
                                   visibleError = false;
                                 });
                               }),
@@ -226,7 +222,7 @@ class _QuoteFormState extends State<QuoteForm> {
                       visible: visibleError,
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Text(
@@ -283,7 +279,7 @@ class _QuoteFormState extends State<QuoteForm> {
                             );
                           }
                         },
-                        child: Text("Generate Quotation"),
+                        child: const Text("Generate Quotation"),
                       ),
                     )
                   ],

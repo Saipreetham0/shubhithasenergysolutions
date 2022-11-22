@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               color: Theme.of(context).textTheme.bodyText1!.color,
               // activeColor: Colors.white,
               // tabBackgroundColor: Colors.grey.shade800,
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               gap: 8,
               tabs: const [
                 GButton(

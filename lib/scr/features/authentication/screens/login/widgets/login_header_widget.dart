@@ -11,18 +11,21 @@ class LoginHeaderWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Image(image: const AssetImage(tAppLogo), height: size.height * 0.2),
+
+        company_logo_widget(),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image(
               alignment: Alignment.center,
-              image: AssetImage(tAppHeaderLogo),
+              image: const AssetImage(tAppHeaderLogo),
               height: size.height * 0.2,
-              width: size.width * 0.15,
+              width: size.width * 0.12,
             ),
             SizedBox(
               width: size.width * 0.001,
@@ -39,8 +42,9 @@ class LoginHeaderWidget extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.yellow[800],
                             fontSize: 24,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700)),
+                            // fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700),
+                            ),
                     Text(" SOLUTIONS",
                         style: Theme.of(context).textTheme.headline2),
                   ],

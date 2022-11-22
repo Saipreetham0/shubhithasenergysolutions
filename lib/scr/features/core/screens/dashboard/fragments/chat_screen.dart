@@ -4,7 +4,6 @@ import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/widgets/company_logo_widget.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/chat/twakchatScreen.dart';
 
 class chatScreen extends StatelessWidget {

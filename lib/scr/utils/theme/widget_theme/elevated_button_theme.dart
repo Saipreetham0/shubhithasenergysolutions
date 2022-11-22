@@ -14,8 +14,8 @@ class KelevatedButtonTheme {
         ),
         foregroundColor: tWhiteColor,
         backgroundColor: tSecondaryColor,
-        side: BorderSide(color: tSecondaryColor),
-        padding: EdgeInsets.symmetric(vertical: tButtonHeight)),
+        side: const BorderSide(color: tSecondaryColor),
+        padding: const  EdgeInsets.symmetric(vertical: tButtonHeight)),
   );
 
   // dark color theme
@@ -27,7 +27,7 @@ class KelevatedButtonTheme {
         ),
         foregroundColor: tSecondaryColor,
         backgroundColor: tWhiteColor,
-        side: BorderSide(color: tSecondaryColor),
-        padding: EdgeInsets.symmetric(vertical: tButtonHeight)),
+        side: const  BorderSide(color: tSecondaryColor),
+        padding: const  EdgeInsets.symmetric(vertical: tButtonHeight)),
   );
 }

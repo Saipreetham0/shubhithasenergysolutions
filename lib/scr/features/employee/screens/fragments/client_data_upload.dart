@@ -2,12 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
-import 'package:geocoding_platform_interface/geocoding_platform_interface.dart';
 
 class ClientDataUploadScreen extends StatefulWidget {
   const ClientDataUploadScreen({super.key});
@@ -45,7 +42,7 @@ class _ClientDataUploadScreenState extends State<ClientDataUploadScreen> {
   String long = '';
 
   String location = 'Null, Press Button';
-  String Address = 'search';
+  String Address = 'searching.....';
 
   String Locations = '';
 
@@ -259,7 +256,8 @@ class _ClientDataUploadScreenState extends State<ClientDataUploadScreen> {
                       uploadData();
                     }
                   },
-                  child: const Text('Submit'),
+                  child: const Text('Submit',
+                      style: TextStyle(fontFamily: 'bookmanoldstyle')),
                 ),
               ),
               // Text('${Address}')
@@ -275,16 +273,16 @@ class _ClientDataUploadScreenState extends State<ClientDataUploadScreen> {
     location = 'Lat: ${position.latitude} , Long: ${position.longitude}';
 
     // print('${position.latitude} , ${position.longitude}');
+    GetAddressFromLatLong(position);
 
     setState(() {
       location = 'Lat: ${position.latitude} , Long: ${position.longitude}';
       lat = '${position.latitude}';
       long = '${position.longitude}';
-      _clientLiveLocation.text = Address;
-      _clientLivLatLong.text = '${lat} , ${long}';
-    });
 
-    GetAddressFromLatLong(position);
+      _clientLivLatLong.text = '${lat} , ${long}';
+      _clientLiveLocation.text = Address;
+    });
   }
 
   uploadData() {
@@ -299,6 +297,21 @@ class _ClientDataUploadScreenState extends State<ClientDataUploadScreen> {
       'LiveLocation': _clientLiveLocation.text,
       'LiveLocationLat': lat,
       'LiveLocationLong': long,
-    }).then((value) => print('Data Added'));
+    }).then((value) => {
+          // print('Data Added'),
+          // SnackBar(content: Text('Processing Data')),
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Processing Data')),
+          ),
+          
+          // Get.snackbar('Success', 'Data Added'),
+          _clientNameController.clear(),
+          _clientEmailController.clear(),
+          _clientPhoneNumber.clear(),
+          _clientAddress.clear(),
+          _clientNameOfSiteBuilding.clear(),
+          _clientLiveLocation.clear(),
+          _clientLivLatLong.clear(),
+        });
   }
 }

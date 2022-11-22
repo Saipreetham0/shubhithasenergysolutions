@@ -35,7 +35,7 @@ class FormHeaderWidget extends StatelessWidget {
           children: [
             Image(
               alignment: Alignment.center,
-              image: AssetImage(tAppHeaderLogo),
+              image: const AssetImage(tAppHeaderLogo),
               height: size.height * 0.2,
               width: size.width * 0.15,
             ),

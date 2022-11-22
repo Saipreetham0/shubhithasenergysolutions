@@ -29,7 +29,15 @@ class stepsCard_widget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 3),
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.subtitle1,
+                // style: Theme.of(context).textTheme.subtitle2,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.subtitle2!.color,
+                  fontSize: size.width * 0.035,
+                  // fontFamily: 'Poppins',
+                  fontFamily: 'bookmanoldstyle',
+                  fontWeight: FontWeight.w500,
+                ),
+
                 textAlign: TextAlign.center,
               ),
             ),

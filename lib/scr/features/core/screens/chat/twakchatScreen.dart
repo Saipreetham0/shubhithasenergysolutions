@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tawk/flutter_tawk.dart';
 import 'package:shubhithasenergysolutions/scr/constants/config.dart';
@@ -37,12 +36,12 @@ class _twakChatScreen extends State<twakChatScreen> {
             email: email,
           ),
           onLoad: () {
-            print(
-              'Hello Tawk! $name $email',
-            );
+            // print(
+            //   'Hello Tawk! $name $email',
+            // );
           },
           onLinkTap: (String url) {
-            print(url);
+            // print(url);
           },
           placeholder: const Center(
             child: Text('Loading...'),

@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: size.height * 0.15,
               // width: size.height * 0.2,
             ),
-            company_logo_widget(size: size),
+            company_logo_widget(),
             SizedBox(
               height: size.height * 0.07,
             ),
@@ -50,6 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Image(
                   image: const AssetImage(tSplashScreenImage),
                   height: size.height * 0.3,
+
                   // height: 250,
                 ),
               ],

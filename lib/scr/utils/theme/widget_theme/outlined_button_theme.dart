@@ -9,17 +9,17 @@ class KOutlinedButtonTheme {
   static final lightOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
         foregroundColor: tSecondaryColor,
-        side: BorderSide(color: tSecondaryColor),
-        shape: RoundedRectangleBorder(),
-        padding: EdgeInsets.symmetric(vertical: tButtonHeight)),
+        side: const  BorderSide(color: tSecondaryColor),
+        shape: const  RoundedRectangleBorder(),
+        padding: const EdgeInsets.symmetric(vertical: tButtonHeight)),
   );
 
   // dark color theme
   static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
         foregroundColor: tWhiteColor,
-        side: BorderSide(color: tWhiteColor),
-        shape: RoundedRectangleBorder(),
-        padding: EdgeInsets.symmetric(vertical: tButtonHeight)),
+        side: const BorderSide(color: tWhiteColor),
+        shape: const RoundedRectangleBorder(),
+        padding: const EdgeInsets.symmetric(vertical: tButtonHeight)),
   );
 }

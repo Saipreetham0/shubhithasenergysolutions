@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/links.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';

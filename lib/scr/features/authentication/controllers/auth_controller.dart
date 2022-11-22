@@ -224,5 +224,6 @@ class AuthController extends GetxController {
 
   void signOut() async {
     await auth.signOut();
+    Get.offAll(() => const LoginScreen());
   }
 }

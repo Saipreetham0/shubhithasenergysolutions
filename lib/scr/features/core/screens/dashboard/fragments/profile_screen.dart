@@ -166,6 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             profileListViewWidget(
               onTap: () {
                 AuthController.instance.signOut();
+                
               },
               icon: Icons.logout,
               text: "Logout",

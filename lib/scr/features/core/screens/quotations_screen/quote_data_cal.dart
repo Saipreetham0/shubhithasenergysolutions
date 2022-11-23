@@ -6,7 +6,6 @@ import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdf_format.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/widgets/custom_text_table_widget.dart';
 
-
 class pdfGenerator extends StatefulWidget {
   const pdfGenerator({super.key});
 
@@ -65,6 +64,14 @@ class _pdfGeneratorState extends State<pdfGenerator> {
   var aB5 = 0;
   var aB6 = 0;
 
+  var aBC1 = 0;
+  var aBC2 = 0;
+  var aBC3 = 0;
+  var aBC4 = 0;
+
+  var kilowattsToWatts = 0;
+  var wattByCost = 0;
+
   Future<void> addPrice(String price) async {
     // FirebaseFirestore.instance
     //     .collection('users')
@@ -89,6 +96,49 @@ class _pdfGeneratorState extends State<pdfGenerator> {
     _returnOnInvestment();
     _annualEnergyProduction();
     _benfitsOfSolar();
+    _benfitsOfSolarCommerical();
+    _extraCalcu();
+  }
+
+  void _extraCalcu() {
+    var kW = Get.arguments[0];
+    Parser p1 = Parser();
+    Expression exp1 = p1.parse('1000 * $kW');
+    ContextModel cm1 = ContextModel();
+    double eval1 = exp1.evaluate(EvaluationType.REAL, cm1);
+    kilowattsToWatts = eval1.toInt();
+
+    Parser p2 = Parser();
+    Expression exp2 = p2.parse('$costToCustomer / $kilowattsToWatts');
+    ContextModel cm2 = ContextModel();
+    double eval2 = exp2.evaluate(EvaluationType.REAL, cm2);
+    wattByCost = eval2.toInt();
+  }
+
+  void _benfitsOfSolarCommerical() {
+    Parser p1 = Parser();
+    Expression exp1 = p1.parse('$aB1 * $kPowerBillAverageUnitCostCommerical');
+    ContextModel cm1 = ContextModel();
+    double eval1 = exp1.evaluate(EvaluationType.REAL, cm1);
+    aBC1 = eval1.toInt();
+
+    Parser p2 = Parser();
+    Expression exp2 = p2.parse('$aBC1 * 30');
+    ContextModel cm2 = ContextModel();
+    double eval2 = exp2.evaluate(EvaluationType.REAL, cm2);
+    aBC2 = eval2.toInt();
+
+    Parser p3 = Parser();
+    Expression exp3 = p3.parse('$aBC1 * 365');
+    ContextModel cm3 = ContextModel();
+    double eval3 = exp3.evaluate(EvaluationType.REAL, cm3);
+    aBC3 = eval3.toInt();
+
+    Parser p4 = Parser();
+    Expression exp4 = p4.parse('$costToCustomer / $aBC3');
+    ContextModel cm4 = ContextModel();
+    double eval4 = exp4.evaluate(EvaluationType.REAL, cm4);
+    aBC4 = eval4.toInt();
   }
 
   void _benfitsOfSolar() {
@@ -452,6 +502,14 @@ class _pdfGeneratorState extends State<pdfGenerator> {
                   aB4,
                   aB5,
                   aB6,
+                  // benefits of solar commerical
+                  aBC1,
+                  aBC2,
+                  aBC3,
+                  aBC4,
+                  // conversion of energy kilowatt to watt
+
+                  wattByCost
                 ]);
               },
             ),

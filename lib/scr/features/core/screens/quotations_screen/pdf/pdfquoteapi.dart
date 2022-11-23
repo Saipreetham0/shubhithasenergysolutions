@@ -21,6 +21,29 @@ class PdfQuoteAPI {
           .buffer
           .asUint8List(),
     );
+    final solorEnergy = MemoryImage(
+      (await rootBundle.load(
+              'assets/images/pdf/sun-energy-electrical-enery-conversion.png'))
+          .buffer
+          .asUint8List(),
+    );
+    final gridConnectPic = MemoryImage(
+      (await rootBundle.load('assets/images/pdf/Grid-connected-Solar-PV.png'))
+          .buffer
+          .asUint8List(),
+    );
+
+    final benfitsOfSolarPic = MemoryImage(
+      (await rootBundle.load('assets/images/pdf/benfits-of-solar.png'))
+          .buffer
+          .asUint8List(),
+    );
+
+    final saveTheEarthPic = MemoryImage(
+      (await rootBundle.load('assets/images/pdf/save-the-earth-go-green.png'))
+          .buffer
+          .asUint8List(),
+    );
 
     final data = Get.arguments;
     // final pageTheme = await _myPageTheme(format);
@@ -55,7 +78,8 @@ class PdfQuoteAPI {
           if (kw <= 3)
             _domestic(context)
           else
-            _commercial(context, companyLogo),
+            _commercial(context, companyLogo, solorEnergy, gridConnectPic,
+                benfitsOfSolarPic, saveTheEarthPic),
 
           // _introPage(context),
           // _commercial(context, companyLogo)
@@ -71,7 +95,13 @@ class PdfQuoteAPI {
   }
 }
 
-Widget _commercial(Context context, MemoryImage companyLogo) {
+Widget _commercial(
+    Context context,
+    MemoryImage companyLogo,
+    MemoryImage solorEnergy,
+    MemoryImage gridConnectPic,
+    MemoryImage benfitsOfSolarPic,
+    MemoryImage saveTheEarthPic) {
   final data = Get.arguments;
 
   return Container(
@@ -316,8 +346,11 @@ Widget _commercial(Context context, MemoryImage companyLogo) {
                           text: '',
                           children: <TextSpan>[
                             TextSpan(
-                                text:
-                                    'Rs. 60,00,000/- (@ Rs 48/Watt) Exclusive Taxes',
+                                text: 'Rs. ${NumberFormat.currency(
+                                  locale: 'hi_IN',
+                                  decimalDigits: 0,
+                                  symbol: '',
+                                ).format(data[13])} = ( @ Rs ${data[47]}/Watt) Exclusive Taxes',
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
@@ -515,8 +548,15 @@ Widget _commercial(Context context, MemoryImage companyLogo) {
                               style: TextStyle(fontSize: 12),
                             ),
                             TextSpan(
-                                text:
-                                    'Rs. 60,00,000/- (@ Rs 48/Watt) \n+Tax amount = Rs 8,28,000/-\n',
+                                text: 'Rs. ${NumberFormat.currency(
+                                  locale: 'hi_IN',
+                                  decimalDigits: 0,
+                                  symbol: '',
+                                ).format(data[13])}/-  (@ Rs ${data[47]}/Watt) \n+Tax amount = Rs Rs. ${NumberFormat.currency(
+                                  locale: 'hi_IN',
+                                  decimalDigits: 0,
+                                  symbol: '',
+                                ).format(data[10])} \n',
                                 style: TextStyle(
                                     background: const BoxDecoration(
                                         color: PdfColors.yellow),
@@ -615,18 +655,374 @@ Widget _commercial(Context context, MemoryImage companyLogo) {
                       'IEC 61215:2016 certified \nIEC 61730:2016 certified')
                   // custom_selected_text('')
                 ]),
-                // TableRow(children: [
-                //   custom_Header_Text_Table_Pdf('Net Metering'),
-                //   custom_selected_text(
-                //       'Net Metering (For - 11 KV) approvals & Charges are Excluded as per TSNPDCL.')
-                // ]),
-                // TableRow(children: [
-                //   custom_Header_Text_Table_Pdf('Delivery'),
-                //   custom_text_table_pdf(
-                //       '•	Kindly note that we will initiate the project after receipt of your valued orders advance payment and Feasibility Approval from TSNPDCL.\n•	The delivery period is 3 months from the date of receipt of your valued orders, advance payment, approvals from TSNPDCL and CEIG TG.')
-                //   // custom_selected_text('')
-                // ]),
+                TableRow(children: [
+                  custom_Header_Text_Table_Pdf('Net Metering'),
+                  custom_selected_text(
+                      'Net Metering (For - 11 KV) approvals & Charges are Excluded as per TSNPDCL.')
+                ]),
               ]),
+          Table(
+              border: TableBorder.all(
+                style: BorderStyle.solid,
+                width: 1,
+              ),
+              columnWidths: {
+                0: const FractionColumnWidth(0.132),
+                1: const FractionColumnWidth(.5),
+                2: const FractionColumnWidth(.6),
+              },
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                TableRow(children: [
+                  custom_Header_Text_Table_Pdf('Delivery'),
+                  custom_text_table_pdf(
+                      '•	Kindly note that we will initiate the project after receipt of your valued orders advance payment and Feasibility Approval from TSNPDCL.\n•	The delivery period is 3 months from the date of receipt of your valued orders, advance payment, approvals from TSNPDCL and CEIG TG.')
+                  // custom_selected_text('')
+                ]),
+              ]),
+          SizedBox(height: 1 * PdfPageFormat.cm),
+          company_bank_details(),
+          SizedBox(height: 1 * PdfPageFormat.cm),
+          Text('Solar PV System Description:',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Paragraph(
+              text: solarPVSystemDescription,
+              style: const TextStyle(fontSize: 12)),
+
+          Paragraph(
+              text: solarPVSystemDescriptionp2,
+              style: const TextStyle(fontSize: 12)),
+          SizedBox(height: 1 * PdfPageFormat.cm),
+          Align(
+            alignment: Alignment.center,
+            child: Image(solorEnergy,
+                alignment: Alignment.center, height: 10 * PdfPageFormat.cm),
+          ),
+          SizedBox(height: 1 * PdfPageFormat.cm),
+          Align(
+              alignment: Alignment.center,
+              child: Text(fig1, style: const TextStyle(fontSize: 12))),
+
+          SizedBox(height: 1 * PdfPageFormat.cm),
+          Align(
+            alignment: Alignment.center,
+            child: Image(gridConnectPic,
+                alignment: Alignment.center, height: 10 * PdfPageFormat.cm),
+          ),
+          SizedBox(height: 0.2 * PdfPageFormat.cm),
+          Align(
+              alignment: Alignment.center,
+              child: Text(fig2, style: const TextStyle(fontSize: 12))),
+
+          SizedBox(height: 0.2 * PdfPageFormat.cm),
+          Text('Module Specifications:',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          SizedBox(height: 0.2 * PdfPageFormat.cm),
+
+          Table(
+              border: TableBorder.all(
+                style: BorderStyle.solid,
+                width: 1,
+              ),
+              columnWidths: {
+                0: const FractionColumnWidth(0.132),
+                1: const FractionColumnWidth(.5),
+                2: const FractionColumnWidth(.6),
+              },
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                TableRow(children: [
+                  custom_Header_Text_Table_Pdf('S.No.'),
+                  custom_Header_Text_Table_Pdf('Parameter'),
+                  custom_Header_Text_Table_Pdf('Crystalline'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('1'),
+                  custom_text_table_pdf('Maximum Power output at STC'),
+                  custom_selected_text('335 Wp, 72 cut cells'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('2'),
+                  custom_text_table_pdf('Power output Tolerance (Measurement)'),
+                  custom_selected_text(' -0.3845/%0C  '),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('3'),
+                  custom_text_table_pdf('Efficiency'),
+                  custom_selected_text('17.61%'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('4'),
+                  custom_text_table_pdf('Avg Annual Degradation'),
+                  custom_selected_text('0.8%'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('5'),
+                  custom_text_table_pdf('Maximum Operating Voltage (Volts)'),
+                  custom_selected_text('1100 DC'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('6'),
+                  custom_text_table_pdf('Voltage at Max. Power (Vmpp)'),
+                  custom_selected_text('38.0 V'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('7'),
+                  custom_text_table_pdf('Short Circuit Current (Isc)'),
+                  custom_selected_text('11.12 A'),
+                ]),
+              ]),
+          Table(
+              border: TableBorder.all(
+                style: BorderStyle.solid,
+                width: 1,
+              ),
+              columnWidths: {
+                0: const FractionColumnWidth(0.132),
+                1: const FractionColumnWidth(.5),
+                2: const FractionColumnWidth(.6),
+              },
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                TableRow(children: [
+                  custom_text_table_pdf('8'),
+                  custom_text_table_pdf('Current at Max. Power (Impp)'),
+                  custom_selected_text('8.81 A'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('9'),
+                  custom_text_table_pdf('Open Circuit Voltage (Voc)'),
+                  custom_selected_text('49.61 V'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('10'),
+                  custom_text_table_pdf('NOCT'),
+                  custom_text_table_pdf('45 ± 2 0C @800 W/m2'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('11'),
+                  custom_text_table_pdf('Module dimension (L * W) Thickness'),
+                  custom_text_table_pdf('2284* 1137 *mm (+/-2)35 mm'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('12'),
+                  custom_text_table_pdf(
+                      'Temperature coefficient for power output'),
+                  custom_text_table_pdf('-0.3845% /0C'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('13'),
+                  custom_text_table_pdf('Type of connectors'),
+                  custom_text_table_pdf('MC4 connectors'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('14'),
+                  custom_text_table_pdf('Cable'),
+                  custom_text_table_pdf('4 sq mm Copper'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('15'),
+                  custom_text_table_pdf('Weight'),
+                  custom_text_table_pdf('28.7 Kgs'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('16'),
+                  custom_text_table_pdf('Reliability and safety certificates'),
+                  custom_text_table_pdf('IEC 61215:2016 \nIEC 61730:2016'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf('17'),
+                  custom_text_table_pdf(
+                      'Module Performance Guarantee \n• At the end of 10 years \n• At the end of 25 years'),
+                  custom_text_table_pdf('\n90% \n80%'),
+                ]),
+              ]),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text('Legal Terms',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Paragraph(text: legalTerms, style: const TextStyle(fontSize: 12)),
+          RichText(
+            text: TextSpan(
+              text: 'The CUSTOMER for this report ',
+              style: const TextStyle(fontSize: 12),
+              children: <TextSpan>[
+                TextSpan(
+                    text:
+                        ' ${data[34]}, ${data[36]}.The COMPANY for this report is ',
+                    style: const TextStyle(fontSize: 12)),
+                TextSpan(
+                    text: 'Shubhitha S Energy Solutions Pvt Ltd, Warangal.',
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text('For more details feel free to contact:',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+              )),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text(contactPerson1,
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          Text(contactPerson2,
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text('Executive Team:',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+              )),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text(contactPerson3,
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text(
+            'Return of Investment (ROI)',
+            style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: PdfColors.red),
+          ),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Table(
+              border: TableBorder.all(
+                style: BorderStyle.solid,
+                width: 1,
+              ),
+              // defaultColumnWidth: FixedColumnWidth(120.0),
+              columnWidths: {
+                0: const FractionColumnWidth(.05),
+              },
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                TableRow(children: [
+                  Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Text(
+                        'BENEFITS OF  ${data[0]} kWp ON GRID SOLAR PLANT',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: PdfColors.green500),
+                      )),
+                ]),
+              ]),
+          Table(
+              border: TableBorder.all(
+                style: BorderStyle.solid,
+                width: 1,
+              ),
+              // defaultColumnWidth: FixedColumnWidth(120.0),
+              columnWidths: {
+                0: const FractionColumnWidth(.11),
+                1: const FractionColumnWidth(.05),
+                // 2: const FractionColumnWidth(.5),
+              },
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                TableRow(children: [
+                  custom_text_table_pdf(
+                      'Average power generated from 1 KWp/day'),
+                  custom_text_table_pdf('= 4 Units'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf(
+                      'For ${data[0]} kWp system (${data[0]} x 4))'),
+                  custom_text_table_pdf('= ${data[37]} Units per day'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf(
+                      'As per your power bill average unit cost price'),
+                  custom_text_table_pdf(
+                      ' = Rs 7.65 Ps\nEffc. from 1st April 2022)'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf(
+                      'Monetary benefit per day (${data[37]} x $kPowerBillAverageUnitCostCommerical)'),
+                  custom_text_table_pdf('= Rs ${data[43]}.00'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf(
+                      'Monetary benefit per month (${data[43]} x 30)'),
+                  custom_text_table_pdf('= Rs ${NumberFormat.currency(
+                    locale: 'hi_IN',
+                    decimalDigits: 0,
+                    symbol: '',
+                  ).format(data[44])}.00'),
+                ]),
+                TableRow(children: [
+                  custom_text_table_pdf(
+                      'Monetary benefit per month (${data[43]} x 365)'),
+                  custom_text_table_pdf('= Rs ${NumberFormat.currency(
+                    locale: 'hi_IN',
+                    decimalDigits: 0,
+                    symbol: '',
+                  ).format(data[45])}.00'),
+                ]),
+              ]),
+
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text(
+            'RETURN OF INVESTEMENT = Cost of Project/Benefit per Year',
+            style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: PdfColors.red),
+          ),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(
+                '= Rs ${NumberFormat.currency(
+                  locale: 'hi_IN',
+                  decimalDigits: 0,
+                  symbol: '',
+                ).format(data[13])} / ${NumberFormat.currency(
+                  locale: 'hi_IN',
+                  decimalDigits: 0,
+                  symbol: '',
+                ).format(data[45])} \n= ${data[46]} years',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  background: const BoxDecoration(
+                    color: PdfColors.yellow,
+                  ),
+                )),
+          ]),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text(
+            "**Life of the plant is 25 years.",
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              background: const BoxDecoration(
+                color: PdfColors.yellow,
+              ),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 0.5 * PdfPageFormat.cm),
+          Text(
+            "**The Project Cost is approximately equal to One Year Electricity Bill.",
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              background: const BoxDecoration(
+                color: PdfColors.yellow,
+              ),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 1 * PdfPageFormat.cm),
+          Align(alignment: Alignment.center, child: Image(benfitsOfSolarPic)),
+          SizedBox(height: 7 * PdfPageFormat.cm),
+          Align(alignment: Alignment.center, child: Image(saveTheEarthPic)),
         ]),
   );
 }
@@ -640,7 +1036,7 @@ Widget _buildHeader(Context context, MemoryImage companyLogo) {
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Image(companyLogo, width: 60, height: 45),
           SizedBox(width: 0.15 * PdfPageFormat.cm),
-          Text("Shubhithas",
+          Text("Shubhitha S",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
           Text(" Energy ",
               style: TextStyle(
@@ -994,7 +1390,8 @@ Widget _domestic(Context context) {
                 custom_text_table_pdf('= Rs ${data[38]}.00'),
               ]),
               TableRow(children: [
-                custom_text_table_pdf('Monetary benefit per month (108 x 30)'),
+                custom_text_table_pdf(
+                    'Monetary benefit per month (${data[38]} x 30)'),
                 custom_text_table_pdf('= Rs ${NumberFormat.currency(
                   locale: 'hi_IN',
                   decimalDigits: 0,

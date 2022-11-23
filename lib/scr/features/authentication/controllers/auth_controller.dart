@@ -34,6 +34,17 @@ class AuthController extends GetxController {
     Timer(Duration(seconds: isLoging ? 10 : 0), () {
       // Timer(const Duration(seconds: 1), () {
 
+      // var role = "";
+
+      // FirebaseFirestore.instance
+      //     .collection('users')
+      //     .doc(user?.uid)
+      //     .get()
+      //     .then((DocumentSnapshot doc) {
+      //   final data = doc.data() as Map<String, dynamic>;
+      //   role = data['role'];
+      // });
+
       if (user == null) {
         isLoging = false;
         update();
@@ -42,6 +53,14 @@ class AuthController extends GetxController {
         isLoging = true;
         update();
         // Get.offAll(() => const HomePage());
+
+        // if (role == 'employee') {
+        //   // Get.offAll(() => const HomePage());
+        //   Get.offAll(() => const employeeScreen(), transition: Transition.fade);
+        //   // print('employee');
+        // } else {
+        //   Get.offAll(() => const HomePage(), transition: Transition.fadeIn);
+        // }
 
         FirebaseFirestore.instance
             .collection('users')
@@ -227,3 +246,7 @@ class AuthController extends GetxController {
     Get.offAll(() => const LoginScreen());
   }
 }
+
+
+
+// ksp sas ssh rv

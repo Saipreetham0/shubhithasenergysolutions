@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// ignore: unused_import
+
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/widgets/company_logo_widget.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/widget/stepsCard_widget.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/QuotePage.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
@@ -12,10 +14,7 @@ import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications
 class home_fragment extends StatefulWidget {
   const home_fragment({
     super.key,
-    required this.media,
   });
-
-  final MediaQueryData media;
 
   @override
   State<home_fragment> createState() => _home_fragmentState();
@@ -27,6 +26,7 @@ class _home_fragmentState extends State<home_fragment> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final size = MediaQuery.of(context).size;
+    final media = MediaQuery.of(context);
     return Container(
       color:
           isDark ? Theme.of(context).scaffoldBackgroundColor : tBackgroundColor,
@@ -54,43 +54,11 @@ class _home_fragmentState extends State<home_fragment> {
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
-                // decoration: BoxDecoration(color: Colors.pink[100]),
-                // height: widget.media.size.height * 0.2,
-                // width: widget.media.size.width * 0.9,
-                // child: Image.asset(tAppLogo),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image(
-                      alignment: Alignment.center,
-                      image: const AssetImage(tAppHeaderLogo),
-                      height: size.height * 0.2,
-                      width: size.width * 0.18,
-                    ),
-                    SizedBox(
-                      width: size.width * 0.001,
-                    ),
-                    Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("SHUBHITHA S",
-                            style: Theme.of(context).textTheme.headline2),
-                        Row(
-                          children: [
-                            Text("ENERGY",
-                                style: TextStyle(
-                                    color: Colors.yellow[800],
-                                    fontSize: 24,
-                                    fontFamily: 'bookmanoldstyle',
-                                    fontWeight: FontWeight.w700)),
-                            Text(" SOLUTIONS",
-                                style: Theme.of(context).textTheme.headline3),
-                          ],
-                        ),
-                      ],
-                    ),
+                    company_logo_widget(),
                   ],
                 ),
               ),
@@ -128,6 +96,7 @@ class _home_fragmentState extends State<home_fragment> {
                 const SizedBox(width: 20),
                 stepsCard_widget(
                   image: tStep1Image,
+                  // image: CachedNetworkImage(imageUrl: tStep1Image),
                   text: tStep1,
                 ),
                 const SizedBox(width: 10),

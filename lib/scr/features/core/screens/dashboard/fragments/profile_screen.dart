@@ -14,6 +14,7 @@ import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/wi
 import 'package:shubhithasenergysolutions/scr/features/core/screens/help_support/help_support.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/notfications/notifications.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/profile_edit/profile_edit.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/profile_screen/log_out_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -165,8 +166,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             profileListViewWidget(
               onTap: () {
-                AuthController.instance.signOut();
-                
+                // AuthController.instance.signOut();
+
+                logOutScreen.buildShowModalBottomSheet(context);
               },
               icon: Icons.logout,
               text: "Logout",

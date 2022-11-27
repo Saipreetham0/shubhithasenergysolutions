@@ -156,3 +156,10 @@ const String tEmployeeFormFieldClientAddress = "Address";
 const String tEmployeeFormFieldClientNameOfBuilding = "Name of Site/Building";
 const String tEmployeeFormFieldClientLiveLocation = "Live Location";
 const String tEmployeeFormFieldLatitudeAndLongitude = "Latitude and Longitude";
+
+//-- logout bottom sheet text
+
+const String tLogout = "Logout";
+const String tLogoutSubtitle = "Are you sure want to logout?";
+const String tLogoutYes = "Logout";
+const String tLogoutNo = "Cancel";

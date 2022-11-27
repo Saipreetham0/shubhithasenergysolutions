@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
@@ -26,15 +27,12 @@ class chatScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // company_logo_widget(size: size),
-                // Image(
-                //   alignment: Alignment.center,
-                //   image:
-                //       const AssetImage('assets/images/chatscreen/chatbot.png'),
-                //   height: size.height * 0.4,
+                // Image.asset(
+                //   tCustomerServiceImage,
+                //   height: size.height * 0.5,
                 // ),
-                Image.asset(
-                  tCustomerServiceImage,
+                CachedNetworkImage(
+                  imageUrl: tCustomerServiceImage,
                   height: size.height * 0.5,
                 ),
                 SizedBox(

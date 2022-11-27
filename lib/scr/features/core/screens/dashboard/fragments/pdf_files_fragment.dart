@@ -76,7 +76,8 @@ class _pdfFileState extends State<pdfFile> {
                                             docs['name'],
                                             docs['phoneNumber'],
                                             docs['address']
-                                          ]);
+                                          ],
+                                          transition: Transition.fadeIn);
                                     },
                                     title: RichText(
                                         text: TextSpan(children: [

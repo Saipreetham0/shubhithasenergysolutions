@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shubhithasenergysolutions/firebase_options.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/splash_screen.dart';
@@ -13,6 +14,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Get.put(AuthController());
+  await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.light,

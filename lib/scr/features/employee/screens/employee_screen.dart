@@ -15,10 +15,6 @@ class employeeScreen extends StatefulWidget {
 }
 
 class _employeeScreenState extends State<employeeScreen> {
-
-
-
-
   int _selectedIndex = 0;
 
   @override
@@ -29,18 +25,14 @@ class _employeeScreenState extends State<employeeScreen> {
     final List<Widget> _pages = [
       const ClientDataUploadScreen(),
       home_fragment(
-        media: media,
-      ),
+          // media: media,
+          ),
       const pdfFile(),
       const ProfileScreen()
     ];
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   elevation: 2,
-        //   title: Text('sai'),
-        // ),
         body: _pages[_selectedIndex],
         bottomNavigationBar: Container(
           // color: Theme.of(context).primaryColor,

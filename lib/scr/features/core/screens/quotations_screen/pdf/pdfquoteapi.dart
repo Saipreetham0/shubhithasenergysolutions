@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 // import 'package:fatura_app/models/invoice_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -49,11 +50,6 @@ class PdfQuoteAPI {
     // final pageTheme = await _myPageTheme(format);
 
     final kw = data[0];
-    // final BKMNOS = await rootBundle.load("assets/fonts/BKMNOS.ttf");
-    // final BOOKOS = await rootBundle.load("assets/fonts/BOOKOS.TTF");
-    // final BOOKOSB = await rootBundle.load("assets/fonts/BOOKOSB.TTF");
-
-    // final ttf = Font.ttf(font);
 
     var myTheme = ThemeData.withFont(
       base: Font.ttf(await rootBundle.load("assets/fonts/BKMNOS.ttf")),
@@ -91,7 +87,6 @@ class PdfQuoteAPI {
     );
 
     return await pdf.save();
-    // return saveDocument(name: 'my_example.pdf', pdf: pdf);
   }
 }
 
@@ -1154,64 +1149,121 @@ Widget _domestic(Context context) {
             "As per our discussion, we are herewith submitting the lowest price Quotation for your kind perusal and consideration for Grid Connected Solar PV Power Plant of ${data[0]} kWp Capacity with Bidirectional Net-Metering system. ",
             style: const TextStyle(fontSize: 12)),
         SizedBox(height: 0.5 * PdfPageFormat.cm),
-        Table(
-            border: TableBorder.all(
-              style: BorderStyle.solid,
-              width: 1,
-            ),
-            // defaultColumnWidth: FixedColumnWidth(120.0),
-            columnWidths: {
-              0: const FractionColumnWidth(0.1),
-              1: const FractionColumnWidth(.5),
-              2: const FractionColumnWidth(.15),
-              3: const FractionColumnWidth(.15),
-            },
-            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-            children: [
-              TableRow(children: [
-                custom_Header_Text_Table_Pdf('Sr.No'),
-                custom_Header_Text_Table_Pdf('Description'),
-                custom_Header_Text_Table_Pdf('Quantity'),
-                custom_Header_Text_Table_Pdf('Amount'),
+
+        Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Column(children: [
+                Container(
+                    width: 390,
+                    height: 1000,
+                    child: Table(
+                        tableWidth: TableWidth.max,
+                        border: TableBorder.all(
+                          style: BorderStyle.solid,
+                          width: 1,
+                        ),
+                        // defaultColumnWidth: FixedColumnWidth(120.0),
+                        columnWidths: {
+                          0: const FractionColumnWidth(0.055),
+                          1: const FractionColumnWidth(.3),
+                          2: const FractionColumnWidth(.08),
+                          // 3: const FractionColumnWidth(.15),
+                        },
+                        // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        children: [
+                          TableRow(children: [
+                            custom_Header_Text_Table_Pdf('Sr.No'),
+                            custom_Header_Text_Table_Pdf('Description'),
+                            custom_Header_Text_Table_Pdf('Quantity'),
+                          ]),
+                          TableRow(children: [
+                            custom_text_table_pdf('1'),
+                            custom_text_table_pdf(
+                                'Solar Power Modules - 335 \nWp Make: RenewSys, \nModel: Poly Crystaline'),
+                            custom_text_table_pdf(' ${data[4]} No'),
+                            // custom_text_table_pdf(''),
+                          ]),
+                          TableRow(children: [
+                            custom_text_table_pdf('2'),
+                            custom_text_table_pdf(
+                                'Grid-Tie Inverter ${data[0]} KVA Capacity \nMake: Growatt/Polycab'),
+                            custom_text_table_pdf('1 No'),
+                            // custom_text_table_pdf(''),
+                          ]),
+                          TableRow(children: [
+                            custom_text_table_pdf('3'),
+                            custom_text_table_pdf(
+                                'Galvanized Structure, Cables (Polycab), Junction Boxes, Earthlings Kit and Lightening Arrester (LA).'),
+                            custom_text_table_pdf('1 set'),
+                            // custom_text_table_pdf(''),
+                          ]),
+                          TableRow(children: [
+                            custom_text_table_pdf('4'),
+                            custom_text_table_pdf(
+                                'Installation and Commissioning including civil works'),
+                            custom_text_table_pdf('Our scope'),
+                            // custom_text_table_pdf(''),
+                          ]),
+                          TableRow(children: [
+                            custom_text_table_pdf('5'),
+                            custom_text_table_pdf('Transportation charges'),
+                            custom_text_table_pdf('Our scope'),
+                            // custom_text_table_pdf(''),
+                          ]),
+                          TableRow(children: [
+                            custom_text_table_pdf('6'),
+                            custom_text_table_pdf(
+                                'Document charges for net metering'),
+                            custom_text_table_pdf('Our scope'),
+                          ]),
+                        ])),
               ]),
-              TableRow(children: [
-                custom_text_table_pdf('1'),
-                custom_text_table_pdf(
-                    'Solar Power Modules - 335 \nWp Make: RenewSys, \nModel: Poly Crystaline'),
-                custom_text_table_pdf(' ${data[4]} No'),
-                custom_text_table_pdf(''),
-              ]),
-              TableRow(children: [
-                custom_text_table_pdf('2'),
-                custom_text_table_pdf(
-                    'Grid-Tie Inverter ${data[0]} KVA Capacity \nMake: Growatt/Polycab'),
-                custom_text_table_pdf('1 No'),
-                custom_text_table_pdf(''),
-              ]),
-              TableRow(children: [
-                custom_text_table_pdf('3'),
-                custom_text_table_pdf(
-                    'Galvanized Structure, Cables (Polycab), Junction Boxes, Earthlings Kit and Lightening Arrester (LA).'),
-                custom_text_table_pdf('1 set'),
-                custom_text_table_pdf(''),
-              ]),
-              TableRow(children: [
-                custom_text_table_pdf('4'),
-                custom_text_table_pdf(
-                    'Installation and Commissioning including civil works'),
-                custom_text_table_pdf('Our scope'),
-                custom_text_table_pdf(''),
-              ]),
-              TableRow(children: [
-                custom_text_table_pdf('5'),
-                custom_text_table_pdf('Transportation charges'),
-                custom_text_table_pdf('Our scope'),
-                custom_text_table_pdf(''),
-              ]),
-              TableRow(children: [
-                custom_text_table_pdf('6'),
-                custom_text_table_pdf('Document charges for net metering'),
-                custom_text_table_pdf('Our scope'),
+              Column(children: [
+                Container(
+                    width: 92,
+                    height: 1000,
+                    child: Table(
+                        border: const TableBorder(
+                          right: BorderSide(
+                            width: 1,
+                            style: BorderStyle.solid,
+                          ),
+                          top: BorderSide(
+                            width: 1,
+                            style: BorderStyle.solid,
+                          ),
+                          verticalInside: BorderSide(
+                            width: 1,
+                            style: BorderStyle.solid,
+                          ),
+                          horizontalInside: BorderSide(
+                            width: 1,
+                            style: BorderStyle.solid,
+                          ),
+                          bottom: BorderSide(
+                            width: 1,
+                            style: BorderStyle.solid,
+                          ),
+                        ),
+                        children: [
+                          TableRow(children: [
+                            custom_Header_Text_Table_Pdf('Amount'),
+                          ]),
+                          TableRow(children: [
+                            Container(
+                                alignment: Alignment.center,
+                                width: 100,
+                                height: 229,
+                                child: custom_Header_Text_Table_Pdf(
+                                    'Rs. ${NumberFormat.currency(
+                                  locale: 'hi_IN',
+                                  decimalDigits: 0,
+                                  symbol: '',
+                                ).format(data[13])}\n(Incl GST 13.8%)'))
+                          ]),
+                        ])),
               ]),
             ]),
         Table(
@@ -1233,18 +1285,13 @@ Widget _domestic(Context context) {
                 style: BorderStyle.solid,
               ),
             ),
-
-            // defaultColumnWidth: FixedColumnWidth(120.0),
             columnWidths: {
               0: const FractionColumnWidth(1),
-              1: const FractionColumnWidth(.20),
+              1: const FractionColumnWidth(.235),
             },
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             children: [
               TableRow(children: [
-                // Text(NumberFormat.simpleCurrency(
-                //         locale: 'hi_IN', decimalDigits: 0)
-                //     .format(data[13])),
                 Text('Total Amount',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center),
@@ -1252,10 +1299,11 @@ Widget _domestic(Context context) {
                   locale: 'hi_IN',
                   decimalDigits: 0,
                   symbol: '',
-                ).format(data[13])}\nGST 13.8%')
+                ).format(data[13])}')
               ])
             ]),
-        SizedBox(height: 0.2 * PdfPageFormat.cm),
+
+        SizedBox(height: 0.5 * PdfPageFormat.cm),
         RichText(
             text: TextSpan(
           text: '(Rupees in words: ',
@@ -1575,6 +1623,8 @@ Widget _domestic(Context context) {
                 textAlign: TextAlign.center,
               ),
             ]),
+
+        SizedBox(height: 0.5 * PdfPageFormat.cm),
       ]));
 }
 

@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,8 +18,12 @@ class AuthController extends GetxController {
   late Rx<User?> _user;
   bool isLoging = false;
   User? get user => _user.value;
+
+  //Variables
   final FirebaseAuth auth = FirebaseAuth.instance;
+  final userBucket = FirebaseFirestore.instance.collection("users");
   var verificationId = ''.obs;
+  final localData = GetStorage();
 
   @override
   void onReady() {
@@ -30,20 +34,8 @@ class AuthController extends GetxController {
   }
 
   loginRedirect(User? user) {
-    // print(user);
-    Timer(Duration(seconds: isLoging ? 10 : 0), () {
+    Timer(Duration(seconds: isLoging ? 10 : 1), () {
       // Timer(const Duration(seconds: 1), () {
-
-      // var role = "";
-
-      // FirebaseFirestore.instance
-      //     .collection('users')
-      //     .doc(user?.uid)
-      //     .get()
-      //     .then((DocumentSnapshot doc) {
-      //   final data = doc.data() as Map<String, dynamic>;
-      //   role = data['role'];
-      // });
 
       if (user == null) {
         isLoging = false;
@@ -53,32 +45,12 @@ class AuthController extends GetxController {
         isLoging = true;
         update();
         // Get.offAll(() => const HomePage());
-
-        // if (role == 'employee') {
-        //   // Get.offAll(() => const HomePage());
-        //   Get.offAll(() => const employeeScreen(), transition: Transition.fade);
-        //   // print('employee');
-        // } else {
-        //   Get.offAll(() => const HomePage(), transition: Transition.fadeIn);
-        // }
-
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(user.uid)
-            .get()
-            .then((DocumentSnapshot doc) {
-          final data = doc.data() as Map<String, dynamic>;
-          final role = data['role'];
-
-          if (role == 'employee') {
-            // Get.offAll(() => const HomePage());
-            Get.offAll(() => const employeeScreen(),
-                transition: Transition.fade);
-            // print('employee');
-          } else {
-            Get.offAll(() => const HomePage(), transition: Transition.fadeIn);
-          }
-        });
+        // localData.read('employeeLogin');
+        if (localData.read('employeeLogin') == 'True') {
+          Get.offAll(() => const employeeScreen());
+        } else {
+          Get.offAll(() => const HomePage());
+        }
       }
     });
   }
@@ -114,12 +86,22 @@ class AuthController extends GetxController {
     try {
       isLoging = true;
       update();
+      //     CollectionReference reference = FirebaseFirestore.instance.collection("Users");
+
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => FirebaseFirestore.instance
-                  .collection('users')
-                  .doc(value.user!.uid)
-                  .set({
+          .then((value) =>
+              // FirebaseFirestore.instance
+              //         .collection('users')
+              //         .doc(value.user!.uid)
+              //         .set({
+              //       'name': name,
+              //       'email': email,
+              //       'phone': phone,
+              //       'address': "",
+              //       'role': 'user',
+              // })
+              userBucket.doc(value.user!.uid).set({
                 'name': name,
                 'email': email,
                 'phone': phone,
@@ -140,8 +122,6 @@ class AuthController extends GetxController {
         // print("Account Already exists");
         getErrorSnackBar("Account Already exists", "");
       }
-
-      // getErrorSnackBar("Account Creating Failed", e);
     }
   }
 
@@ -176,16 +156,25 @@ class AuthController extends GetxController {
           idToken: googleAuth?.idToken,
         );
         await auth.signInWithCredential(crendentials).then((value) =>
-            FirebaseFirestore.instance
-                .collection('users')
-                .doc(value.user!.uid)
-                .set({
+            // FirebaseFirestore.instance
+            //     .collection('users')
+            //     .doc(value.user!.uid)
+            //     .set({
+            //   'name': value.user!.displayName,
+            //   'email': value.user!.email,
+            //   'phone': "",
+            //   'address': "",
+            //   'role': 'user',
+            // })
+
+            userBucket.doc(value.user!.uid).set({
               'name': value.user!.displayName,
               'email': value.user!.email,
               'phone': "",
               'address': "",
               'role': 'user',
             }));
+
         getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
       }
     } on FirebaseAuthException catch (e) {
@@ -237,13 +226,15 @@ class AuthController extends GetxController {
       backgroundColor: Colors.green,
       colorText: Colors.white,
       borderRadius: 10,
-      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      margin: const EdgeInsets.only(bottom: 15, left: 10, right: 10),
     );
   }
 
   void signOut() async {
-    await auth.signOut();
-    Get.offAll(() => const LoginScreen());
+    await auth.signOut().then((value) => Get.offAll(() => const LoginScreen()));
+    localData.remove('employeeLogin');
+
+    // Get.offAll(() => const LoginScreen());
   }
 }
 

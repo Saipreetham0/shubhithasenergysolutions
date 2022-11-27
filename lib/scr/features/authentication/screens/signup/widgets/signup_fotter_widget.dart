@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
+import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
@@ -15,6 +16,7 @@ class SignUpFooterWidget extends StatelessWidget {
     return Column(
       children: [
         const Text("OR"),
+        const SizedBox(height: tFormHeight - 10),
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(

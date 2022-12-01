@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/input_validators.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/signup_controller.dart';
 
 class SignUpFormWidget extends StatefulWidget {
   const SignUpFormWidget({
@@ -14,61 +16,89 @@ class SignUpFormWidget extends StatefulWidget {
 }
 
 class _SignUpFormWidgetState extends State<SignUpFormWidget> {
-  final emailController = TextEditingController();
-  final nameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final phoneController = TextEditingController();
+  // final emailController = TextEditingController();
+  // final nameController = TextEditingController();
+  // final passwordController = TextEditingController();
+  // final phoneController = TextEditingController();
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    emailController.dispose();
-    nameController.dispose();
-    passwordController.dispose();
-    phoneController.dispose();
-    // categoryController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // Clean up the controller when the widget is disposed.
+  //   emailController.dispose();
+  //   nameController.dispose();
+  //   passwordController.dispose();
+  //   phoneController.dispose();
+  //   // categoryController.dispose();
+  //   super.dispose();
+  // }
 
   bool passwordObscureText = true;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignUpController());
+    final _formKey = GlobalKey<FormState>();
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
       child: Form(
+        key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              controller: nameController,
+              controller: controller.fullName,
               keyboardType: TextInputType.name,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your name';
+                }
+                return null;
+              },
               decoration: const InputDecoration(
                   label: Text(tFullName),
                   prefixIcon: Icon(Icons.person_outline_rounded)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              controller: emailController,
+              controller: controller.email,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter email";
+                }
+                return null;
+              },
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                   label: Text(tEmail), prefixIcon: Icon(Icons.email_outlined)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              controller: phoneController,
+              controller: controller.phoneNo,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter your phone number";
+                }
+                return null;
+              },
               keyboardType: TextInputType.phone,
               decoration: const InputDecoration(
                   label: Text(tPhoneNo), prefixIcon: Icon(Icons.numbers)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              controller: passwordController,
+              controller: controller.password,
               keyboardType: TextInputType.visiblePassword,
               obscureText: passwordObscureText,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter your password";
+                }
+                return null;
+              },
               decoration: InputDecoration(
-                label: Text(tPassword),
-                prefixIcon: Icon(Icons.fingerprint),
+                label: const Text(tPassword),
+                prefixIcon: const Icon(Icons.fingerprint),
                 suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
@@ -88,25 +118,13 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if (InputValidator.validateField(
-                      "Name", nameController.text)) {
-                    if (InputValidator.validateEmailAddress(
-                        "Email", emailController.text)) {
-                      if (InputValidator.validatePhoneNumber(
-                          "Phone", phoneController.text)) {
-                        if (InputValidator.validateField(
-                            "Password", passwordController.text)) {
-                          String name = nameController.text.trim();
-                          String email = emailController.text.trim();
-                          String phone = phoneController.text.trim();
-                          String password = passwordController.text.trim();
-                          AuthController.instance
-                              .registerUser(email, password, name, phone);
-
-                          //addUserDetails(name, email, phone);
-                        }
-                      }
-                    }
+                  if (_formKey.currentState!.validate()) {
+                    SignUpController.instance.registerUser(
+                      controller.email.text.trim(),
+                      controller.password.text.trim(),
+                      controller.fullName.text.trim(),
+                      controller.phoneNo.text.trim(),
+                    );
                   }
                 },
                 child: Text(tSignup.toUpperCase()),

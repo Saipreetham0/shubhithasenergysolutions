@@ -34,7 +34,7 @@ class AuthController extends GetxController {
   }
 
   loginRedirect(User? user) {
-    Timer(Duration(seconds: isLoging ? 10 : 1), () {
+    Timer(Duration(seconds: isLoging ? 0 : 5), () {
       // Timer(const Duration(seconds: 1), () {
 
       if (user == null) {
@@ -55,53 +55,42 @@ class AuthController extends GetxController {
     });
   }
 
-  Future<void> phoneAuth(String phoneNumber) async {
-    await auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (credential) async {
-        await auth.signInWithCredential(credential);
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        if (e.code == 'invalid-phone-number') {
-          // print('The provided phone number is not valid.');
-        }
-      },
-      codeSent: (String verificationId, resendToken) {
-        this.verificationId.value = verificationId;
-      },
-      codeAutoRetrievalTimeout: (verificationId) {
-        this.verificationId.value = verificationId;
-      },
-    );
-  }
+  Future<String?> createUserWithEmailAndPassword(
+      String email, String password, name, phone) async {
+    try {
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => userBucket.doc(value.user!.uid).set({
+                'name': name,
+                'email': email,
+                'phone': phone,
+                'address': "",
+                'role': 'user',
+              }));
 
-  Future<void> verifyOTP(String otp) async {
-    await auth.signInWithCredential(PhoneAuthProvider.credential(
-        verificationId: verificationId.value, smsCode: otp));
-
-    // return credential.user != null ? true : false;
+      await user?.updateDisplayName(name);
+      _user.value != null
+          ? Get.offAll(() => const HomePage())
+          : Get.to(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      // final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
+      // return ex.message;
+      return e.message;
+    } catch (_) {
+      // const ex = SignUpWithEmailAndPasswordFailure();
+      // return ex.message;
+    }
+    return null;
   }
 
   void registerUser(email, password, name, phone) async {
     try {
       isLoging = true;
       update();
-      //     CollectionReference reference = FirebaseFirestore.instance.collection("Users");
 
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) =>
-              // FirebaseFirestore.instance
-              //         .collection('users')
-              //         .doc(value.user!.uid)
-              //         .set({
-              //       'name': name,
-              //       'email': email,
-              //       'phone': phone,
-              //       'address': "",
-              //       'role': 'user',
-              // })
-              userBucket.doc(value.user!.uid).set({
+          .then((value) => userBucket.doc(value.user!.uid).set({
                 'name': name,
                 'email': email,
                 'phone': phone,
@@ -155,25 +144,17 @@ class AuthController extends GetxController {
           accessToken: googleAuth?.accessToken,
           idToken: googleAuth?.idToken,
         );
-        await auth.signInWithCredential(crendentials).then((value) =>
-            // FirebaseFirestore.instance
-            //     .collection('users')
-            //     .doc(value.user!.uid)
-            //     .set({
-            //   'name': value.user!.displayName,
-            //   'email': value.user!.email,
-            //   'phone': "",
-            //   'address': "",
-            //   'role': 'user',
-            // })
+        await auth.signInWithCredential(crendentials)
+            // .then((value) =>
 
-            userBucket.doc(value.user!.uid).set({
-              'name': value.user!.displayName,
-              'email': value.user!.email,
-              'phone': "",
-              'address': "",
-              'role': 'user',
-            }));
+            //     userBucket.doc(value.user!.uid).set({
+            //       'name': value.user!.displayName,
+            //       'email': value.user!.email,
+            //       'phone': "",
+            //       'address': "",
+            //       'role': 'user',
+            //     }))
+            ;
 
         getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
       }
@@ -231,7 +212,7 @@ class AuthController extends GetxController {
   }
 
   void signOut() async {
-    await auth.signOut().then((value) => Get.offAll(() => const LoginScreen()));
+    await auth.signOut();
     localData.remove('employeeLogin');
 
     // Get.offAll(() => const LoginScreen());

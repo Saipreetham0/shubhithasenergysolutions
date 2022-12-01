@@ -10,10 +10,10 @@ import 'package:shubhithasenergysolutions/scr/utils/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => Get.put(AuthController()));
   Get.put(AuthController());
+
   await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       defaultTransition: Transition.leftToRight,
       transitionDuration: const Duration(milliseconds: 500),
-      home: const SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }

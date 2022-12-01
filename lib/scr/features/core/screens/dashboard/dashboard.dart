@@ -86,26 +86,16 @@ class _HomePageState extends State<HomePage> {
                   _selectedIndex = index;
                 });
               },
-              // backgroundColor: Theme.of(context).primaryColor,
               activeColor: tSecondaryColor150,
-              
               tabBackgroundColor: isDark
                   ? Theme.of(context).scaffoldBackgroundColor
                   : Colors.grey.shade200,
-
-              // tabBorder: Border.all(color: Colors.grey.shade800, width: 1),
               tabActiveBorder: Border.all(
                   color: isDark ? Colors.grey.shade800 : Colors.white,
                   width: 1),
-
-              // tabBorder: Border.all(color: Colors.grey.shade800, width: 0.5),
               rippleColor: tSecondaryLightColor,
-
-              // hoverColor: Theme.of(context).primaryColor,
               duration: const Duration(milliseconds: 400),
               color: Theme.of(context).textTheme.bodyText1!.color,
-              // activeColor: Colors.white,
-              // tabBackgroundColor: Colors.grey.shade800,
               padding: const EdgeInsets.all(16),
               gap: 8,
               tabs: const [

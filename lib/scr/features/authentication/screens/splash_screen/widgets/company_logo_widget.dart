@@ -37,7 +37,7 @@ class company_logo_widget extends StatelessWidget {
                   // style: Theme.of(context).textTheme.headline1,
                   style: TextStyle(
                       color: Theme.of(context).textTheme.headline2!.color,
-                      fontSize: size.height * 0.038,
+                      fontSize: size.height * 0.035,
                       // fontFamily: 'Poppins',
                       fontFamily: 'bookmanoldstyle',
                       fontWeight: FontWeight.w700)),
@@ -46,14 +46,14 @@ class company_logo_widget extends StatelessWidget {
                   Text("ENERGY",
                       style: TextStyle(
                           color: Colors.yellow[800],
-                          fontSize: size.height * 0.029,
+                          fontSize: size.height * 0.028,
                           fontFamily: 'bookmanoldstyle',
                           fontWeight: FontWeight.w700)),
                   Text(" SOLUTIONS",
                       // style: Theme.of(context).textTheme.headline2
                       style: TextStyle(
                           color: Theme.of(context).textTheme.headline2!.color,
-                          fontSize: size.height * 0.029,
+                          fontSize: size.height * 0.028,
                           fontFamily: 'bookmanoldstyle',
                           fontWeight: FontWeight.w700)),
                 ],

@@ -280,7 +280,7 @@ class _ClientDataUploadScreenState extends State<ClientDataUploadScreen> {
       lat = '${position.latitude}';
       long = '${position.longitude}';
 
-      _clientLivLatLong.text = '${lat} , ${long}';
+      _clientLivLatLong.text = '$lat , $long';
       _clientLiveLocation.text = Address;
     });
   }

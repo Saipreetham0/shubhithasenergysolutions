@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
@@ -9,6 +11,7 @@ import 'package:shubhithasenergysolutions/scr/features/authentication/screens/fo
 class logOutScreen {
   static Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final localData = GetStorage();
     return showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -38,7 +41,10 @@ class logOutScreen {
                   width: size.width * 0.4,
                   child: ElevatedButton(
                     onPressed: () {
-                      AuthController.instance.signOut();
+                      // AuthController.instance.signOut();
+                      FirebaseAuth.instance.signOut();
+
+                      localData.remove('employeeLogin');
                     },
                     child: const Text(tLogoutYes),
                   ),

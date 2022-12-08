@@ -46,14 +46,14 @@ class company_logo_widget extends StatelessWidget {
                   Text("ENERGY",
                       style: TextStyle(
                           color: Colors.yellow[800],
-                          fontSize: size.height * 0.028,
+                          fontSize: size.height * 0.024,
                           fontFamily: 'bookmanoldstyle',
                           fontWeight: FontWeight.w700)),
                   Text(" SOLUTIONS",
                       // style: Theme.of(context).textTheme.headline2
                       style: TextStyle(
                           color: Theme.of(context).textTheme.headline2!.color,
-                          fontSize: size.height * 0.028,
+                          fontSize: size.height * 0.024,
                           fontFamily: 'bookmanoldstyle',
                           fontWeight: FontWeight.w700)),
                 ],

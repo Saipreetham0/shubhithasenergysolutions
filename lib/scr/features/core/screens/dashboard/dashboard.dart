@@ -38,10 +38,10 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
 
-    if (localData.read('employeeLogin') == 'True') {
-    } else {
-      screenChange();
-    }
+    // if (localData.read('employeeLogin') == 'True') {
+    // } else {
+    //   screenChange();
+    // }
   }
 
   void screenChange() {

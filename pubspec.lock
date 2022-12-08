@@ -197,10 +197,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_auth
-      sha256: "721b90fe1a0966add31b47a490672954ac4fe45cfe721fd8a11ffbf4c166f611"
+      sha256: "806e31185c7bf8089e044c60d08488aa5de5db2a8f8bcf9f8b6a15fd68a274c3"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.4"
+    version: "4.1.5"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
@@ -245,10 +245,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_messaging
-      sha256: f2edf71c52e5145e6c78a57eaf75b5f676e194101aa8ae8be9d21737de1328bd
+      sha256: cc4688b272107038da662f442f9c8a8f855b494eadfcb64aca8ccdd22e74224c
       url: "https://pub.dev"
     source: hosted
-    version: "14.1.2"
+    version: "14.1.3"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
@@ -261,10 +261,10 @@ packages:
     dependency: transitive
     description:
       name: firebase_messaging_web
-      sha256: "39569dc2bcdf32a347b2f6d819ed1b325bae83a2ff4667a7368d0a0b1a66fa2a"
+      sha256: "7a7d909ce0ea17f1d7bd2fbc592641237adbeafa489a435d7aa89f29f2db9e01"
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.7"
+    version: "3.2.8"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -564,10 +564,10 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: dab22e92b41aa1255ea90ddc4bc2feaf35544fd0728e209638cad041a6e3928a
+      sha256: "52e38f7e1143ef39daf532117d6b8f8f617bf4bcd6044ed8c29040d20d269630"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   number_to_words:
     dependency: "direct main"
     description:
@@ -793,10 +793,10 @@ packages:
     dependency: transitive
     description:
       name: sqflite
-      sha256: d21c022832f139b89922738e200c07387a49c549bf36c35654418e19ff76d161
+      sha256: "2b1697c7b78576fdc722c358f16f62171bd56e92dc13422d9e44be3fc446c276"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0+3"
+    version: "2.2.2"
   sqflite_common:
     dependency: transitive
     description:

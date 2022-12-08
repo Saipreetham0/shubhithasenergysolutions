@@ -33,6 +33,8 @@ class AuthController extends GetxController {
     ever(_user, loginRedirect);
   }
 
+  final db = FirebaseFirestore.instance;
+
   loginRedirect(User? user) {
     Timer(Duration(seconds: isLoging ? 0 : 5), () {
       // Timer(const Duration(seconds: 1), () {
@@ -46,17 +48,30 @@ class AuthController extends GetxController {
         update();
         // Get.offAll(() => const HomePage());
         // localData.read('employeeLogin');
-        if (localData.read('employeeLogin') == 'True') {
-          Get.offAll(() => const employeeScreen());
-        } else {
-          Get.offAll(() => const HomePage());
-        }
+        // if (localData.read('employeeLogin') == 'True') {
+        //   Get.offAll(() => const employeeScreen());
+        // } else {
+        //   Get.offAll(() => const HomePage());
+        // }
+
+        Get.offAll(() => const HomePage());
+        // db.collection('users').doc(user.uid).get().then((value) {
+        //   if (value.exists) {
+        //     if (value.data()!['role'] == 'employee') {
+        //       Get.offAll(() => const employeeScreen());
+        //     } else {
+        //       Get.offAll(() => const HomePage());
+        //     }
+        //   } else {
+        //     // Get.offAllNamed('/users');
+        //   }
+        // });
       }
     });
   }
 
   Future<String?> createUserWithEmailAndPassword(
-      String email, String password, name, phone) async {
+      String email, String password, String name, String phone) async {
     try {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -66,6 +81,7 @@ class AuthController extends GetxController {
                 'phone': phone,
                 'address': "",
                 'role': 'user',
+                'uid': value.user!.uid,
               }));
 
       await user?.updateDisplayName(name);
@@ -96,6 +112,7 @@ class AuthController extends GetxController {
                 'phone': phone,
                 'address': "",
                 'role': 'user',
+                'uid': value.user!.uid,
               }));
 
       await user?.updateDisplayName(name);
@@ -144,17 +161,16 @@ class AuthController extends GetxController {
           accessToken: googleAuth?.accessToken,
           idToken: googleAuth?.idToken,
         );
-        await auth.signInWithCredential(crendentials)
-            // .then((value) =>
-
-            //     userBucket.doc(value.user!.uid).set({
-            //       'name': value.user!.displayName,
-            //       'email': value.user!.email,
-            //       'phone': "",
-            //       'address': "",
-            //       'role': 'user',
-            //     }))
-            ;
+        await auth
+            .signInWithCredential(crendentials)
+            .then((value) => userBucket.doc(value.user!.uid).set({
+                  'name': value.user!.displayName,
+                  'email': value.user!.email,
+                  'phone': "",
+                  'address': "",
+                  'role': 'user',
+                  'uid': value.user!.uid,
+                }));
 
         getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
       }

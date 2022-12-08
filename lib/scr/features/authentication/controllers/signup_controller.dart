@@ -13,12 +13,13 @@ class SignUpController extends GetxController {
   final phoneNo = TextEditingController();
 
   //Call this Function from Design & it will do the rest
-  void registerUser(String email, String password,  name, phone) async {
+  void registerUser(
+      String email, String password, String name, String phone) async {
     String? error = AuthController.instance.createUserWithEmailAndPassword(
       email,
       password,
-      fullName,
-      phoneNo,
+      fullName.text,
+      phoneNo.text,
     ) as String?;
     if (error != null) {
       Get.showSnackbar(GetSnackBar(

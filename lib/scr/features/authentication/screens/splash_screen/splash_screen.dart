@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/constants/image_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/splash_screen_controller.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
+
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/widgets/company_logo_widget.dart';
 
 class SplashScreen extends StatelessWidget {

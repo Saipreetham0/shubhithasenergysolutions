@@ -16,27 +16,27 @@ class SignUpFormWidget extends StatefulWidget {
 }
 
 class _SignUpFormWidgetState extends State<SignUpFormWidget> {
-  // final emailController = TextEditingController();
-  // final nameController = TextEditingController();
-  // final passwordController = TextEditingController();
-  // final phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final phoneController = TextEditingController();
 
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   emailController.dispose();
-  //   nameController.dispose();
-  //   passwordController.dispose();
-  //   phoneController.dispose();
-  //   // categoryController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    nameController.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    // categoryController.dispose();
+    super.dispose();
+  }
 
   bool passwordObscureText = true;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SignUpController());
+    // final controller = Get.put(SignUpController());
     final _formKey = GlobalKey<FormState>();
 
     return Container(
@@ -47,7 +47,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              controller: controller.fullName,
+              controller: nameController,
               keyboardType: TextInputType.name,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -61,7 +61,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              controller: controller.email,
+              controller: emailController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Please enter email";
@@ -74,7 +74,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              controller: controller.phoneNo,
+              controller: phoneController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Please enter your phone number";
@@ -87,7 +87,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              controller: controller.password,
+              controller: passwordController,
               keyboardType: TextInputType.visiblePassword,
               obscureText: passwordObscureText,
               validator: (value) {
@@ -119,12 +119,18 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               child: ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    SignUpController.instance.registerUser(
-                      controller.email.text.trim(),
-                      controller.password.text.trim(),
-                      controller.fullName.text.trim(),
-                      controller.phoneNo.text.trim(),
-                    );
+                    // SignUpController.instance.registerUser(
+                    //   controller.email.text.trim(),
+                    //   controller.password.text.trim(),
+                    //   controller.fullName.text.trim(),
+                    //   controller.phoneNo.text.trim(),
+                    // );
+
+                    AuthController.instance.registerUser(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                        nameController.text.trim(),
+                        phoneController.text.trim());
                   }
                 },
                 child: Text(tSignup.toUpperCase()),

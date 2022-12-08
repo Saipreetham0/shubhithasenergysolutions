@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shubhithasenergysolutions/firebase_options.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
+import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:shubhithasenergysolutions/scr/utils/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((value) => Get.put(AuthController()));
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Get.put(AuthController());
 
   await GetStorage.init();

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
 import 'package:shubhithasenergysolutions/scr/constants/colors.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
@@ -297,6 +298,7 @@ class _ClientDataUploadScreenState extends State<ClientDataUploadScreen> {
       'LiveLocation': _clientLiveLocation.text,
       'LiveLocationLat': lat,
       'LiveLocationLong': long,
+      'timestamp': DateFormat.yMd().add_jm().format(DateTime.now()),
     }).then((value) => {
           // print('Data Added'),
           // SnackBar(content: Text('Processing Data')),

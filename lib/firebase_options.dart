@@ -63,8 +63,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '85046497910',
     projectId: 'shubhitha-s-energy-solutions',
     storageBucket: 'shubhitha-s-energy-solutions.appspot.com',
-    androidClientId: '85046497910-8s66r6fivq92hmhpdt1bttb259ou7462.apps.googleusercontent.com',
-    iosClientId: '85046497910-eb853cf8c0gm128sk33rqru3me16kk9m.apps.googleusercontent.com',
+    androidClientId:
+        '85046497910-8s66r6fivq92hmhpdt1bttb259ou7462.apps.googleusercontent.com',
+    iosClientId:
+        '85046497910-eb853cf8c0gm128sk33rqru3me16kk9m.apps.googleusercontent.com',
     iosBundleId: 'com.ksp.shubhithasenergysolutions',
   );
 }

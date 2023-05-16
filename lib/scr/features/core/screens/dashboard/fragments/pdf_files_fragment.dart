@@ -26,6 +26,8 @@ class _pdfFileState extends State<pdfFile> {
         .doc(uid)
         .collection('Quotations');
 
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Container(
@@ -37,6 +39,8 @@ class _pdfFileState extends State<pdfFile> {
             horizontal: tDefaultSize - 10, vertical: tDefaultSize - 10),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 12),
               Row(
@@ -53,6 +57,18 @@ class _pdfFileState extends State<pdfFile> {
                   StreamBuilder(
                     stream: ref.snapshots(),
                     builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                        {
+                          return Column(
+                            children: [
+                              SizedBox(height: size.height * 0.35),
+                              const Center(
+                                child: Text('No Quotation Generated'),
+                              ),
+                            ],
+                          );
+                        }
+                      }
                       if (snapshot.hasData) {
                         return SingleChildScrollView(
                           child: ListView.builder(

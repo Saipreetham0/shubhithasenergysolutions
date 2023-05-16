@@ -19,14 +19,12 @@ class _employeeScreenState extends State<employeeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
+  
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final List<Widget> _pages = [
       const ClientDataUploadScreen(),
-      home_fragment(
-          // media: media,
-          ),
+      const home_fragment(),
       const pdfFile(),
       const ProfileScreen()
     ];

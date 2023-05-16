@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shubhithasenergysolutions/firebase_options.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
+
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:shubhithasenergysolutions/scr/utils/theme/theme.dart';
 
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       defaultTransition: Transition.leftToRight,
       transitionDuration: const Duration(milliseconds: 500),
-      home: SplashScreen(),
+      home:  SplashScreen(),
     );
   }
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/input_validators.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/signup_controller.dart';
+
 
 class SignUpFormWidget extends StatefulWidget {
   const SignUpFormWidget({

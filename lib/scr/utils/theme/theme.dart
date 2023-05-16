@@ -11,7 +11,8 @@ class KspAppTheme {
     textTheme: KTextTheme.lightTextTheme,
     primaryColor: tPrimaryColor,
     primaryColorLight: tPrimaryColorLight,
-    accentColor: tAccentColor,
+    
+    // accentColor: tAccentColor,
     // scaffoldBackgroundColor: tDarkColor,
     outlinedButtonTheme: KOutlinedButtonTheme.lightOutlinedButtonTheme,
     elevatedButtonTheme: KelevatedButtonTheme.lightElevatedButtonTheme,
@@ -22,7 +23,7 @@ class KspAppTheme {
     brightness: Brightness.dark,
     textTheme: KTextTheme.darkTextTheme,
     primaryColor: tDarkColor,
-    accentColor: tAccentColor,
+    // accentColor: tAccentColor,
     outlinedButtonTheme: KOutlinedButtonTheme.darkOutlinedButtonTheme,
     elevatedButtonTheme: KelevatedButtonTheme.darkElevatedButtonTheme,
     inputDecorationTheme: KTextFormFieldTheme.darkInputDecorationTheme,

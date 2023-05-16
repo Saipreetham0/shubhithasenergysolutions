@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/forgot_password/forgot_password_mail/forgot_password_open_mail.dart';
 import 'package:shubhithasenergysolutions/scr/features/authentication/screens/login/login_screen.dart';
 import 'package:shubhithasenergysolutions/scr/features/core/screens/dashboard/dashboard.dart';
-import 'package:shubhithasenergysolutions/scr/features/employee/screens/employee_screen.dart';
+
 
 //
 

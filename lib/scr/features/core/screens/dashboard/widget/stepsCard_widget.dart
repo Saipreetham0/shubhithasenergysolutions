@@ -28,7 +28,6 @@ class stepsCard_widget extends StatelessWidget {
               imageUrl: image,
               width: 120,
               height: 120,
-             
             ),
             // Image.asset(image, width: 100, height: 100),
             SizedBox(height: size.height * 0.002),
@@ -39,7 +38,7 @@ class stepsCard_widget extends StatelessWidget {
                 // style: Theme.of(context).textTheme.subtitle2,
                 style: TextStyle(
                   color: Theme.of(context).textTheme.subtitle2!.color,
-                  fontSize: size.width * 0.032,
+                  fontSize: size.width * 0.028,
                   // fontFamily: 'Poppins',
                   fontFamily: 'bookmanoldstyle',
                   fontWeight: FontWeight.w500,

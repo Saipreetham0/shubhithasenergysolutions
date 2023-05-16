@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shubhithasenergysolutions/scr/constants/sizes.dart';
 import 'package:shubhithasenergysolutions/scr/constants/text_strings.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/controllers/auth_controller.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/screens/forgot_password/forgot_password_mail/forgot_password_mail_screen.dart';
-import 'package:shubhithasenergysolutions/scr/features/authentication/screens/forgot_password/forgot_password_options/forgot_password_button_widget.dart';
+
 
 class logOutScreen {
   static Future<dynamic> buildShowModalBottomSheet(BuildContext context) {

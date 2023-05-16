@@ -29,27 +29,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.5
   pdf: ^3.8.4
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.3
   get: ^4.6.5
   flutter_otp_text_field: ^1.1.1
-  firebase_core: ^2.1.0
-  firebase_auth: ^4.0.1
-  flutter_launcher_icons: ^0.11.0
-  google_sign_in: ^5.4.2
-  cloud_firestore: ^4.0.1
+  firebase_core: ^2.4.1
+  firebase_auth: ^4.2.2
+  flutter_launcher_icons: ^0.13.1
+  google_sign_in: ^6.1.0
+  cloud_firestore: ^4.3.1
   google_nav_bar: ^5.0.6
   line_icons: ^2.0.1
-  url_launcher: ^6.1.6
-  path_provider: ^2.0.11
+  url_launcher: ^6.1.8
+  path_provider: ^2.0.12
   math_expressions: ^2.3.1
   printing: ^5.9.3
   flutter_tawk: ^0.1.0
-  firebase_messaging: ^14.1.0
-  package_info_plus: ^3.0.2
-  share_plus: ^6.3.0
-  intl: ^0.17.0
+  firebase_messaging: ^14.2.1
+  package_info_plus: ^4.0.0
+  share_plus: ^7.0.0
+  intl: ^0.18.0
   geolocator: ^9.0.2
   geocoding: ^2.0.5
   geocoding_platform_interface: ^2.0.1
@@ -65,7 +65,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
 
 flutter_native_splash:
  color: "f7f6f1"

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:printing/printing.dart';
-import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdfQuoteAPI.dart';
+import 'package:shubhithasenergysolutions/scr/features/core/screens/quotations_screen/pdf/pdfquoteapi.dart';
 
 class pdfGenerate extends StatefulWidget {
   @override

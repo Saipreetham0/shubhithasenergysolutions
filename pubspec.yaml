@@ -91,12 +91,14 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/images/
-   - assets/images/quote_steps/
+  #  - assets/images/quote_steps/
+  #  - assets/images/chatscreen/
+  #  - assets/images/quote_steps/
    - assets/images/splash-screen/
    - assets/logo/
    - assets/images/pdf/
    - assets/images/pdfListView/
-   - assets/images/chatscreen/
+  #  - assets/images/chatscreen/
    - assets/fonts/
    - assets/fonts/BKMNOS.ttf
    - assets/fonts/BOOKOS.TTF
